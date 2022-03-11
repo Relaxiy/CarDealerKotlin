@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Cars</string>
     <string name="car_model">car model</string>
+    <string name="input_password">Input password:</string>
+    <string name="input_password_again">Input password again:</string>
+    <string name="password">password</string>
+    <string name="input_firstname">Input firstName:</string>
+    <string name="firstname">firstname</string>
+    <string name="input_lastname">Input lastName:</string>
+    <string name="lastname">lastname</string>
+    <string name="date">Date</string>
+    <string name="day_month_year">day/month/year</string>
+    <string name="set_date">Set date:</string>
+    <string name="input_email">Input email:</string>
+    <string name="email">email</string>
+    <string name="next">next</string>
+    <string name="save">save</string>
+    <string name="search">search</string>
+    <string name="filters">filters</string>
 </resources>

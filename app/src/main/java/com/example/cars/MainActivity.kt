@@ -3,11 +3,12 @@ package com.example.cars
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.databinding.ActivityMainBinding
-import com.example.cars.ext.openFragment
+import com.example.cars.utils.ext.openFragment
 import com.example.cars.app.presentation.fragments.*
+import com.example.cars.registration.presentation.fragments.LoginUserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private val bottomNav by lazy {
         findViewById<BottomNavigationView>(R.id.bottom_navigation)
     }
@@ -25,39 +26,44 @@ class MainActivity: AppCompatActivity() {
         initBottomNavMenu()
     }
 
-    private fun initHomeFragment(){
-        openFragment(HomeFragment.newInstance(), HomeFragment.TAG, R.id.container)
+    private fun initHomeFragment() {
+        openFragment(LoginUserFragment.newInstance(), LoginUserFragment.TAG, R.id.container)
     }
 
-    private fun initBottomNavMenu(){
+    private fun initBottomNavMenu() {
         binding.apply {
-            
+
             bottomNav.setOnItemSelectedListener {
-                when(it.itemId){
-                    R.id.home ->{
-                        openFragment(HomeFragment.newInstance(), HomeFragment.TAG, R.id.container)
+                when (it.itemId) {
+                    R.id.home -> {
+                        openFragment(
+                            MainPageFragment.newInstance(),
+                            MainPageFragment.TAG,
+                            R.id.container
+                        )
                     }
-                    R.id.to_cars ->{
+                    R.id.to_cars -> {
                         openFragment(
                             CarModelsFragment.newInstance(),
                             CarModelsFragment.TAG,
                             R.id.container
                         )
                     }
-                    R.id.add_car_button ->{
+                    R.id.add_car_button -> {
                         openFragment(
-                            AddCarFragment.newInstance(), AddCarFragment.TAG,
+                            AddCarFragment.newInstance(),
+                            AddCarFragment.TAG,
                             R.id.container
                         )
                     }
-                    R.id.favourites_button ->{
+                    R.id.favourites_button -> {
                         openFragment(
                             FavouriteCarsFragment.newInstance(),
                             FavouriteCarsFragment.TAG,
                             R.id.container
                         )
                     }
-                    R.id.login_button ->{
+                    R.id.login_button -> {
                         openFragment(
                             PersonalPageFragment.newInstance(),
                             PersonalPageFragment.TAG,
@@ -65,7 +71,7 @@ class MainActivity: AppCompatActivity() {
                         )
                     }
                 }
-                    true
+                true
             }
         }
     }

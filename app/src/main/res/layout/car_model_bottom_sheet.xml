@@ -12,6 +12,6 @@
         android:layout_height="match_parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="14"
-        tools:listitem="@layout/fragment_model_item_bottom" />
+        tools:listitem="@layout/item_model_bottom_fragment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

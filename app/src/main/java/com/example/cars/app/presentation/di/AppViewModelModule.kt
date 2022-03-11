@@ -26,7 +26,9 @@ val appViewModelModule = module {
     }
 
     viewModel {
-        HomeFragmentViewModel()
+        MainPageFragmentViewModel(
+            interactor = get()
+        )
     }
 
     viewModel {

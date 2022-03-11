@@ -1,5 +1,6 @@
 package com.example.cars.registration.data
 
+import com.example.cars.registration.data.api.UserApi
 import com.example.cars.utils.constants.Constants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,5 +23,9 @@ object RetrofitRegistrationInstance {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    val api: UserApi by lazy {
+        retrofit.create(UserApi::class.java)
     }
 }

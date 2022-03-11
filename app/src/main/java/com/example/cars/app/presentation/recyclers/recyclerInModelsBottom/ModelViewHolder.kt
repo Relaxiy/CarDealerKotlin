@@ -21,7 +21,7 @@ class ModelViewHolder(
         ) = ModelViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(
-                    R.layout.fragment_model_item_bottom,
+                    R.layout.item_model_bottom_fragment,
                     parent,
                     false
                 ),

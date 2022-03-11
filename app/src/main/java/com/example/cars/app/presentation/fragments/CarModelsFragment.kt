@@ -2,14 +2,16 @@ package com.example.cars.app.presentation.fragments
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
-import com.example.cars.ext.openFragment
+import com.example.cars.utils.ext.openFragment
 import com.example.cars.app.presentation.recyclers.recyclerInCarModels.CarAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInCarModels.clickListeners.ItemClickListener
 import com.example.cars.app.presentation.viewModels.CarModelsFragmentViewModel
+import kotlinx.android.synthetic.main.fragment_car_models.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CarModelsFragment : Fragment(R.layout.fragment_car_models) {
@@ -47,6 +49,7 @@ class CarModelsFragment : Fragment(R.layout.fragment_car_models) {
         recycler?.layoutManager = GridLayoutManager(requireContext(), 3)
         recycler?.adapter = adapter
         carModelsFragmentViewModel.carsLiveData.observe(viewLifecycleOwner) { carItem ->
+            progress.visibility = ProgressBar.INVISIBLE
             adapter.setItems(carItem)
         }
 
