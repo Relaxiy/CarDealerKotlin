@@ -1,14 +1,28 @@
 package com.example.cars.app.presentation.fragments
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.cars.R
+import com.example.cars.app.domain.models.AddPostItem
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.AddCarFragmentViewModel
+import com.example.cars.utils.ext.dialog
+import com.example.cars.utils.ext.isEmail
+import com.example.cars.utils.ext.openFragment
+import kotlinx.android.synthetic.main.fragment_add_car.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AddCarFragment : Fragment(R.layout.fragment_add_car) {
@@ -25,15 +39,11 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
     }
 
     private val adapter by lazy {
-        HorizontalImageAdapter()
-    }
-
-    private val addCarModel by lazy {
-        view?.findViewById<EditText>(R.id.add_car_model)
+        HorizontalImageAdapter(requireActivity().activityResultRegistry)
     }
 
     private val returnButton by lazy {
-        object : ReturnAddModelButton{
+        object : ReturnAddModelButton {
             override fun returnButton(): EditText? = addCarModel
         }
     }
@@ -42,6 +52,7 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
         carModelsBottomFragmentInit()
+        sendPost()
     }
 
     private fun carModelsBottomFragmentInit() {
@@ -54,9 +65,46 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
         }
     }
 
-    private fun initRecycler(){
+    private fun initRecycler() {
         recycler?.adapter = adapter
     }
 
+    private fun sendPost() {
+        sendPost.setOnClickListener {
+            if (addTitle.text.isEmpty() ||
+                addCarModel.text.isEmpty() ||
+                addDescription.text?.isEmpty() == true ||
+                addPrice.text.isEmpty() ||
+                addName.text.isEmpty() ||
+                addEmail.text.isEmpty() ||
+                addPhoneNumber.text.isEmpty() ||
+                !addEmail.text.toString().isEmail()
+            ) {
+                requireActivity().dialog()
+            } else {
+                addCarFragmentViewModel.createPost(createPost())
+                requireActivity().apply {
+                    openFragment(
+                        MainPageFragment.newInstance(),
+                        MainPageFragment.TAG,
+                        R.id.container
+                    )
+                }
+            }
+        }
+    }
+
+    private fun createPost(): AddPostItem {
+        return AddPostItem(
+            images = listOf(),
+            title = addTitle.text.toString(),
+            carModel = addCarModel.text.toString(),
+            description = addDescription.text.toString(),
+            price = addPrice.text.toString(),
+            personName = addName.text.toString(),
+            email = addEmail.text.toString(),
+            phoneNumber = addPhoneNumber.text.toString()
+        )
+    }
 
 }

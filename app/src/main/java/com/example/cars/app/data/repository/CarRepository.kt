@@ -2,6 +2,7 @@ package com.example.cars.app.data.repository
 
 import com.example.cars.app.data.RetrofitInstance
 import com.example.cars.app.data.api.CarApi
+import com.example.cars.app.domain.models.AddPostItem
 import com.example.cars.app.domain.models.CarItem
 import com.example.cars.app.domain.models.CarModel
 import com.example.cars.app.domain.models.PostItem
@@ -20,8 +21,8 @@ class CarRepository : CarApi {
             .subscribeOn(Schedulers.io())
     }
 
-    override fun sendPost(): Call<PostItem> {
-        return RetrofitInstance.api.sendPost()
+    override fun sendPost(addPostItem: AddPostItem): Call<AddPostItem> {
+        return RetrofitInstance.api.sendPost(addPostItem)
     }
 
 }

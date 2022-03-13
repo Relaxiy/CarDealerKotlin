@@ -1,9 +1,11 @@
 package com.example.cars.app.domain
 
 import com.example.cars.app.data.api.CarApi
+import com.example.cars.app.domain.models.AddPostItem
 import com.example.cars.app.domain.models.CarItem
 import com.example.cars.app.domain.models.CarModel
 import com.example.cars.app.domain.models.PostItem
+import retrofit2.Call
 
 class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
     override suspend fun getCars(): List<CarItem> {
@@ -34,5 +36,8 @@ class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
         }
     }
 
+    override suspend fun sendPost(addPostItem: AddPostItem): Call<AddPostItem> {
+        return repository.sendPost(addPostItem)
+    }
 
 }

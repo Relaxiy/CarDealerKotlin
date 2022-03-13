@@ -1,5 +1,6 @@
 package com.example.cars.app.presentation.viewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.example.cars.app.domain.CarInteractor
 import com.example.cars.app.domain.models.CarModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class CarModelsBottomFragmentViewModel(private val carInteractor: CarInteractor) : ViewModel() {
 
@@ -20,8 +22,12 @@ class CarModelsBottomFragmentViewModel(private val carInteractor: CarInteractor)
 
     private fun loadCards() {
         viewModelScope.launch {
-            delay(1)
-            _carModelsLiveData.value = carInteractor.getCarModels()
+            try {
+                delay(1)
+                _carModelsLiveData.value = carInteractor.getCarModels()
+            } catch (e: Exception) {
+                Log.e("TAG", "Exception during request -> ${e.localizedMessage}")
+            }
         }
     }
 

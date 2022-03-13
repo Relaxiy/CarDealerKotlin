@@ -17,4 +17,6 @@
     <string name="save">save</string>
     <string name="search">search</string>
     <string name="filters">filters</string>
+    <string name="change_car_model">Change car model:</string>
+    <string name="title">title</string>
 </resources>

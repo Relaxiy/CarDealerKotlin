@@ -2,9 +2,9 @@ package com.example.cars
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.openFragment
 import com.example.cars.app.presentation.fragments.*
+import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.registration.presentation.fragments.LoginUserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -58,8 +58,8 @@ class MainActivity : AppCompatActivity() {
                     }
                     R.id.favourites_button -> {
                         openFragment(
-                            FavouriteCarsFragment.newInstance(),
-                            FavouriteCarsFragment.TAG,
+                            FavouritePostsFragment.newInstance(),
+                            FavouritePostsFragment.TAG,
                             R.id.container
                         )
                     }

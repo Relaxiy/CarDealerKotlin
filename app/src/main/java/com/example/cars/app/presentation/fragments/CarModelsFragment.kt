@@ -36,8 +36,8 @@ class CarModelsFragment : Fragment(R.layout.fragment_car_models) {
             override fun itemClick() {
                 requireActivity().apply {
                     openFragment(
-                        FavouriteCarsFragment.newInstance(),
-                        FavouriteCarsFragment.TAG,
+                        FavouritePostsFragment.newInstance(),
+                        FavouritePostsFragment.TAG,
                         R.id.container
                     )
                 }

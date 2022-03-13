@@ -6,7 +6,9 @@ import org.koin.dsl.module
 
 val appViewModelModule = module {
     viewModel {
-        AddCarFragmentViewModel()
+        AddCarFragmentViewModel(
+            carInteractor = get()
+        )
     }
 
     viewModel {
@@ -27,7 +29,7 @@ val appViewModelModule = module {
 
     viewModel {
         MainPageFragmentViewModel(
-            interactor = get()
+            carInteractor = get()
         )
     }
 
