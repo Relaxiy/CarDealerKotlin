@@ -9,10 +9,9 @@ class UserInteractorImpl(private val repository: UserApi) : UserInteractor {
         if (user != null) {
             repository.sendUser(
                 PostedUser(
-                    firstName = user.firstName,
-                    lastName = user.lastName,
-                    birthday = user.birthday,
+                    username = user.username,
                     email = user.email,
+                    birthday = user.birthday,
                     password = user.password
                 )
             )

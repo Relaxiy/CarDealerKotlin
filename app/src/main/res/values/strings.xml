@@ -19,4 +19,10 @@
     <string name="filters">filters</string>
     <string name="change_car_model">Change car model:</string>
     <string name="title">title</string>
+    <string name="username">username</string>
+    <string name="register">Register</string>
+    <string name="login">Login:</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="already_registered_login">Already registered? Login</string>
+    <string name="don_t_have_account_sign_up">Don\'t have account? Sign up</string>
 </resources>

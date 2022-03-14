@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.utils.ext.openFragment
 import com.example.cars.app.presentation.fragments.*
 import com.example.cars.databinding.ActivityMainBinding
-import com.example.cars.registration.presentation.fragments.LoginUserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

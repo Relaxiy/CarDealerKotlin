@@ -11,7 +11,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class LoginSharedViewModel(private val userInteractor: UserInteractor) : ViewModel() {
+class LoginViewModel(private val userInteractor: UserInteractor) : ViewModel() {
 
     val user: LiveData<User> get() = _user
     private val _user = MutableLiveData<User>()
@@ -31,7 +31,4 @@ class LoginSharedViewModel(private val userInteractor: UserInteractor) : ViewMod
         _user.value = user
     }
 
-    fun setPassword(password: String) {
-        _user.value?.password = password
-    }
 }
