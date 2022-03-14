@@ -1,6 +1,7 @@
 package com.example.cars.utils.ext
 
 import android.util.Patterns
+import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.cars.registration.presentation.dialog.LoginDialog

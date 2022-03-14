@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.MainActivity
 import com.example.cars.R
@@ -59,15 +60,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun register() {
         registrationButton.setOnClickListener {
-            if (inputUsername.text.isEmpty() ||
-                inputEmail.text.isEmpty() ||
-                inputDate.text.isEmpty() ||
-                inputPasswordFirst.text.isEmpty() ||
-                inputPasswordFirst.text.isEmpty() ||
-                inputPasswordSecond.text.isEmpty() ||
-                inputPasswordFirst.text.toString() != inputPasswordSecond.text.toString() ||
-                !inputEmail.text.toString().isEmail()
-            ) {
+            if (validateFields()) {
                 dialog()
             } else {
                 loginViewModel.setUser(
@@ -78,6 +71,18 @@ class RegisterActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+    }
+
+    private fun validateFields(): Boolean {
+        return inputUsername.text.isEmpty() ||
+                inputEmail.text.isEmpty() ||
+                inputDate.text.isEmpty() ||
+                inputPasswordFirst.text.isEmpty() ||
+                inputPasswordFirst.text.isEmpty() ||
+                inputPasswordSecond.text.isEmpty() ||
+                inputPasswordSecond.text.toString().length < 8 ||
+                inputPasswordFirst.text.toString() != inputPasswordSecond.text.toString() ||
+                !inputEmail.text.toString().isEmail()
     }
 
     private fun createUser(): User {
