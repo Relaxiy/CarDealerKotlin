@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initHomeFragment() {
-        openFragment(LoginUserFragment.newInstance(), LoginUserFragment.TAG, R.id.container)
+        openFragment(MainPageFragment.newInstance(), MainPageFragment.TAG, R.id.container)
     }
 
     private fun initBottomNavMenu() {

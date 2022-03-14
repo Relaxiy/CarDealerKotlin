@@ -1,4 +1,4 @@
-package com.example.cars.registration.presentation.fragments
+package com.example.cars.registration.presentation.registerActivities
 
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -7,6 +7,7 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.MainActivity
 import com.example.cars.R
+import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.registration.domain.models.User
 import com.example.cars.registration.presentation.viewModels.LoginViewModel
 import com.example.cars.utils.ext.dialog
@@ -18,8 +19,8 @@ import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
     }
 
