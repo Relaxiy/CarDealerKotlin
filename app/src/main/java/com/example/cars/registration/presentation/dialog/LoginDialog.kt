@@ -12,8 +12,8 @@ class LoginDialog : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Warning!")
                 .setMessage("Not valid!")
-                .setPositiveButton("OK") {
-                        dialog, id ->  dialog.cancel()
+                .setPositiveButton("OK") { dialog, id ->
+                    dialog.cancel()
                 }
             builder.create()
         } ?: throw IllegalStateException("Activity cannot be null")

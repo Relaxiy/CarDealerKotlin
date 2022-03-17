@@ -11,7 +11,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class LoginViewModel(private val userInteractor: UserInteractor) : ViewModel() {
+class RegisterViewModel(private val userInteractor: UserInteractor) : ViewModel() {
 
     val user: LiveData<User> get() = _user
     private val _user = MutableLiveData<User>()

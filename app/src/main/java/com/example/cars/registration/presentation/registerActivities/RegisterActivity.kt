@@ -3,14 +3,11 @@ package com.example.cars.registration.presentation.registerActivities
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.MainActivity
 import com.example.cars.R
-import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.registration.domain.models.User
-import com.example.cars.registration.presentation.viewModels.LoginViewModel
+import com.example.cars.registration.presentation.viewModels.RegisterViewModel
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import kotlinx.android.synthetic.main.activity_register.*
@@ -31,11 +28,11 @@ class RegisterActivity : AppCompatActivity() {
         register()
     }
 
-    private val loginViewModel: LoginViewModel by viewModel()
+    private val loginViewModel: RegisterViewModel by viewModel()
 
     private fun initDate() {
         val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, day ->
+        val datePicker = DatePickerDialog.OnDateSetListener { _, year, month, day ->
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, day)
