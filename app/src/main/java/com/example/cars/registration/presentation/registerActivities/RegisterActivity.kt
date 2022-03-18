@@ -60,9 +60,9 @@ class RegisterActivity : AppCompatActivity() {
             if (validateFields()) {
                 dialog()
             } else {
-                loginViewModel.setUser(
-                    createUser()
-                )
+//                loginViewModel.setUser(
+//                  createUser()
+//                )
                 loginViewModel.sendUser()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -82,12 +82,12 @@ class RegisterActivity : AppCompatActivity() {
                 !inputEmail.text.toString().isEmail()
     }
 
-    private fun createUser(): User {
-        return User(
-            username = inputUsername.text.toString(),
-            email = inputEmail.text.toString(),
-            birthday = inputDate.text.toString(),
-            password = inputPasswordFirst.text.toString()
-        )
-    }
+//    private fun createUser(): User {
+//        return User(
+//            username = inputUsername.text.toString(),
+//            email = inputEmail.text.toString(),
+//            birthday = inputDate.text.toString(),
+//            password = inputPasswordFirst.text.toString()
+//        )
+//    }
 }

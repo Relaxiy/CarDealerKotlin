@@ -2,6 +2,7 @@ package com.example.cars.registration.data.room
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.data.room.models.AccountDbEntity
 
 @Database(
@@ -11,4 +12,6 @@ import com.example.cars.registration.data.room.models.AccountDbEntity
     ]
 )
 abstract class AppDataBase : RoomDatabase() {
+
+    abstract fun getAccountsDao(): AccountsDao
 }
