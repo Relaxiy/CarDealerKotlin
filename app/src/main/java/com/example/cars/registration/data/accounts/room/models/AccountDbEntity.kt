@@ -1,11 +1,9 @@
-package com.example.cars.registration.data.room.models
+package com.example.cars.registration.data.accounts.room.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.example.cars.registration.domain.models.SignUpData
-import com.example.cars.registration.domain.models.User
 
 @Entity(
     tableName = "accounts",
@@ -27,7 +25,7 @@ data class AccountDbEntity(
     @ColumnInfo(name = "created_at")
     val createdAt: Long
 ) {
-    fun toUser(): User = User(
+    fun toAccount(): Account = Account(
         id = id,
         username = username,
         email = email,

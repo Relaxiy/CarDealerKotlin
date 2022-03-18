@@ -5,15 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cars.registration.domain.models.User
+import com.example.cars.registration.data.accounts.room.models.Account
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class RegisterViewModel() : ViewModel() {
 
-    val user: LiveData<User> get() = _user
-    private val _user = MutableLiveData<User>()
+    val user: LiveData<Account> get() = _user
+    private val _user = MutableLiveData<Account>()
 
     fun sendUser() {
         viewModelScope.launch {
@@ -26,7 +26,7 @@ class RegisterViewModel() : ViewModel() {
         }
     }
 
-    fun setUser(user: User) {
+    fun setUser(user: Account) {
         _user.value = user
     }
 

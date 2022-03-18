@@ -1,4 +1,4 @@
-package com.example.cars.registration.data.room.tuples
+package com.example.cars.registration.data.accounts.room.tuples
 
 data class AccountUpdateUsernameTuple(
     val id: Long,

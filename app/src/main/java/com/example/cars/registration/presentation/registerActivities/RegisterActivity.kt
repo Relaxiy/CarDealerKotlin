@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.MainActivity
 import com.example.cars.R
-import com.example.cars.registration.domain.models.User
 import com.example.cars.registration.presentation.viewModels.RegisterViewModel
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail

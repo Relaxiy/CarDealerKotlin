@@ -1,6 +1,4 @@
-package com.example.cars.registration.domain.models
-
-import android.provider.ContactsContract
+package com.example.cars.registration.data.accounts.room.models
 
 data class SignUpData(
     val username: String,

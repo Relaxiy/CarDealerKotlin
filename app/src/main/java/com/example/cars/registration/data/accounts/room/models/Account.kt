@@ -1,6 +1,6 @@
-package com.example.cars.registration.domain.models
+package com.example.cars.registration.data.accounts.room.models
 
-data class User(
+data class Account(
     val id: Long,
     val username: String,
     val email: String,
