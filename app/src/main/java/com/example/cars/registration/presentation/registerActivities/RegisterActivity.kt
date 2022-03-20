@@ -59,14 +59,14 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun register() {
         registrationButton.setOnClickListener {
-
-            if (validateFields()) {
+            val account = createAccount()
+            if (registerViewModel.validate(account)) {
                 dialog()
             } else {
                 try {
-                    registerViewModel.setAccount(createAccount())
+                    registerViewModel.setAccount(account)
                 } catch (e: Exception) {
-                    Log.e("TAG", "${e.localizedMessage}")
+                    Log.e("TAG", e.localizedMessage)
                 }
                 registerViewModel.saveAccount()
                 val intent = Intent(this, MainActivity::class.java)

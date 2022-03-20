@@ -24,7 +24,7 @@ class CarModelsBottomFragmentViewModel(private val carInteractor: CarInteractor)
         viewModelScope.launch {
             try {
                 delay(1)
-                _carModelsLiveData.value = carInteractor.getCarModels()
+                _carModelsLiveData.postValue(carInteractor.getCarModels())
             } catch (e: Exception) {
                 Log.e("TAG", "Exception during request -> ${e.localizedMessage}")
             }

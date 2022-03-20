@@ -25,7 +25,6 @@ class AddCarFragmentViewModel(private val carInteractor: CarInteractor) : ViewMo
     private fun sendPost() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                delay(1)
                 addPostItem.value?.let { postItem ->
                     carInteractor.sendPost(postItem)
                 }
