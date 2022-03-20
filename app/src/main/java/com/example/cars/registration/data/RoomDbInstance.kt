@@ -7,7 +7,7 @@ import com.example.cars.registration.data.accounts.room.AppDatabase
 object RoomDbInstance {
 
     private lateinit var applicationContext: Context
-    private val dataBase: AppDatabase by lazy {
+    val dataBase: AppDatabase by lazy {
         Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database.db")
             .build()
     }

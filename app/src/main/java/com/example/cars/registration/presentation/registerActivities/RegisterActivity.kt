@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.MainActivity
 import com.example.cars.R
+import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.presentation.viewModels.RegisterViewModel
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
@@ -27,7 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         register()
     }
 
-    private val loginViewModel: RegisterViewModel by viewModel()
+    private val registerViewModel: RegisterViewModel by viewModel()
 
     private fun initDate() {
         val calendar = Calendar.getInstance()
@@ -56,37 +57,25 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun register() {
         registrationButton.setOnClickListener {
-            if (validateFields()) {
+            val signUpData = createAccount()
+            if (registerViewModel.validate(signUpData)) {
                 dialog()
             } else {
-//                loginViewModel.setUser(
-//                  createUser()
-//                )
-                loginViewModel.sendUser()
+                registerViewModel.setAccount(signUpData)
+                registerViewModel.saveAccount()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
     }
 
-    private fun validateFields(): Boolean {
-        return inputUsername.text.isEmpty() ||
-                inputEmail.text.isEmpty() ||
-                inputDate.text.isEmpty() ||
-                inputPasswordFirst.text.isEmpty() ||
-                inputPasswordFirst.text.isEmpty() ||
-                inputPasswordSecond.text.isEmpty() ||
-                inputPasswordSecond.text.toString().length < 8 ||
-                inputPasswordFirst.text.toString() != inputPasswordSecond.text.toString() ||
-                !inputEmail.text.toString().isEmail()
+    private fun createAccount(): SignUpData {
+        return SignUpData(
+            username = inputUsername.text.toString(),
+            email = inputEmail.text.toString(),
+            birthday = inputDate.text.toString(),
+            password = inputPasswordFirst.text.toString(),
+            repeatPassword = inputPasswordSecond.text.toString()
+        )
     }
-
-//    private fun createUser(): User {
-//        return User(
-//            username = inputUsername.text.toString(),
-//            email = inputEmail.text.toString(),
-//            birthday = inputDate.text.toString(),
-//            password = inputPasswordFirst.text.toString()
-//        )
-//    }
 }

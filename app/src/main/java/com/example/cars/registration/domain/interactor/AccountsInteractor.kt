@@ -1,10 +1,10 @@
-package com.example.cars.registration.data.repository
+package com.example.cars.registration.domain.interactor
 
-import com.example.cars.registration.data.accounts.room.models.Account
-import com.example.cars.registration.data.accounts.room.models.SignUpData
+import com.example.cars.registration.domain.models.Account
+import com.example.cars.registration.domain.models.SignUpData
 import kotlinx.coroutines.flow.Flow
 
-interface AccountsRepository {
+interface AccountsInteractor {
 
     suspend fun findAccountIdByEmailAndPassword(email: String, password: String): Long
 

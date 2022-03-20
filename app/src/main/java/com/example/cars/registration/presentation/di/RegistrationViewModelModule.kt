@@ -6,6 +6,8 @@ import org.koin.dsl.module
 
 val registrationViewModelModule = module {
     viewModel {
-        RegisterViewModel()
+        RegisterViewModel(
+            accountsInteractor = get()
+        )
     }
 }
