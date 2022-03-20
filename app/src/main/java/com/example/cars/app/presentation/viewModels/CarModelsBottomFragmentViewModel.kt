@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cars.app.domain.CarInteractor
 import com.example.cars.app.domain.models.CarModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -21,9 +22,8 @@ class CarModelsBottomFragmentViewModel(private val carInteractor: CarInteractor)
     }
 
     private fun loadCards() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                delay(1)
                 _carModelsLiveData.postValue(carInteractor.getCarModels())
             } catch (e: Exception) {
                 Log.e("TAG", "Exception during request -> ${e.localizedMessage}")
