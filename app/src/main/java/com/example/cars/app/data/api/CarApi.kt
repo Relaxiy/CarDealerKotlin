@@ -13,13 +13,13 @@ import retrofit2.http.POST
 interface CarApi {
     @GET("./getCarModels")
     @Headers("Content-Type: application/json")
-    suspend fun getCarModels(): Single<List<CarItem>>
+    fun getCarModels(): Single<List<CarItem>>
 
     @GET("./posts")
     @Headers("Content-Type: application/json")
-    suspend fun getPosts(): Single<List<PostItem>>
+    fun getPosts(): Single<List<PostItem>>
 
     @POST("./posts")
     @Headers("Content-Type: application/json")
-    suspend fun sendPost(@Body addPostItem: AddPostItem): Call<AddPostItem>
+    fun sendPost(@Body addPostItem: AddPostItem): Call<AddPostItem>
 }
