@@ -1,7 +1,7 @@
 package com.example.cars.registration.domain.di
 
-import com.example.cars.registration.data.RoomDbInstance
-import com.example.cars.registration.data.accounts.room.dao.AccountsDao
+import com.example.cars.registration.data.room.RoomDbInstance
+import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.data.accounts.room.dao.AccountsDao_Impl
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.interactor.AccountsInteractorImpl

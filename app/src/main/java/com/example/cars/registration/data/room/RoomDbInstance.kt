@@ -1,8 +1,7 @@
-package com.example.cars.registration.data
+package com.example.cars.registration.data.room
 
 import android.content.Context
 import androidx.room.Room
-import com.example.cars.registration.data.accounts.room.AppDatabase
 
 object RoomDbInstance {
 

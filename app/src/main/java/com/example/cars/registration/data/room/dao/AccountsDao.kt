@@ -1,12 +1,12 @@
-package com.example.cars.registration.data.accounts.room.dao
+package com.example.cars.registration.data.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.cars.registration.data.accounts.room.models.AccountDbEntity
-import com.example.cars.registration.data.accounts.room.tuples.AccountSignInTuple
-import com.example.cars.registration.data.accounts.room.tuples.AccountUpdateUsernameTuple
+import com.example.cars.registration.data.room.models.AccountDbEntity
+import com.example.cars.registration.data.room.tuples.AccountSignInTuple
+import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
 import kotlinx.coroutines.flow.Flow
 
 @Dao

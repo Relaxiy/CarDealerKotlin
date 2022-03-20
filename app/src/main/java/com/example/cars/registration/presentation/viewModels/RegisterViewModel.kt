@@ -32,18 +32,18 @@ class RegisterViewModel(private val accountsInteractor: AccountsInteractor) : Vi
         }
     }
 
-    fun validate(signUpData: SignUpData): Boolean {
-        signUpData.apply {
-            return username.isEmpty() ||
-                    email.isEmpty() ||
-                    !email.isEmail() ||
-                    birthday.isEmpty() ||
-                    password.isEmpty() ||
-                    repeatPassword.isEmpty() ||
-                    password != signUpData.repeatPassword ||
-                    password.length < 8
-        }
-    }
+//    fun validate(signUpData: SignUpData): Boolean {
+//        signUpData.apply {
+//            return username.isEmpty() ||
+//                    email.isEmpty() ||
+//                    !email.isEmail() ||
+//                    birthday.isEmpty() ||
+//                    password.isEmpty() ||
+//                    repeatPassword.isEmpty() ||
+//                    password != signUpData.repeatPassword ||
+//                    password.length < 8
+//        }
+//    }
 
     fun setAccount(signUpData: SignUpData) {
         _signUpData.value = signUpData

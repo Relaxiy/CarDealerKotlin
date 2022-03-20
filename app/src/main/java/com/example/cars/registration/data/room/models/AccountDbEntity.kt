@@ -1,4 +1,4 @@
-package com.example.cars.registration.data.accounts.room.models
+package com.example.cars.registration.data.room.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
