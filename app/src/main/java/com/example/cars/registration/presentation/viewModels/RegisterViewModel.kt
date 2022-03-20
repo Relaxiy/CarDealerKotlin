@@ -5,22 +5,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cars.registration.data.room.RoomDbInstance
 import com.example.cars.registration.domain.interactor.AccountsInteractor
+import com.example.cars.registration.domain.interactor.AccountsInteractorImpl
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.utils.ext.isEmail
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class RegisterViewModel(private val accountsInteractor: AccountsInteractor) : ViewModel() {
+class RegisterViewModel() : ViewModel() {
 
     val signUpData: LiveData<SignUpData> get() = _signUpData
     private val _signUpData = MutableLiveData<SignUpData>()
 
+    private val accountsInteractor by lazy {
+        AccountsInteractorImpl(
+            accountsDao = RoomDbInstance.dataBase.getAccountsDao()
+        )
+    }
 
     fun saveAccount() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             delay(1)
             try {
                 signUpData.value?.let { signUpData ->

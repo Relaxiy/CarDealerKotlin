@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cars.app.domain.CarInteractor
 import com.example.cars.app.domain.models.AddPostItem
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -22,7 +23,7 @@ class AddCarFragmentViewModel(private val carInteractor: CarInteractor) : ViewMo
     }
 
     private fun sendPost() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 delay(1)
                 addPostItem.value?.let { postItem ->

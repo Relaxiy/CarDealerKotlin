@@ -10,4 +10,8 @@ object RoomDbInstance {
         Room.databaseBuilder(applicationContext, AppDatabase::class.java, "database.db")
             .build()
     }
+
+    fun init(context: Context){
+        applicationContext = context
+    }
 }

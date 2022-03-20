@@ -30,7 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         register()
     }
 
-    private val registerViewModel: RegisterViewModel by viewModel()
+    private val registerViewModel = RegisterViewModel()
 
     private fun initDate() {
         val calendar = Calendar.getInstance()

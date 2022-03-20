@@ -1,13 +1,15 @@
 package com.example.cars.registration.presentation.di
 
+import com.example.cars.registration.data.room.RoomDbInstance
+import com.example.cars.registration.domain.interactor.AccountsInteractorImpl
 import com.example.cars.registration.presentation.viewModels.RegisterViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val registrationViewModelModule = module {
-    viewModel {
-        RegisterViewModel(
-            accountsInteractor = get()
-        )
-    }
+//    viewModel {
+//        RegisterViewModel(
+//            accountsInteractor = get()
+//        )
+//    }
 }
