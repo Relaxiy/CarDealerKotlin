@@ -29,7 +29,6 @@ class RegisterViewModel() : ViewModel() {
 
     fun saveAccount() {
         viewModelScope.launch(Dispatchers.IO) {
-            delay(1)
             try {
                 signUpData.value?.let { signUpData ->
                     accountsInteractor.createAccount(signUpData)

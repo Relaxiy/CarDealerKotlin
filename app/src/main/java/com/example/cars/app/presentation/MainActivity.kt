@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initHomeFragment()
     }
 
     override fun onStart() {
         super.onStart()
-        initHomeFragment()
         mainActivityViewModel.initBottomNavMenu(binding, bottomNav, this)
     }
 

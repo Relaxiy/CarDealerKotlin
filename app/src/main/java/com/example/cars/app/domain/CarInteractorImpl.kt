@@ -9,7 +9,7 @@ import retrofit2.Call
 
 class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
     override suspend fun getCars(): List<CarItem> {
-        return repository.getCarModels().blockingGet().map{ carsResponce->
+        return repository.getCarModels().blockingGet().map { carsResponce ->
             CarItem(
                 carModel = carsResponce.carModel,
                 brandImage = carsResponce.brandImage

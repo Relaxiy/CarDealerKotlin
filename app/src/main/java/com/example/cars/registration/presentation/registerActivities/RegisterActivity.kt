@@ -75,17 +75,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateFields(): Boolean {
-        return inputUsername.text.isEmpty() ||
-                inputEmail.text.isEmpty() ||
-                inputDate.text.isEmpty() ||
-                inputPasswordFirst.text.isEmpty() ||
-                inputPasswordSecond.text.isEmpty() ||
-                inputPasswordSecond.text.toString().length < 8 ||
-                inputPasswordFirst.text.toString() != inputPasswordSecond.text.toString() ||
-                !inputEmail.text.toString().isEmail()
-    }
-
     private fun createAccount(): SignUpData {
         return SignUpData(
             username = inputUsername.text.toString(),
