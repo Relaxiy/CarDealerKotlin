@@ -1,12 +1,13 @@
 package com.example.cars.registration.domain.interactor
 
 import com.example.cars.registration.domain.models.Account
+import com.example.cars.registration.domain.models.AccountSignIn
 import com.example.cars.registration.domain.models.SignUpData
 import kotlinx.coroutines.flow.Flow
 
 interface AccountsInteractor {
 
-    suspend fun findAccountIdByEmailAndPassword(email: String, password: String): Long
+    suspend fun findAccountIdByEmailAndPassword(accountSignIn: AccountSignIn): Long
 
     suspend fun createAccount(signUpData: SignUpData)
 

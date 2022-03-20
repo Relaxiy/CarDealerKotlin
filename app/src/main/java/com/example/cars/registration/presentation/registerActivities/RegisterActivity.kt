@@ -68,7 +68,6 @@ class RegisterActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     Log.e("TAG", e.localizedMessage)
                 }
-                registerViewModel.saveAccount()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }

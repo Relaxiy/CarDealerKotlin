@@ -17,23 +17,24 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:text="@string/login"
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/purple_500"
             android:layout_marginBottom="20dp"
-            android:textSize="24sp"/>
+            android:gravity="center"
+            android:text="@string/login"
+            android:textColor="@color/purple_500"
+            android:textSize="24sp" />
+
         <EditText
-            android:id="@+id/addUsername"
+            android:id="@+id/inputLoginEmail"
             android:layout_width="248dp"
             android:layout_height="50dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edit_text_login_background"
-            android:drawableStart="@drawable/ic_person"
+            android:drawableStart="@drawable/ic_email"
             android:drawablePadding="10dp"
-            android:hint="@string/username"
-            android:inputType="textPersonName"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
             android:paddingStart="20dp"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,13 +54,13 @@
             tools:ignore="RtlSymmetry" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:text="@string/forgot_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/purple_500"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:textSize="12sp"/>
+            android:text="@string/forgot_password"
+            android:textColor="@color/purple_500"
+            android:textSize="12sp" />
 
         <Button
             android:id="@+id/loginButton"
@@ -71,20 +72,20 @@
             android:text="login" />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:text="@string/don_t_have_account_sign_up"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/purple_500"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:textSize="12sp"/>
+            android:text="@string/don_t_have_account_sign_up"
+            android:textColor="@color/purple_500"
+            android:textSize="12sp" />
 
         <ImageView
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_google"/>
+            android:layout_gravity="end"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_google" />
     </LinearLayout>
 
 

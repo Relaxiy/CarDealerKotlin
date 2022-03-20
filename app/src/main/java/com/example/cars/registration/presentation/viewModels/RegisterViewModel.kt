@@ -54,6 +54,7 @@ class RegisterViewModel() : ViewModel() {
 
     fun setAccount(signUpData: SignUpData) {
         _signUpData.value = signUpData
+        saveAccount()
     }
 
 }
