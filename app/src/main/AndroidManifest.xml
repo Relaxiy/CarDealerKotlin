@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cars">
         <activity
-            android:name=".MainActivity"
+            android:name=".app.presentation.MainActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity

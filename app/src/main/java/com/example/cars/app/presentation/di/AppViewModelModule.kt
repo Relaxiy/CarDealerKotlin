@@ -37,4 +37,8 @@ val appViewModelModule = module {
         PersonalPageFragmentViewModel()
     }
 
+    viewModel {
+        MainActivityViewModel()
+    }
+
 }

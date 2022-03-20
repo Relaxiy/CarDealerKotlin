@@ -4,7 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cars.MainActivity
+import com.example.cars.app.presentation.MainActivity
 import com.example.cars.R
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.presentation.viewModels.RegisterViewModel
