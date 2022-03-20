@@ -8,14 +8,9 @@ import com.example.cars.registration.domain.interactor.AccountsInteractorImpl
 import org.koin.dsl.module
 
 val registrationDomainModule = module {
-
-    single<AccountsDao>{
-        AccountsDao_Impl(RoomDbInstance.dataBase)
-    }
-
     single<AccountsInteractor> {
         AccountsInteractorImpl(
-            accountsDao = get()
+            accountsDao = RoomDbInstance.dataBase.getAccountsDao()
         )
     }
 }

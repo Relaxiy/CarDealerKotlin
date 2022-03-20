@@ -3,6 +3,7 @@ package com.example.cars.registration.presentation.registerActivities
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.R
@@ -12,6 +13,7 @@ import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import kotlinx.android.synthetic.main.activity_register.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -61,7 +63,11 @@ class RegisterActivity : AppCompatActivity() {
             if (validateFields()) {
                 dialog()
             } else {
-                registerViewModel.setAccount(createAccount())
+                try {
+                    registerViewModel.setAccount(createAccount())
+                } catch (e: Exception) {
+                    Log.e("TAG", "${e.localizedMessage}")
+                }
                 registerViewModel.saveAccount()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
