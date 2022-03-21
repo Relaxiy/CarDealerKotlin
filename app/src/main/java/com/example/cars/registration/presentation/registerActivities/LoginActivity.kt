@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         login()
+        toRegister()
     }
 
     private fun login() {
@@ -40,6 +41,13 @@ class LoginActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun toRegister(){
+        toRegister.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 

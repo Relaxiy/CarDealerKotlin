@@ -18,6 +18,10 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
+            android:name=".registration.presentation.registerActivities.LoginActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
             android:name=".registration.presentation.registerActivities.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">

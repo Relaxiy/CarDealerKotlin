@@ -28,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onStart()
         initDate()
         register()
+        toLogin()
     }
 
     private val registerViewModel = RegisterViewModel()
@@ -71,6 +72,13 @@ class RegisterActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
+        }
+    }
+
+    private fun toLogin(){
+        toLogin.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 
