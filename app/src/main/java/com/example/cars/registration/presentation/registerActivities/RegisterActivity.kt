@@ -1,6 +1,5 @@
 package com.example.cars.registration.presentation.registerActivities
 
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,12 +9,8 @@ import com.example.cars.R
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.presentation.viewModels.RegisterViewModel
 import com.example.cars.utils.ext.dialog
-import com.example.cars.utils.ext.isEmail
 import kotlinx.android.synthetic.main.activity_register.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -26,37 +21,12 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        initDate()
+        registerViewModel.initDate(inputDate, this)
         register()
         toLogin()
     }
 
     private val registerViewModel = RegisterViewModel()
-
-    private fun initDate() {
-        val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            calendar.set(Calendar.YEAR, year)
-            calendar.set(Calendar.MONTH, month)
-            calendar.set(Calendar.DAY_OF_MONTH, day)
-            updateLabel(calendar)
-        }
-        inputDate.setOnClickListener {
-            DatePickerDialog(
-                this,
-                datePicker,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            ).show()
-        }
-    }
-
-    private fun updateLabel(calendar: Calendar) {
-        val format = "dd/MM/yyyy"
-        val sdf = SimpleDateFormat(format, Locale.UK)
-        inputDate.setText(sdf.format(calendar.time))
-    }
 
     private fun register() {
         registrationButton.setOnClickListener {
@@ -64,18 +34,14 @@ class RegisterActivity : AppCompatActivity() {
             if (registerViewModel.validate(account)) {
                 dialog()
             } else {
-                try {
-                    registerViewModel.setAccount(account)
-                } catch (e: Exception) {
-                    Log.e("TAG", e.localizedMessage)
-                }
+                registerViewModel.setAccount(account)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
         }
     }
 
-    private fun toLogin(){
+    private fun toLogin() {
         toLogin.setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)

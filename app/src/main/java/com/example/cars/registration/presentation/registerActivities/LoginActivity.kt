@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun toRegister(){
+    private fun toRegister() {
         toRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
