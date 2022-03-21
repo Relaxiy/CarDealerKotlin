@@ -12,17 +12,17 @@ import retrofit2.Call
 
 class CarRepository : CarApi {
     override fun getCarModels(): Single<List<CarItem>> {
-        return RetrofitInstance.api.getCarModels()
+        return RetrofitInstance.getCarApi().getCarModels()
             .subscribeOn(Schedulers.io())
     }
 
     override fun getPosts(): Single<List<PostItem>> {
-        return RetrofitInstance.api.getPosts()
+        return RetrofitInstance.getCarApi().getPosts()
             .subscribeOn(Schedulers.io())
     }
 
     override fun sendPost(addPostItem: AddPostItem): Call<AddPostItem> {
-        return RetrofitInstance.api.sendPost(addPostItem)
+        return RetrofitInstance.getCarApi().sendPost(addPostItem)
     }
 
 }

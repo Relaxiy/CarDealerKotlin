@@ -1,7 +1,9 @@
 package com.example.cars.app.data
 
 import com.example.cars.app.data.api.CarApi
-import com.example.cars.utils.constants.Constants
+import com.example.cars.utils.constants.Constants.Companion.BASE_URL
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,6 +14,10 @@ object RetrofitInstance {
 
     private val retrofit by lazy{
 
+        val gson: Gson = GsonBuilder()
+            .setLenient()
+            .create()
+
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -20,15 +26,14 @@ object RetrofitInstance {
             .build()
 
         Retrofit.Builder()
-            .baseUrl(Constants.BASE_URL)
+            .baseUrl(BASE_URL)
             .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 
+    private fun getClient() = retrofit
 
-    val api: CarApi by lazy {
-        retrofit.create(CarApi::class.java)
-    }
+    fun getCarApi(): CarApi = getClient().create(CarApi::class.java)
 }

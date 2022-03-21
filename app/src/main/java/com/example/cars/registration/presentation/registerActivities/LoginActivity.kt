@@ -33,11 +33,7 @@ class LoginActivity : AppCompatActivity() {
             if (loginActivityViewModel.validateSignIn(signInAccount)) {
                 dialog()
             } else {
-                try {
-                    loginActivityViewModel.signIn(signInAccount)
-                } catch (e: Exception) {
-                    Log.e("TAG", e.localizedMessage)
-                }
+                loginActivityViewModel.signIn(signInAccount)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }

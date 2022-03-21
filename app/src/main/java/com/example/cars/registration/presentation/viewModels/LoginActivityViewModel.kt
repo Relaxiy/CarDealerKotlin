@@ -1,6 +1,7 @@
 package com.example.cars.registration.presentation.viewModels
 
 
+import android.accounts.AuthenticatorException
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,9 +11,9 @@ import com.example.cars.registration.domain.models.AccountSignIn
 import com.example.cars.utils.ext.isEmail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 class LoginActivityViewModel : ViewModel() {
+
 
     private val accountsInteractor by lazy {
         AccountsInteractorImpl(
@@ -23,8 +24,8 @@ class LoginActivityViewModel : ViewModel() {
     fun signIn(accountSignIn: AccountSignIn) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                accountsInteractor.findAccountIdByEmailAndPassword(accountSignIn)
-            } catch (e: Exception) {
+                val accountId = accountsInteractor.findAccountIdByEmailAndPassword(accountSignIn)
+            } catch (e: AuthenticatorException) {
                 Log.e("TAG", "Exception during request -> ${e.localizedMessage}")
             }
         }
@@ -32,7 +33,10 @@ class LoginActivityViewModel : ViewModel() {
 
     fun validateSignIn(accountSignIn: AccountSignIn): Boolean {
         accountSignIn.apply {
-            return email.isEmpty() || password.isEmpty() || !email.isEmail()
+            return email.isEmpty() ||
+                    password.isEmpty() ||
+                    !email.isEmail() ||
+                    password.length < 8
         }
     }
 
