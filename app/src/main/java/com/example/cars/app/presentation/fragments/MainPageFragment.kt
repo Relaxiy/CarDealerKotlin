@@ -10,7 +10,6 @@ import com.example.cars.app.presentation.recyclers.recyclerInMainPage.PostAdapte
 import com.example.cars.app.presentation.viewModels.MainPageFragmentViewModel
 import com.example.cars.utils.ext.appComponent
 import kotlinx.android.synthetic.main.fragment_main_page.*
-import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import javax.inject.Inject
 
 class MainPageFragment : Fragment(R.layout.fragment_main_page) {

@@ -13,7 +13,6 @@ import com.example.cars.app.presentation.recyclers.recyclerInCarModels.clickList
 import com.example.cars.app.presentation.viewModels.CarModelsFragmentViewModel
 import com.example.cars.utils.ext.appComponent
 import kotlinx.android.synthetic.main.fragment_car_models.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class CarModelsFragment : Fragment(R.layout.fragment_car_models) {

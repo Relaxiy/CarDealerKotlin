@@ -9,7 +9,6 @@ import com.example.cars.app.presentation.viewModels.MainActivityViewModel
 import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.appComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

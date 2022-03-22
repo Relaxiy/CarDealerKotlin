@@ -4,10 +4,7 @@ import android.app.Application
 import com.example.cars.registration.data.room.RoomDbInstance
 import com.example.cars.di.AppComponent
 import com.example.cars.di.DaggerAppComponent
-import com.example.cars.registration.domain.di.registrationDomainModule
-import com.example.cars.registration.presentation.di.registrationViewModelModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+
 
 class CarApplication : Application() {
 
@@ -20,15 +17,6 @@ class CarApplication : Application() {
 
         RoomDbInstance.init(this)
 
-        startKoin {
-            androidContext(this@CarApplication)
-            modules(
-                listOf(
-                    registrationViewModelModule,
-                    registrationDomainModule
-                )
-            )
-        }
     }
 
 

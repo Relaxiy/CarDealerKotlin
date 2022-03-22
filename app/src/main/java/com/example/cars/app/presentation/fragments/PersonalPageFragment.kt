@@ -4,10 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.cars.R
-import com.example.cars.app.presentation.viewModels.MainPageFragmentViewModel
 import com.example.cars.app.presentation.viewModels.PersonalPageFragmentViewModel
 import com.example.cars.utils.ext.appComponent
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class PersonalPageFragment : Fragment(R.layout.fragment_personal_page) {

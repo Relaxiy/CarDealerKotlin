@@ -15,7 +15,6 @@ import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import com.example.cars.utils.ext.openFragment
 import kotlinx.android.synthetic.main.fragment_add_car.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class AddCarFragment : Fragment(R.layout.fragment_add_car) {

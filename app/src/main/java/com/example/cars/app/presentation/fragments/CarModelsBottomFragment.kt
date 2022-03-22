@@ -13,7 +13,6 @@ import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickL
 import com.example.cars.app.presentation.viewModels.CarModelsBottomFragmentViewModel
 import com.example.cars.utils.ext.appComponent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import javax.inject.Inject
 
 class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelButton) :

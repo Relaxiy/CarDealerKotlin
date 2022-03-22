@@ -27,17 +27,12 @@ interface AppComponent {
     //Activities
     fun inject(mainActivity: MainActivity)
 
+    //ViewModels
     val provideAddCarFragmentViewModel: AddCarFragmentViewModel
-
     val provideCarModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel
-
     val provideCarModelsFragmentViewModel: CarModelsFragmentViewModel
-
     val provideFavouriteCarsFragmentViewModel: FavouritePostsFragmentViewModel
-
     val provideMainPageFragmentViewModel: MainPageFragmentViewModel
-
     val providePersonalPageFragmentViewModel: PersonalPageFragmentViewModel
-
     val provideMainActivityViewModel: MainActivityViewModel
 }
