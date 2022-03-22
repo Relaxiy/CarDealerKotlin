@@ -11,8 +11,10 @@ import com.example.cars.utils.ext.openFragment
 import com.example.cars.app.presentation.recyclers.recyclerInCarModels.CarAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInCarModels.clickListeners.ItemClickListener
 import com.example.cars.app.presentation.viewModels.CarModelsFragmentViewModel
+import com.example.cars.utils.ext.appComponent
 import kotlinx.android.synthetic.main.fragment_car_models.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class CarModelsFragment : Fragment(R.layout.fragment_car_models) {
 
@@ -21,13 +23,15 @@ class CarModelsFragment : Fragment(R.layout.fragment_car_models) {
         fun newInstance() = CarModelsFragment()
     }
 
-    private val carModelsFragmentViewModel: CarModelsFragmentViewModel by viewModel()
+    @Inject
+    lateinit var carModelsFragmentViewModel: CarModelsFragmentViewModel
 
     private val adapter by lazy { CarAdapter(openFragmentByItemClick) }
     private val recycler by lazy { view?.findViewById<RecyclerView>(R.id.car_models_recycle) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().appComponent.inject(this)
         initRecycler()
     }
 

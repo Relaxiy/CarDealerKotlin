@@ -20,8 +20,8 @@ class ViewModelsModule {
         CarModelsFragmentViewModel(carInteractor)
 
     @Provides
-    fun provideFavouriteCarsFragmentViewModel(): FavouriteCarsFragmentViewModel =
-        FavouriteCarsFragmentViewModel()
+    fun provideFavouriteCarsFragmentViewModel(): FavouritePostsFragmentViewModel =
+        FavouritePostsFragmentViewModel()
 
     @Provides
     fun provideMainPageFragmentViewModel(carInteractor: CarInteractor): MainPageFragmentViewModel =

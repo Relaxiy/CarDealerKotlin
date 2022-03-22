@@ -1,5 +1,7 @@
 package com.example.cars.di
 
+import com.example.cars.app.presentation.MainActivity
+import com.example.cars.app.presentation.fragments.*
 import com.example.cars.app.presentation.viewModels.*
 import dagger.Component
 import javax.inject.Singleton
@@ -14,17 +16,28 @@ import javax.inject.Singleton
 )
 interface AppComponent {
 
-    fun provideAddCarFragmentViewModel(): AddCarFragmentViewModel
+    //Fragments
+    fun inject(addCarFragment: AddCarFragment)
+    fun inject(carModelsBottomFragment: CarModelsBottomFragment)
+    fun inject(carModelsFragment: CarModelsFragment)
+    fun inject(favouritePostsFragment: FavouritePostsFragment)
+    fun inject(personalPageFragment: PersonalPageFragment)
+    fun inject(mainPageFragment: MainPageFragment)
 
-    fun provideCarModelsBottomFragmentViewModel(): CarModelsBottomFragmentViewModel
+    //Activities
+    fun inject(mainActivity: MainActivity)
 
-    fun provideCarModelsFragmentViewModel(): CarModelsFragmentViewModel
+    val provideAddCarFragmentViewModel: AddCarFragmentViewModel
 
-    fun provideFavouriteCarsFragmentViewModel(): FavouriteCarsFragmentViewModel
+    val provideCarModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel
 
-    fun provideMainPageFragmentViewModel(): MainPageFragmentViewModel
+    val provideCarModelsFragmentViewModel: CarModelsFragmentViewModel
 
-    fun providePersonalPageFragmentViewModel(): PersonalPageFragmentViewModel
+    val provideFavouriteCarsFragmentViewModel: FavouritePostsFragmentViewModel
 
-    fun provideMainActivityViewModel(): MainActivityViewModel
+    val provideMainPageFragmentViewModel: MainPageFragmentViewModel
+
+    val providePersonalPageFragmentViewModel: PersonalPageFragmentViewModel
+
+    val provideMainActivityViewModel: MainActivityViewModel
 }

@@ -10,11 +10,13 @@ import com.example.cars.app.data.models.AddPostItem
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.AddCarFragmentViewModel
+import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import com.example.cars.utils.ext.openFragment
 import kotlinx.android.synthetic.main.fragment_add_car.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class AddCarFragment : Fragment(R.layout.fragment_add_car) {
 
@@ -23,7 +25,8 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
         fun newInstance() = AddCarFragment()
     }
 
-    private val addCarFragmentViewModel: AddCarFragmentViewModel by viewModel()
+    @Inject
+    lateinit var addCarFragmentViewModel: AddCarFragmentViewModel
 
     private val recycler by lazy {
         view?.findViewById<RecyclerView>(R.id.addCarRecycler)
@@ -41,6 +44,7 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().appComponent.inject(this)
         initRecycler()
         carModelsBottomFragmentInit()
         sendPost()

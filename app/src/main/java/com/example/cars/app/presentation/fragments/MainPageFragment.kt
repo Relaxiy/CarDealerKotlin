@@ -8,8 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
 import com.example.cars.app.presentation.recyclers.recyclerInMainPage.PostAdapter
 import com.example.cars.app.presentation.viewModels.MainPageFragmentViewModel
+import com.example.cars.utils.ext.appComponent
 import kotlinx.android.synthetic.main.fragment_main_page.*
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import javax.inject.Inject
 
 class MainPageFragment : Fragment(R.layout.fragment_main_page) {
 
@@ -17,8 +19,9 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
         const val TAG = "HomeFragment"
         fun newInstance() = MainPageFragment()
     }
+    @Inject
+    lateinit var mainPageFragmentViewModel: MainPageFragmentViewModel
 
-    private val mainPageFragmentViewModel: MainPageFragmentViewModel by sharedViewModel()
 
     private val recycler by lazy {
         view?.findViewById<RecyclerView>(R.id.main_recycler)
@@ -30,6 +33,7 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().appComponent.inject(this)
         initRecycler()
     }
 

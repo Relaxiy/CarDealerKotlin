@@ -11,8 +11,10 @@ import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.ModelA
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.CarModelClickListener
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.CarModelsBottomFragmentViewModel
+import com.example.cars.utils.ext.appComponent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import javax.inject.Inject
 
 class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelButton) :
     BottomSheetDialogFragment() {
@@ -28,7 +30,9 @@ class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelBu
             CarModelsBottomFragment(returnAddModelButton)
     }
 
-    private val carModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel by viewModel()
+    @Inject
+    lateinit var carModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel
+
     private val adapter by lazy {
         ModelAdapter(carModelClickListener)
     }
@@ -39,11 +43,12 @@ class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelBu
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        requireActivity().appComponent.inject(this)
         initRecycler()
     }
 
     private val carModelClickListener by lazy {
-        object : CarModelClickListener{
+        object : CarModelClickListener {
             override fun carModelClick(carModel: CarModel) {
                 val setModel = returnAddModelButton.returnButton()
                 setModel?.setText(carModel.model)
