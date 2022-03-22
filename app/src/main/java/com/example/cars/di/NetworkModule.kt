@@ -1,4 +1,4 @@
-package com.example.cars.app.domain.di.dagger
+package com.example.cars.di
 
 import com.example.cars.app.data.api.CarApi
 import com.example.cars.utils.constants.Constants

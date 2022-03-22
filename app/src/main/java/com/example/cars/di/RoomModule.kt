@@ -1,4 +1,4 @@
-package com.example.cars.app.domain.di.dagger
+package com.example.cars.di
 
 import com.example.cars.registration.data.room.RoomDbInstance
 import com.example.cars.registration.data.room.dao.AccountsDao

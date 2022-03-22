@@ -5,7 +5,7 @@ import android.util.Patterns
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.cars.CarApplication
-import com.example.cars.app.domain.di.dagger.AppComponent
+import com.example.cars.di.AppComponent
 import com.example.cars.registration.presentation.dialog.LoginDialog
 
 fun FragmentActivity.openFragment(fragment: Fragment, tag: String, id: Int) {

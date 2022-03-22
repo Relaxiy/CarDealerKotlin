@@ -1,4 +1,4 @@
-package com.example.cars.app.domain.di.dagger
+package com.example.cars.di
 
 import com.example.cars.app.domain.CarInteractor
 import com.example.cars.app.presentation.viewModels.*
