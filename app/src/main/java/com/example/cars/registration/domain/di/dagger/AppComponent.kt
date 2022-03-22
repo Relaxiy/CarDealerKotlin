@@ -1,15 +1,30 @@
 package com.example.cars.registration.domain.di.dagger
 
-import com.example.cars.registration.domain.interactor.AccountsInteractor
+import com.example.cars.app.presentation.viewModels.*
 import dagger.Component
+import javax.inject.Singleton
 
+@Singleton
 @Component(
     modules = [
-        RegistrationDomainModule::class,
-        NetworkModule::class
+        NetworkModule::class,
+        InteractorsModule::class,
+        ViewModelsModule::class
     ]
 )
 interface AppComponent {
 
-    fun accountsInteractor(): AccountsInteractor
+    fun provideAddCarFragmentViewModel(): AddCarFragmentViewModel
+
+    fun provideCarModelsBottomFragmentViewModel(): CarModelsBottomFragmentViewModel
+
+    fun provideCarModelsFragmentViewModel(): CarModelsFragmentViewModel
+
+    fun provideFavouriteCarsFragmentViewModel(): FavouriteCarsFragmentViewModel
+
+    fun provideMainPageFragmentViewModel(): MainPageFragmentViewModel
+
+    fun providePersonalPageFragmentViewModel(): PersonalPageFragmentViewModel
+
+    fun provideMainActivityViewModel(): MainActivityViewModel
 }
