@@ -9,7 +9,7 @@ val domainModule = module {
 
     single<CarInteractor> {
         CarInteractorImpl(
-            repository = RetrofitInstance.getCarApi()
+            carApi = RetrofitInstance.getCarApi()
         )
     }
 
