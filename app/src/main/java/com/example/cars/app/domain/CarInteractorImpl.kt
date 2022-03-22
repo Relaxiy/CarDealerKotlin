@@ -8,10 +8,10 @@ import com.example.cars.app.domain.models.PostItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
+class CarInteractorImpl(private val carApi: CarApi) : CarInteractor {
     override suspend fun getCars(): List<CarItem> {
         return withContext(Dispatchers.IO) {
-            return@withContext repository.getCarModels().map { carResponse ->
+            return@withContext carApi.getCarModels().map { carResponse ->
                 CarItem(
                     carModel = carResponse.carModel,
                     brandImage = carResponse.brandImage
@@ -22,7 +22,7 @@ class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
 
     override suspend fun getCarModels(): List<CarModel> {
         return withContext(Dispatchers.IO) {
-            return@withContext repository.getCarModels().map { carResponse ->
+            return@withContext carApi.getCarModels().map { carResponse ->
                 CarModel(
                     model = carResponse.carModel
                 )
@@ -32,7 +32,7 @@ class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
 
     override suspend fun getPosts(): List<PostItem> {
         return withContext(Dispatchers.IO) {
-            return@withContext repository.getPosts().map { postItem ->
+            return@withContext carApi.getPosts().map { postItem ->
                 PostItem(
                     img = postItem.img,
                     title = postItem.title,
@@ -44,7 +44,7 @@ class CarInteractorImpl(private val repository: CarApi) : CarInteractor {
     }
 
     override suspend fun sendPost(addPostItem: AddPostItem) {
-        repository.sendPost(addPostItem)
+        carApi.sendPost(addPostItem)
     }
 
 }

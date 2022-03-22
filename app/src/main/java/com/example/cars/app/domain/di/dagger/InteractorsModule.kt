@@ -1,7 +1,6 @@
-package com.example.cars.registration.domain.di.dagger
+package com.example.cars.app.domain.di.dagger
 
 import com.example.cars.app.data.api.CarApi
-import com.example.cars.app.domain.CarInteractor
 import com.example.cars.app.domain.CarInteractorImpl
 import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.domain.interactor.AccountsInteractorImpl

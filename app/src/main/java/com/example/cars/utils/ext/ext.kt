@@ -2,13 +2,11 @@ package com.example.cars.utils.ext
 
 import android.content.Context
 import android.util.Patterns
-import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.cars.CarApplication
-import com.example.cars.registration.domain.di.dagger.AppComponent
+import com.example.cars.app.domain.di.dagger.AppComponent
 import com.example.cars.registration.presentation.dialog.LoginDialog
-import java.lang.reflect.Array.get
 
 fun FragmentActivity.openFragment(fragment: Fragment, tag: String, id: Int) {
     supportFragmentManager
