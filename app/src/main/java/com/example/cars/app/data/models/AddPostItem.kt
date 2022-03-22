@@ -1,4 +1,4 @@
-package com.example.cars.app.domain.models
+package com.example.cars.app.data.models
 
 import com.google.gson.annotations.SerializedName
 

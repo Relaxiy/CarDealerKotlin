@@ -12,7 +12,7 @@ class LoginDialog : DialogFragment() {
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Warning!")
                 .setMessage("Not valid!")
-                .setPositiveButton("OK") { dialog, id ->
+                .setPositiveButton("OK") { dialog, _ ->
                     dialog.cancel()
                 }
             builder.create()
