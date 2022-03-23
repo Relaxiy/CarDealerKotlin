@@ -22,7 +22,7 @@ import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
-class RegisterViewModel() : ViewModel() {
+class RegisterActivityViewModel() : ViewModel() {
 
     val signUpData: LiveData<SignUpData> get() = _signUpData
     private val _signUpData = MutableLiveData<SignUpData>()

@@ -3,6 +3,8 @@ package com.example.cars.di
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.app.presentation.fragments.*
 import com.example.cars.app.presentation.viewModels.*
+import com.example.cars.registration.presentation.registerActivities.LoginActivity
+import com.example.cars.registration.presentation.registerActivities.RegisterActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,7 +18,7 @@ import javax.inject.Singleton
 )
 interface AppComponent {
 
-    //Fragments
+    //App Fragments
     fun inject(addCarFragment: AddCarFragment)
     fun inject(carModelsBottomFragment: CarModelsBottomFragment)
     fun inject(carModelsFragment: CarModelsFragment)
@@ -24,8 +26,12 @@ interface AppComponent {
     fun inject(personalPageFragment: PersonalPageFragment)
     fun inject(mainPageFragment: MainPageFragment)
 
-    //Activities
+    //App Activities
     fun inject(mainActivity: MainActivity)
+
+    //Registration Activities
+    fun inject(loginActivity: LoginActivity)
+    fun inject(registerActivity: RegisterActivity)
 
 
 }
