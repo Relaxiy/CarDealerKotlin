@@ -16,12 +16,6 @@ fun FragmentActivity.openFragment(fragment: Fragment, tag: String, id: Int) {
         .commit()
 }
 
-val Context.appComponent: AppComponent
-    get() = when(this){
-        is CarApplication -> appComponent
-        else -> this.applicationContext.appComponent
-    }
-
 fun FragmentActivity.dialog() {
     val myDialogFragment = LoginDialog()
     val manager = supportFragmentManager

@@ -2,7 +2,6 @@ package com.example.cars.registration.presentation.registerActivities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.R
 import com.example.cars.app.presentation.MainActivity
@@ -11,7 +10,6 @@ import com.example.cars.registration.presentation.viewModels.LoginActivityViewMo
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import kotlinx.android.synthetic.main.activity_login.*
-import java.lang.Exception
 import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
