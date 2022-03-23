@@ -1,6 +1,9 @@
 package com.example.cars.di
 
-import com.example.cars.registration.data.room.RoomDbInstance
+import android.content.Context
+import androidx.room.Room
+import com.example.cars.CarApplication
+import com.example.cars.registration.data.room.AppDatabase
 import com.example.cars.registration.data.room.dao.AccountsDao
 import dagger.Module
 import dagger.Provides
@@ -12,7 +15,13 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun provideRoomCurrencyDataSource() : AccountsDao{
-        return RoomDbInstance.dataBase.getAccountsDao()
+    fun provideRoomAccountsDao(database: AppDatabase): AccountsDao {
+        return database.getAccountsDao()
     }
+
+    @Provides
+    @Singleton
+    fun provideRoomDataBase(context: Context): AppDatabase =
+        Room.databaseBuilder(context, AppDatabase::class.java, "database.db")
+            .build()
 }

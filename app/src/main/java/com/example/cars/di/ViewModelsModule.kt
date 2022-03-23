@@ -2,6 +2,7 @@ package com.example.cars.di
 
 import com.example.cars.app.domain.CarInteractor
 import com.example.cars.app.presentation.viewModels.*
+import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.registration.presentation.viewModels.RegisterActivityViewModel
 import dagger.Module
@@ -38,11 +39,11 @@ class ViewModelsModule {
         MainActivityViewModel()
 
     @Provides
-    fun provideLoginActivityViewModel(): LoginActivityViewModel =
-        LoginActivityViewModel()
+    fun provideLoginActivityViewModel(accountsInteractor: AccountsInteractor): LoginActivityViewModel =
+        LoginActivityViewModel(accountsInteractor)
 
     @Provides
-    fun provideRegisterActivityViewModel(): RegisterActivityViewModel =
-        RegisterActivityViewModel()
+    fun provideRegisterActivityViewModel(accountsInteractor: AccountsInteractor): RegisterActivityViewModel =
+        RegisterActivityViewModel(accountsInteractor)
 
 }
