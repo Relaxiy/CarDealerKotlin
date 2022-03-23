@@ -16,8 +16,9 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class RegisterActivityViewModel(private val accountsInteractor: AccountsInteractor) : ViewModel() {
+class RegisterActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) : ViewModel() {
 
     val signUpData: LiveData<SignUpData> get() = _signUpData
     private val _signUpData = MutableLiveData<SignUpData>()

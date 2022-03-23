@@ -13,14 +13,4 @@ import javax.inject.Singleton
         InteractorsBindModule::class
     ]
 )
-class InteractorsModule {
-
-    @Provides
-    @Singleton
-    fun provideCarInteractorImpl(carApi: CarApi): CarInteractorImpl = CarInteractorImpl(carApi)
-
-    @Provides
-    @Singleton
-    fun provideAccountsInteractorImpl(accountsDao: AccountsDao): AccountsInteractorImpl =
-        AccountsInteractorImpl(accountsDao)
-}
+class InteractorsModule

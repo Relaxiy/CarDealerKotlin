@@ -1,7 +1,8 @@
 package com.example.cars.app.presentation.viewModels
 
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class PersonalPageFragmentViewModel : ViewModel() {
+class PersonalPageFragmentViewModel @Inject constructor() : ViewModel() {
 
 }

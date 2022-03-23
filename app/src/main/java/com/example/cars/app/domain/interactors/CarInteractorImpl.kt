@@ -7,8 +7,11 @@ import com.example.cars.app.domain.models.CarModel
 import com.example.cars.app.domain.models.PostItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class CarInteractorImpl(private val carApi: CarApi) : CarInteractor {
+@Singleton
+class CarInteractorImpl @Inject constructor(private val carApi: CarApi) : CarInteractor {
     override suspend fun getCars(): List<CarItem> {
         return withContext(Dispatchers.IO) {
             return@withContext carApi.getCarModels().map { carResponse ->

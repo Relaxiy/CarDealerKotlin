@@ -10,8 +10,9 @@ import com.example.cars.registration.domain.models.AccountSignIn
 import com.example.cars.utils.ext.isEmail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginActivityViewModel(private val accountsInteractor: AccountsInteractor) : ViewModel() {
+class LoginActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) : ViewModel() {
 
     fun signIn(accountSignIn: AccountSignIn) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -10,8 +10,9 @@ import com.example.cars.app.data.network.models.AddPostItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class AddCarFragmentViewModel(private val carInteractor: CarInteractor) : ViewModel() {
+class AddCarFragmentViewModel @Inject constructor(private val carInteractor: CarInteractor) : ViewModel() {
 
     val addPostItem: LiveData<AddPostItem> get() = _addPostItem
     private val _addPostItem = MutableLiveData<AddPostItem>()

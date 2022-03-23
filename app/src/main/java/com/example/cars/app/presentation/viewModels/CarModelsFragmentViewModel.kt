@@ -10,8 +10,9 @@ import com.example.cars.app.domain.models.CarItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class CarModelsFragmentViewModel(private val carInteractor: CarInteractor) : ViewModel() {
+class CarModelsFragmentViewModel @Inject constructor(private val carInteractor: CarInteractor) : ViewModel() {
 
     val carsLiveData: LiveData<List<CarItem>> get() = _carsLiveData
     private val _carsLiveData = MutableLiveData<List<CarItem>>()

@@ -10,8 +10,11 @@ import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
 import com.example.cars.registration.domain.models.AccountSignIn
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class AccountsInteractorImpl(private val accountsDao: AccountsDao) : AccountsInteractor {
+@Singleton
+class AccountsInteractorImpl @Inject constructor(private val accountsDao: AccountsDao) : AccountsInteractor {
 
     override suspend fun findAccountIdByEmailAndPassword(accountSignIn: AccountSignIn): Long {
         val tuple = accountsDao.findByEmail(accountSignIn.email) ?: throw AuthenticatorException()

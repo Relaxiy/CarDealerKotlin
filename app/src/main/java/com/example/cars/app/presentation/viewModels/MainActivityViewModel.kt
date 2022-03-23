@@ -8,8 +8,9 @@ import com.example.cars.app.presentation.fragments.*
 import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.openFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import javax.inject.Inject
 
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel @Inject constructor() : ViewModel() {
 
     fun initBottomNavMenu(
         binding: ActivityMainBinding,

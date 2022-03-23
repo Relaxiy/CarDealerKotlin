@@ -10,8 +10,9 @@ import com.example.cars.app.domain.models.PostItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class MainPageFragmentViewModel(private val carInteractor: CarInteractor) : ViewModel() {
+class MainPageFragmentViewModel @Inject constructor(private val carInteractor: CarInteractor) : ViewModel() {
     val posts: LiveData<List<PostItem>>get() = _posts
     private val _posts = MutableLiveData<List<PostItem>>()
 
