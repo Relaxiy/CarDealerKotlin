@@ -1,4 +1,4 @@
-package com.example.cars.registration.presentation.registerActivities
+package com.example.cars.registration.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle

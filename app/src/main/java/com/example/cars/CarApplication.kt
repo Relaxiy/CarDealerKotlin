@@ -16,6 +16,4 @@ class CarApplication : Application() {
             .context(this)
             .build()
     }
-
-
 }
