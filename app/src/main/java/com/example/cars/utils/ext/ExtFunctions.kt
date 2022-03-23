@@ -11,7 +11,7 @@ import com.example.cars.registration.presentation.dialog.LoginDialog
 fun FragmentActivity.openFragment(fragment: Fragment, tag: String, id: Int) {
     supportFragmentManager
         .beginTransaction()
-        .add(id, fragment, tag)
+        .replace(id, fragment, tag)
         .addToBackStack(tag)
         .commit()
 }
