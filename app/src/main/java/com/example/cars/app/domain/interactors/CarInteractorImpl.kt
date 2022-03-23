@@ -10,7 +10,6 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class CarInteractorImpl @Inject constructor(private val carApi: CarApi) : CarInteractor {
     override suspend fun getCars(): List<CarItem> {
         return withContext(Dispatchers.IO) {

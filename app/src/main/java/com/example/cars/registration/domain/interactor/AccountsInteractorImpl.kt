@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class AccountsInteractorImpl @Inject constructor(private val accountsDao: AccountsDao) : AccountsInteractor {
 
     override suspend fun findAccountIdByEmailAndPassword(accountSignIn: AccountSignIn): Long {
