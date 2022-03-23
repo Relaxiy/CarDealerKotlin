@@ -1,10 +1,12 @@
 package com.example.cars.di
 
+import android.content.Context
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.app.presentation.fragments.*
 import com.example.cars.app.presentation.viewModels.*
 import com.example.cars.registration.presentation.registerActivities.LoginActivity
 import com.example.cars.registration.presentation.registerActivities.RegisterActivity
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
@@ -15,10 +17,17 @@ import javax.inject.Singleton
         InteractorsModule::class,
         ViewModelsModule::class,
         RoomModule::class,
-        ContextModule::class
     ]
 )
 interface AppComponent {
+
+    @Component.Builder
+    interface Builder{
+        @BindsInstance
+        fun context(context: Context): Builder
+
+        fun build(): AppComponent
+    }
 
     //App Fragments
     fun inject(addCarFragment: AddCarFragment)
