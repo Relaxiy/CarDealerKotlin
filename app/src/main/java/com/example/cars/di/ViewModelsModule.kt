@@ -1,6 +1,6 @@
 package com.example.cars.di
 
-import com.example.cars.app.domain.CarInteractor
+import com.example.cars.app.domain.interactors.CarInteractor
 import com.example.cars.app.presentation.viewModels.*
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel

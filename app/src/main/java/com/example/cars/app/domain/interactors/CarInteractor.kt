@@ -1,4 +1,4 @@
-package com.example.cars.app.domain
+package com.example.cars.app.domain.interactors
 
 import com.example.cars.app.data.network.models.AddPostItem
 import com.example.cars.app.domain.models.CarItem
