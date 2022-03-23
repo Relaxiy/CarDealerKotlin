@@ -6,7 +6,7 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
-import com.example.cars.app.data.models.AddPostItem
+import com.example.cars.app.data.network.models.AddPostItem
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.AddCarFragmentViewModel

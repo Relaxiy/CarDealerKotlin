@@ -1,4 +1,4 @@
-package com.example.cars.app.data.models
+package com.example.cars.app.data.network.models
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,7 +1,7 @@
-package com.example.cars.app.data.api
+package com.example.cars.app.data.network.api
 
-import com.example.cars.app.data.models.AddPostItem
-import com.example.cars.app.data.models.CarResponse
+import com.example.cars.app.data.network.models.AddPostItem
+import com.example.cars.app.data.network.models.CarResponse
 import com.example.cars.app.domain.models.PostItem
 import retrofit2.http.Body
 import retrofit2.http.GET
