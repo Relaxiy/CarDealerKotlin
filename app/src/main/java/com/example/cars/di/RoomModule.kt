@@ -2,8 +2,7 @@ package com.example.cars.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.cars.CarApplication
-import com.example.cars.registration.data.room.AppDatabase
+import com.example.cars.database.AppDatabase
 import com.example.cars.registration.data.room.dao.AccountsDao
 import dagger.Module
 import dagger.Provides

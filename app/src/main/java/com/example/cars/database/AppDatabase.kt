@@ -1,4 +1,4 @@
-package com.example.cars.registration.data.room
+package com.example.cars.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
