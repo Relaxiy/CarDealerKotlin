@@ -74,7 +74,7 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
                 addPhoneNumber.text.isEmpty() ||
                 !addEmail.text.toString().isEmail()
             ) {
-                requireActivity().dialog()
+                requireActivity().dialog("Fields not valid!")
             } else {
                 addCarFragmentViewModel.createPost(createPost())
                 requireActivity().apply {

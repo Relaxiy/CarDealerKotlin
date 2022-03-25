@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.R
 import com.example.cars.app.presentation.MainActivity
-import com.example.cars.registration.domain.models.AccountSignIn
+import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
@@ -33,11 +33,9 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             val signInAccount = createSignInAccount()
             if (loginActivityViewModel.validateSignIn(signInAccount)) {
-                dialog()
+                dialog("Fields not valid!")
             } else {
-                loginActivityViewModel.signIn(signInAccount)
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                loginActivityViewModel.signIn(signInAccount, this)
             }
         }
     }
@@ -49,8 +47,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun createSignInAccount(): AccountSignIn {
-        return AccountSignIn(
+    private fun createSignInAccount(): SignInData {
+        return SignInData(
             email = inputLoginEmail.text.toString(),
             password = inputLoginPassword.text.toString()
         )

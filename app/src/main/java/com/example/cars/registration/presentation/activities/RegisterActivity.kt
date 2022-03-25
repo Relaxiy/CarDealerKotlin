@@ -34,11 +34,9 @@ class RegisterActivity : AppCompatActivity() {
         registrationButton.setOnClickListener {
             val account = createAccount()
             if (registerActivityViewModel.validate(account)) {
-                dialog()
+                dialog("Fields not valid!")
             } else {
-                registerActivityViewModel.setAccount(account)
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                registerActivityViewModel.setAccount(account, this)
             }
         }
     }

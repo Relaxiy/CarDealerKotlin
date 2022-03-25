@@ -1,38 +1,52 @@
 package com.example.cars.registration.presentation.viewModels
 
+import android.accounts.AuthenticatorException
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
+import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
 import android.widget.EditText
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cars.app.presentation.MainActivity
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.models.SignUpData
+import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class RegisterActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) : ViewModel() {
+class RegisterActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) :
+    ViewModel() {
 
     val signUpData: LiveData<SignUpData> get() = _signUpData
     private val _signUpData = MutableLiveData<SignUpData>()
 
-    private fun saveAccount() {
-        viewModelScope.launch(Dispatchers.IO) {
+    fun setAccount(signUpData: SignUpData, activity: FragmentActivity) {
+        _signUpData.value = signUpData
+        saveAccount(activity)
+    }
+
+    private fun saveAccount(activity: FragmentActivity) {
+        viewModelScope.launch {
             try {
                 signUpData.value?.let { signUpData ->
                     accountsInteractor.createAccount(signUpData)
                 }
-            } catch (e: Exception) {
-                Log.e("TAG", "Exception during request -> ${e.localizedMessage}")
+                val intent = Intent(activity, MainActivity::class.java)
+                activity.startActivity(intent)
+            } catch (e: SQLiteConstraintException) {
+                activity.dialog("This account already registered!")
             }
         }
+
     }
 
     fun initDate(inputDate: EditText, context: Context) {
@@ -71,11 +85,6 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
                     password != signUpData.repeatPassword ||
                     password.length < 8
         }
-    }
-
-    fun setAccount(signUpData: SignUpData) {
-        _signUpData.value = signUpData
-        saveAccount()
     }
 
 }
