@@ -1,13 +1,10 @@
 package com.example.cars.registration.presentation.viewModels
 
-import android.accounts.AuthenticatorException
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteConstraintException
-import android.util.Log
 import android.widget.EditText
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

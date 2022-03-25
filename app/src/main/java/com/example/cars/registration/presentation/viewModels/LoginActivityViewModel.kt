@@ -21,10 +21,12 @@ class LoginActivityViewModel @Inject constructor(
 
     fun signIn(signInData: SignInData, activity: FragmentActivity) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (accountsInteractor.findAccountIdByEmailAndPassword(signInData)) {
+
+            when (val response = accountsInteractor.findAccountIdByEmailAndPassword(signInData)) {
                 is AccountSearchResult.WrongEmailResult -> activity.dialog(AccountSearchResult.WrongEmailResult().wrongEmail)
                 is AccountSearchResult.WrongPasswordResult -> activity.dialog(AccountSearchResult.WrongPasswordResult().wrongPassword)
-                else -> {
+                is AccountSearchResult.SuccessResult-> {
+                    val account = accountsInteractor.getAccountById(response.id)
                     val intent = Intent(activity, MainActivity::class.java)
                     activity.startActivity(intent)
                 }

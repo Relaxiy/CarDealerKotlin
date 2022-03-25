@@ -9,6 +9,8 @@ import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.utils.exceptions.AccountSearchResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -19,7 +21,7 @@ class AccountsInteractorImpl @Inject constructor(private val accountsDao: Accoun
     override suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): AccountSearchResult {
         return withContext(Dispatchers.IO) {
             val tuple = accountsDao.findByEmail(signInData.email)
-            return@withContext when{
+            return@withContext when {
                 tuple == null -> AccountSearchResult.WrongEmailResult()
                 tuple.password != signInData.password -> AccountSearchResult.WrongPasswordResult()
                 else -> AccountSearchResult.SuccessResult(tuple.id)
@@ -34,12 +36,10 @@ class AccountsInteractorImpl @Inject constructor(private val accountsDao: Accoun
         }
     }
 
-    override suspend fun getAccountById(accountId: Long): Flow<Account?> {
-        return withContext(Dispatchers.IO) {
-            return@withContext accountsDao.getAccountById(accountId).map { accountDbEntity ->
-                accountDbEntity?.toAccount()
-            }
-        }
+    override suspend fun getAccountById(accountId: Long): Flow<Account?> = flow {
+        accountsDao.getAccountById(accountId).map { accountDbEntity ->
+            accountDbEntity?.toAccount()
+        }.flowOn(Dispatchers.IO)
     }
 
     override suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String) {
