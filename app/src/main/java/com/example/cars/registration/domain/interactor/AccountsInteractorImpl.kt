@@ -7,6 +7,9 @@ import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.utils.exceptions.AccountSearchResult
+import com.example.cars.utils.exceptions.SuccessResult
+import com.example.cars.utils.exceptions.WrongEmailResult
+import com.example.cars.utils.exceptions.WrongPasswordResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -20,9 +23,9 @@ class AccountsInteractorImpl @Inject constructor(private val accountsDao: Accoun
         return withContext(Dispatchers.IO) {
             val tuple = accountsDao.findByEmail(signInData.email)
             return@withContext when{
-                tuple == null -> AccountSearchResult.WrongEmailResult()
-                tuple.password != signInData.password -> AccountSearchResult.WrongPasswordResult()
-                else -> AccountSearchResult.SuccessResult(tuple.id)
+                tuple == null -> WrongEmailResult()
+                tuple.password != signInData.password -> WrongPasswordResult()
+                else -> SuccessResult(tuple.id)
             }
         }
     }
