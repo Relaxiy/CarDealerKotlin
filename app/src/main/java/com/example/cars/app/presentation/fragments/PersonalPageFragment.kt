@@ -3,6 +3,7 @@ package com.example.cars.app.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.cars.R
 import com.example.cars.app.presentation.viewModels.PersonalPageFragmentViewModel
 import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
@@ -20,6 +21,7 @@ class PersonalPageFragment : Fragment(R.layout.fragment_personal_page) {
     @Inject
     lateinit var personalPageFragmentViewModel: PersonalPageFragmentViewModel
 
+    private val loginActivityViewModel: LoginActivityViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         requireActivity().appComponent.inject(this)

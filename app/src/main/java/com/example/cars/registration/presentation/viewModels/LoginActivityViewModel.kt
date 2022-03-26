@@ -12,6 +12,7 @@ import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.utils.exceptions.AccountSearchResult
+import com.example.cars.utils.exceptions.AccountSearchResult.*
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import kotlinx.coroutines.Dispatchers
@@ -24,13 +25,14 @@ class LoginActivityViewModel @Inject constructor(
 
     val account: LiveData<Account> get() = _account
     private val _account = MutableLiveData<Account>()
+
     fun signIn(signInData: SignInData, activity: FragmentActivity) {
         viewModelScope.launch(Dispatchers.IO) {
 
             when (val response = accountsInteractor.findAccountIdByEmailAndPassword(signInData)) {
-                is AccountSearchResult.WrongEmailResult -> activity.dialog(AccountSearchResult.WrongEmailResult().wrongEmail)
-                is AccountSearchResult.WrongPasswordResult -> activity.dialog(AccountSearchResult.WrongPasswordResult().wrongPassword)
-                is AccountSearchResult.SuccessResult -> {
+                is WrongEmailResult -> activity.dialog(WrongEmailResult().wrongEmail)
+                is WrongPasswordResult -> activity.dialog(WrongPasswordResult().wrongPassword)
+                is SuccessResult -> {
                     accountsInteractor.getAccountById(response.id).collect { account ->
                         _account.postValue(account)
                     }
