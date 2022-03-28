@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
 import com.example.cars.app.domain.models.CarModel
@@ -11,6 +13,7 @@ import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.ModelA
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.CarModelClickListener
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.CarModelsBottomFragmentViewModel
+import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.utils.ext.appComponent
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import javax.inject.Inject
@@ -29,8 +32,9 @@ class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelBu
             CarModelsBottomFragment(returnAddModelButton)
     }
 
-    @Inject
-    lateinit var carModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel
+    private val carModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel by viewModels {
+        requireActivity().appComponent.viewModelsFactory()
+    }
 
     private val adapter by lazy {
         ModelAdapter(carModelClickListener)
@@ -42,7 +46,6 @@ class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelBu
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().appComponent.inject(this)
         initRecycler()
     }
 

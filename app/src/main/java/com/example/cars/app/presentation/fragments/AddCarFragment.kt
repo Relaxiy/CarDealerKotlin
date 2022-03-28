@@ -3,13 +3,16 @@ package com.example.cars.app.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
 import com.example.cars.app.data.network.models.AddPostItem
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.AddCarFragmentViewModel
+import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
@@ -24,8 +27,9 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
         fun newInstance() = AddCarFragment()
     }
 
-    @Inject
-    lateinit var addCarFragmentViewModel: AddCarFragmentViewModel
+    private val addCarFragmentViewModel: AddCarFragmentViewModel by viewModels {
+        requireActivity().appComponent.viewModelsFactory()
+    }
 
     private val recycler by lazy {
         view?.findViewById<RecyclerView>(R.id.addCarRecycler)
@@ -43,7 +47,6 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        requireActivity().appComponent.inject(this)
         initRecycler()
         carModelsBottomFragmentInit()
         sendPost()

@@ -2,25 +2,24 @@ package com.example.cars.registration.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.R
-import com.example.cars.app.presentation.MainActivity
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import kotlinx.android.synthetic.main.activity_login.*
-import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var loginActivityViewModel: LoginActivityViewModel
+    private val loginActivityViewModel: LoginActivityViewModel by viewModels {
+        appComponent.viewModelsFactory()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        appComponent.inject(this)
     }
 
     override fun onStart() {

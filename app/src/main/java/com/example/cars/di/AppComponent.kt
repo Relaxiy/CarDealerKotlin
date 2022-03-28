@@ -28,6 +28,8 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
+    fun viewModelsFactory(): ViewModelFactory
+
     //App Fragments
     fun inject(addCarFragment: AddCarFragment)
     fun inject(carModelsBottomFragment: CarModelsBottomFragment)

@@ -2,10 +2,12 @@ package com.example.cars.registration.presentation.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.R
 import com.example.cars.registration.domain.models.SignUpData
+import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.registration.presentation.viewModels.RegisterActivityViewModel
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
@@ -14,13 +16,14 @@ import javax.inject.Inject
 
 class RegisterActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var registerActivityViewModel: RegisterActivityViewModel
+
+    private val registerActivityViewModel: RegisterActivityViewModel by viewModels {
+        appComponent.viewModelsFactory()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        appComponent.inject(this)
     }
 
     override fun onStart() {
