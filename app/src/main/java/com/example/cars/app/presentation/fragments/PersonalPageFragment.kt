@@ -26,10 +26,10 @@ class PersonalPageFragment : Fragment(R.layout.fragment_personal_page) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bidAccount()
+        bindAccount()
     }
 
-    private fun bidAccount() {
+    private fun bindAccount() {
     }
 
 
