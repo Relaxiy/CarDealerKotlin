@@ -1,4 +1,4 @@
-package com.example.cars.app.domain.interactors
+package com.example.cars.app.domain.interactors.carInteractor
 
 import com.example.cars.app.data.network.api.CarApi
 import com.example.cars.app.data.network.models.AddPostItem
@@ -8,7 +8,6 @@ import com.example.cars.app.domain.models.PostItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class CarInteractorImpl @Inject constructor(private val carApi: CarApi) : CarInteractor {
     override suspend fun getCars(): List<CarItem> {

@@ -1,7 +1,7 @@
 package com.example.cars.di
 
 import com.example.cars.app.data.network.api.CarApi
-import com.example.cars.utils.constants.Constants
+import com.example.cars.utils.networkURLs.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

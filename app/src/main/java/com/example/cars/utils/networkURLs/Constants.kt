@@ -1,4 +1,4 @@
-package com.example.cars.utils.constants
+package com.example.cars.utils.networkURLs
 
 class Constants {
     companion object{

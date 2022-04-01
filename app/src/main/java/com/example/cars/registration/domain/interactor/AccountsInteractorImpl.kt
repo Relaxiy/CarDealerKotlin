@@ -5,6 +5,8 @@ import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.data.room.models.AccountDbEntity
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
+import com.example.cars.registration.domain.ext.fromSignUpData
+import com.example.cars.registration.domain.ext.toAccount
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.utils.exceptions.AccountSearchResult
 import com.example.cars.utils.exceptions.AccountSearchResult.*
@@ -32,7 +34,7 @@ class AccountsInteractorImpl @Inject constructor(private val accountsDao: Accoun
 
     override suspend fun createAccount(signUpData: SignUpData) {
         withContext(Dispatchers.IO) {
-            val entity = AccountDbEntity.fromSignUpData(signUpData)
+            val entity = signUpData.fromSignUpData()
             accountsDao.createAccount(entity)
         }
     }

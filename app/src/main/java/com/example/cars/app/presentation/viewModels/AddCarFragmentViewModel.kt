@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cars.app.domain.interactors.CarInteractor
+import com.example.cars.app.domain.interactors.carInteractor.CarInteractor
 import com.example.cars.app.data.network.models.AddPostItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
