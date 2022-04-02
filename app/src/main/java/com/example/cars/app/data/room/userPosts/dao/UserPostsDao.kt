@@ -1,9 +1,6 @@
 package com.example.cars.app.data.room.userPosts.dao
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.cars.app.data.room.userPosts.models.UserPostEntity
 
 @Dao
@@ -13,6 +10,9 @@ interface UserPostsDao {
 
     @Insert
     suspend fun saveUserPost(userPostEntity: UserPostEntity)
+
+    @Update
+    suspend fun updateUserPost(userPostEntity: UserPostEntity)
 
     @Delete
     suspend fun deleteUserPost(userPostEntity: UserPostEntity)

@@ -22,8 +22,8 @@ interface ViewModelsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(AddCarFragmentViewModel::class)
-    fun provideAddCarFragmentViewModel(addCarFragmentViewModel: AddCarFragmentViewModel): ViewModel
+    @ViewModelKey(AddPostFragmentViewModel::class)
+    fun provideAddCarFragmentViewModel(addPostFragmentViewModel: AddPostFragmentViewModel): ViewModel
 
     @Binds
     @IntoMap

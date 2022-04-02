@@ -1,6 +1,5 @@
 package com.example.cars.app.presentation.viewModels
 
-import android.app.Activity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import com.example.cars.R
@@ -37,8 +36,8 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
                     }
                     R.id.add_car_button -> {
                         mainActivity.openFragment(
-                            AddCarFragment.newInstance(),
-                            AddCarFragment.TAG,
+                            AddPostFragment.newInstance(),
+                            AddPostFragment.TAG,
                             R.id.container
                         )
                     }

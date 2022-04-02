@@ -7,24 +7,27 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
-import com.example.cars.app.data.network.models.PostResponse
+import com.example.cars.app.domain.models.UserPost
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
-import com.example.cars.app.presentation.viewModels.AddCarFragmentViewModel
+import com.example.cars.app.presentation.viewModels.AddPostFragmentViewModel
+import com.example.cars.utils.actionSelectors.CreateUserPostResult
+import com.example.cars.utils.actionSelectors.CreateUserPostResult.*
+import com.example.cars.utils.actionSelectors.CreateUserPostResult.PostCreationFailed.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import com.example.cars.utils.ext.openFragment
 import kotlinx.android.synthetic.main.fragment_add_car.*
 
-class AddCarFragment : Fragment(R.layout.fragment_add_car) {
+class AddPostFragment : Fragment(R.layout.fragment_add_car) {
 
     companion object {
         const val TAG = "AddCarFragment"
-        fun newInstance() = AddCarFragment()
+        fun newInstance() = AddPostFragment()
     }
 
-    private val addCarFragmentViewModel: AddCarFragmentViewModel by viewModels {
+    private val addPostFragmentViewModel: AddPostFragmentViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
     }
 
@@ -65,40 +68,35 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
 
     private fun sendPost() {
         sendPost.setOnClickListener {
-            if (addTitle.text.isEmpty() ||
-                addCarModel.text.isEmpty() ||
-                addDescription.text?.isEmpty() == true ||
-                addPrice.text.isEmpty() ||
-                addName.text.isEmpty() ||
-                addEmail.text.isEmpty() ||
-                addPhoneNumber.text.isEmpty() ||
-                !addEmail.text.toString().isEmail()
-            ) {
-                requireActivity().dialog("Fields not valid!")
-            } else {
-                addCarFragmentViewModel.createPost(createPost())
-                requireActivity().apply {
-                    openFragment(
-                        MainPageFragment.newInstance(),
-                        MainPageFragment.TAG,
-                        R.id.container
-                    )
+            requireActivity().dialog("Fields not valid!")
+            addPostFragmentViewModel.savePost(
+                images = null,
+                title = addTitle.text.toString(),
+                carModel = addCarModel.text.toString(),
+                description = addDescription.text.toString(),
+                price = addPrice.text.toString(),
+                personName = addName.text.toString(),
+                email = addEmail.text.toString(),
+                phoneNumber = addPhoneNumber.text.toString()
+            )
+        }
+
+        addPostFragmentViewModel.validateUserPostResponse.observe(viewLifecycleOwner) { createUserPostResult ->
+            when (createUserPostResult) {
+                is PostCreationSuccess -> {
+                    requireActivity().apply {
+                        openFragment(
+                            MainPageFragment.newInstance(),
+                            MainPageFragment.TAG,
+                            R.id.container
+                        )
+                    }
+                }
+                is PostCreationFailed -> {
+                    requireActivity().dialog(PostCreationFailed.MESSAGE)
                 }
             }
         }
-    }
-
-    private fun createPost(): PostResponse {
-        return PostResponse(
-            images = listOf(),
-            title = addTitle.text.toString(),
-            carModel = addCarModel.text.toString(),
-            description = addDescription.text.toString(),
-            price = addPrice.text.toString(),
-            personName = addName.text.toString(),
-            email = addEmail.text.toString(),
-            phoneNumber = addPhoneNumber.text.toString()
-        )
     }
 
 }
