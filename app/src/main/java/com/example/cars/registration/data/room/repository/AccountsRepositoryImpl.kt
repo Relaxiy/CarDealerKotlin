@@ -2,8 +2,8 @@ package com.example.cars.registration.data.room.repository
 
 import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
-import com.example.cars.registration.domain.ext.fromSignUpData
-import com.example.cars.registration.domain.ext.toAccount
+import com.example.cars.registration.domain.mapper.fromSignUpData
+import com.example.cars.registration.domain.mapper.toAccount
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.domain.models.SignUpData
