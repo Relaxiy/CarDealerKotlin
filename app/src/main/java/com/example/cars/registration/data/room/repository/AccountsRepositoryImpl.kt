@@ -1,5 +1,6 @@
 package com.example.cars.registration.data.room.repository
 
+import android.database.sqlite.SQLiteConstraintException
 import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
 import com.example.cars.registration.domain.mapper.fromSignUpData

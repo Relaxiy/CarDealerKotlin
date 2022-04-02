@@ -6,9 +6,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class PostsRepositoryImpl @Inject constructor(
+class PostsDbRepositoryImpl @Inject constructor(
     private val postsDao: FavouritePostsDao
-) : PostsRepository {
+) : PostsDbRepository {
 
     override suspend fun getFavouritePosts(): List<FavouritePostEntity> {
         return withContext(Dispatchers.IO){

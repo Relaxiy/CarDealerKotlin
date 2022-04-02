@@ -2,7 +2,7 @@ package com.example.cars.app.data.room.repository
 
 import com.example.cars.app.data.room.models.FavouritePostEntity
 
-interface PostsRepository {
+interface PostsDbRepository {
 
     suspend fun getFavouritePosts(): List<FavouritePostEntity>
 

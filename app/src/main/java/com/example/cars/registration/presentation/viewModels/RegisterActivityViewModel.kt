@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.database.sqlite.SQLiteConstraintException
+import android.database.sqlite.SQLiteException
 import android.widget.EditText
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
@@ -13,9 +14,15 @@ import androidx.lifecycle.viewModelScope
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.models.SignUpData
+import com.example.cars.utils.actionSelectors.RegistrationActionSelector
+import com.example.cars.utils.actionSelectors.RegistrationActionSelector.*
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
+import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -23,55 +30,50 @@ import javax.inject.Inject
 class RegisterActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) :
     ViewModel() {
 
-    val signUpData: LiveData<SignUpData> get() = _signUpData
-    private val _signUpData = MutableLiveData<SignUpData>()
+    val submit: LiveData<RegistrationActionSelector> get() = _submit
+    private val _submit = MutableLiveData<RegistrationActionSelector>()
 
-    fun setAccount(signUpData: SignUpData, activity: FragmentActivity) {
-        _signUpData.value = signUpData
-        saveAccount(activity)
-    }
-
-    private fun saveAccount(activity: FragmentActivity) {
-        viewModelScope.launch {
-            try {
-                signUpData.value?.let { signUpData ->
-                    accountsInteractor.createAccount(signUpData)
-                }
-                val intent = Intent(activity, MainActivity::class.java)
-                activity.startActivity(intent)
-            } catch (e: SQLiteConstraintException) {
-                activity.dialog("This account already registered!")
+    fun saveAccount(
+        username: String,
+        email: String,
+        birthday: String,
+        password: String,
+        repeatPassword: String
+    ) {
+        val account = createAccount(username, email, birthday, password, repeatPassword)
+        if (!validate(account)) {
+            viewModelScope.launch {
+                _submit.value = viewModelScope.async {
+                    try {
+                        accountsInteractor.createAccount(account)
+                        return@async OpenMainActivity
+                    } catch (e: SQLiteException) {
+                        return@async ShowExistingEmailDialog()
+                    }
+                }.await()
             }
-        }
-
-    }
-
-    fun initDate(inputDate: EditText, context: Context) {
-        val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog.OnDateSetListener { _, year, month, day ->
-            calendar.set(Calendar.YEAR, year)
-            calendar.set(Calendar.MONTH, month)
-            calendar.set(Calendar.DAY_OF_MONTH, day)
-            updateLabel(calendar, inputDate)
-        }
-        inputDate.setOnClickListener {
-            DatePickerDialog(
-                context,
-                datePicker,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH),
-            ).show()
+        } else {
+            _submit.value = ShowInvalidInputDialog()
         }
     }
 
-    private fun updateLabel(calendar: Calendar, inputDate: EditText) {
-        val format = "dd/MM/yyyy"
-        val sdf = SimpleDateFormat(format, Locale.UK)
-        inputDate.setText(sdf.format(calendar.time))
+    private fun createAccount(
+        username: String,
+        email: String,
+        birthday: String,
+        password: String,
+        repeatPassword: String
+    ): SignUpData {
+        return SignUpData(
+            username = username,
+            email = email,
+            birthday = birthday,
+            password = password,
+            repeatPassword = repeatPassword
+        )
     }
 
-    fun validate(signUpData: SignUpData): Boolean {
+    private fun validate(signUpData: SignUpData): Boolean {
         signUpData.apply {
             return username.isEmpty() ||
                     email.isEmpty() ||

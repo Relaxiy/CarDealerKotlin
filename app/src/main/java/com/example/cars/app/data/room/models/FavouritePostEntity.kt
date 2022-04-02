@@ -10,7 +10,7 @@ data class FavouritePostEntity(
     @PrimaryKey(autoGenerate = true)
     var uid: Long = 0,
     @ColumnInfo(name = "images")
-    val images: List<String>,
+    val images: String,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "car_model")

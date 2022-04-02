@@ -2,7 +2,7 @@ package com.example.cars.app.domain.models
 
 data class FavouritePost(
     var uid: Long = 0,
-    val images: List<String>,
+    val images: String,
     val title: String,
     val carModel: String,
     val description: String,

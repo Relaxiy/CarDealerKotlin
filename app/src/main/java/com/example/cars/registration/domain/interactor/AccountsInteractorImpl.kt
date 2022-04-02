@@ -1,5 +1,6 @@
 package com.example.cars.registration.domain.interactor
 
+import android.database.sqlite.SQLiteConstraintException
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.data.room.repository.AccountsRepository
 import com.example.cars.registration.domain.models.SignUpData

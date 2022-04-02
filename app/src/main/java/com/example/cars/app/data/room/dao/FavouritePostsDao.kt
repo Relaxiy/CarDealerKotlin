@@ -1,10 +1,10 @@
 package com.example.cars.app.data.room.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.cars.app.data.room.models.FavouritePostEntity
-import retrofit2.http.DELETE
 
 @Dao
 interface FavouritePostsDao {
@@ -14,6 +14,6 @@ interface FavouritePostsDao {
     @Insert
     suspend fun saveFavouritePost(favouritePostEntity: FavouritePostEntity)
 
-    @DELETE
+    @Delete
     suspend fun deleteFavouritePost(favouritePostEntity: FavouritePostEntity)
 }
