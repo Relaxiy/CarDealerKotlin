@@ -3,6 +3,7 @@ package com.example.cars.registration.domain.interactor
 import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.data.room.models.AccountDbEntity
+import com.example.cars.registration.data.room.repository.AccountsRepository
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
 import com.example.cars.registration.domain.ext.fromSignUpData
@@ -18,42 +19,26 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class AccountsInteractorImpl @Inject constructor(private val accountsDao: AccountsDao) :
-    AccountsInteractor {
+class AccountsInteractorImpl @Inject constructor(
+    private val accountsRepository: AccountsRepository
+) : AccountsInteractor {
 
     override suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): AccountSearchResult {
         return withContext(Dispatchers.IO) {
-            val tuple = accountsDao.findByEmail(signInData.email)
-            return@withContext when {
-                tuple == null -> WrongEmailResult()
-                tuple.password != signInData.password -> WrongPasswordResult()
-                else -> SuccessResult(tuple.id)
-            }
+            accountsRepository.findAccountIdByEmailAndPassword(signInData)
         }
     }
 
     override suspend fun createAccount(signUpData: SignUpData) {
-        withContext(Dispatchers.IO) {
-            val entity = signUpData.fromSignUpData()
-            accountsDao.createAccount(entity)
-        }
+        accountsRepository.createAccount(signUpData)
     }
 
-    override suspend fun getAccountById(accountId: Long): Flow<Account?> = flow {
-        accountsDao.getAccountById(accountId).map { accountDbEntity ->
-            accountDbEntity?.toAccount()
-        }.flowOn(Dispatchers.IO)
+    override suspend fun getAccountById(accountId: Long): Flow<Account?> {
+        return accountsRepository.getAccountById(accountId)
     }
 
     override suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String) {
-        withContext(Dispatchers.IO) {
-            accountsDao.updateUsername(
-                AccountUpdateUsernameTuple(
-                    accountId,
-                    newUsername
-                )
-            )
-        }
+        accountsRepository.updateUsernameForAccountId(accountId, newUsername)
     }
 
 
