@@ -1,11 +1,10 @@
 package com.example.cars.registration.domain.interactor
 
-import android.database.sqlite.SQLiteConstraintException
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.data.room.repository.AccountsRepository
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.domain.models.SignInData
-import com.example.cars.utils.exceptions.AccountSearchResult
+import com.example.cars.utils.actionSelectors.AccountSearchResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

@@ -1,30 +1,17 @@
 package com.example.cars.registration.presentation.viewModels
 
-import android.app.DatePickerDialog
-import android.content.Context
-import android.content.Intent
-import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteException
-import android.widget.EditText
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cars.app.presentation.MainActivity
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.utils.actionSelectors.RegistrationActionSelector
 import com.example.cars.utils.actionSelectors.RegistrationActionSelector.*
-import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
-import kotlinx.android.synthetic.main.activity_register.*
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class RegisterActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) :

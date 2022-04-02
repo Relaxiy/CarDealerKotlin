@@ -1,7 +1,6 @@
 package com.example.cars.registration.presentation.activities
 
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
@@ -9,17 +8,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.R
-import com.example.cars.registration.domain.models.SignUpData
-import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.registration.presentation.viewModels.RegisterActivityViewModel
-import com.example.cars.utils.actionSelectors.RegistrationActionSelector
 import com.example.cars.utils.actionSelectors.RegistrationActionSelector.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import kotlinx.android.synthetic.main.activity_register.*
 import java.text.SimpleDateFormat
 import java.util.*
-import javax.inject.Inject
 
 class RegisterActivity : AppCompatActivity() {
 

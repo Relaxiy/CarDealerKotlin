@@ -1,4 +1,4 @@
-package com.example.cars.utils.exceptions
+package com.example.cars.utils.actionSelectors
 
 sealed class AccountSearchResult{
 
