@@ -5,8 +5,11 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.R
+import com.example.cars.app.presentation.MainActivity
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
+import com.example.cars.utils.actionSelectors.AccountSearchResult
+import com.example.cars.utils.actionSelectors.AccountSearchResult.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import kotlinx.android.synthetic.main.activity_login.*
@@ -30,11 +33,21 @@ class LoginActivity : AppCompatActivity() {
 
     private fun login() {
         loginButton.setOnClickListener {
-            val signInAccount = createSignInAccount()
-            if (loginActivityViewModel.validateSignIn(signInAccount)) {
-                dialog("Fields not valid!")
-            } else {
-                loginActivityViewModel.signIn(signInAccount, this)
+            loginActivityViewModel.signIn(
+                inputLoginEmail.text.toString(),
+                inputLoginPassword.text.toString()
+            )
+        }
+
+        loginActivityViewModel.searchResult.observe(this) { accountSearchResult ->
+            when (accountSearchResult) {
+                is WrongEmailResult -> dialog(WrongEmailResult().wrongEmail)
+                is WrongPasswordResult -> dialog(WrongPasswordResult().wrongPassword)
+                is InvalidInput -> dialog(InvalidInput().invalidInput)
+                is SuccessResult -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
     }
@@ -46,10 +59,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun createSignInAccount(): SignInData {
-        return SignInData(
-            email = inputLoginEmail.text.toString(),
-            password = inputLoginPassword.text.toString()
-        )
-    }
 }
