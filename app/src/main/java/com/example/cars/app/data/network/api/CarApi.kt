@@ -1,6 +1,6 @@
 package com.example.cars.app.data.network.api
 
-import com.example.cars.app.data.network.models.AddPostItem
+import com.example.cars.app.data.network.models.PostResponse
 import com.example.cars.app.data.network.models.CarResponse
 import com.example.cars.app.domain.models.PostItem
 import retrofit2.http.Body
@@ -19,5 +19,5 @@ interface CarApi {
 
     @POST("./posts")
     @Headers("Content-Type: application/json")
-    suspend fun sendPost(@Body addPostItem: AddPostItem)
+    suspend fun sendPost(@Body postResponse: PostResponse)
 }

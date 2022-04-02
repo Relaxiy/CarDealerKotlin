@@ -23,7 +23,8 @@ fun UserPost.toDeletedUserPostEntity() = UserPostEntity(
     price = price,
     personName = personName,
     email = email,
-    phoneNumber = phoneNumber
+    phoneNumber = phoneNumber,
+    date = date
 )
 
 fun UserPostEntity.toUserPost() = UserPost(
@@ -35,5 +36,6 @@ fun UserPostEntity.toUserPost() = UserPost(
     price = price,
     personName = personName,
     email = email,
-    phoneNumber = phoneNumber
+    phoneNumber = phoneNumber,
+    date = date
 )

@@ -1,7 +1,7 @@
 package com.example.cars.app.domain.interactors.carInteractor
 
 import com.example.cars.app.data.network.api.CarApi
-import com.example.cars.app.data.network.models.AddPostItem
+import com.example.cars.app.data.network.models.PostResponse
 import com.example.cars.app.domain.models.CarItem
 import com.example.cars.app.domain.models.CarModel
 import com.example.cars.app.domain.models.PostItem
@@ -44,8 +44,8 @@ class CarInteractorImpl @Inject constructor(private val carApi: CarApi) : CarInt
         }
     }
 
-    override suspend fun sendPost(addPostItem: AddPostItem) {
-        carApi.sendPost(addPostItem)
+    override suspend fun sendPost(postResponse: PostResponse) {
+        carApi.sendPost(postResponse)
     }
 
 }

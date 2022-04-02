@@ -1,10 +1,11 @@
 package com.example.cars.app.data.network.models
 
+import com.example.cars.utils.date.CurrentDate
 import com.google.gson.annotations.SerializedName
 
-data class AddPostItem(
+data class PostResponse(
     @SerializedName("images")
-    val images: List<String>?,
+    val images: String?,
     @SerializedName("title")
     val title: String,
     @SerializedName("carModel")
@@ -18,5 +19,7 @@ data class AddPostItem(
     @SerializedName("email")
     val email: String,
     @SerializedName("phoneNumber")
-    val phoneNumber: String
+    val phoneNumber: String,
+    @SerializedName("current_date")
+    var date: String = CurrentDate.currentDate
 )

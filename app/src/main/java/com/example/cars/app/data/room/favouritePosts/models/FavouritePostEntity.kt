@@ -10,7 +10,7 @@ data class FavouritePostEntity(
     @PrimaryKey(autoGenerate = true)
     var uid: Long = 0,
     @ColumnInfo(name = "images")
-    val images: String,
+    val images: String?,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "car_model")
@@ -24,7 +24,9 @@ data class FavouritePostEntity(
     @ColumnInfo(name = "email")
     val email: String,
     @ColumnInfo(name = "phone_number")
-    val phoneNumber: String
+    val phoneNumber: String,
+    @ColumnInfo(name = "current_date")
+    var date: String
 ) {
     companion object {
         const val TABLE_NAME = "favourite_posts"

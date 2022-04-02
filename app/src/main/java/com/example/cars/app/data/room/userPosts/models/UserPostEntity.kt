@@ -4,13 +4,16 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.cars.app.data.room.userPosts.models.UserPostEntity.Companion.TABLE_NAME
+import com.example.cars.utils.date.CurrentDate
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Entity(tableName = TABLE_NAME)
 data class UserPostEntity(
     @PrimaryKey(autoGenerate = true)
     var uid: Long = 0,
     @ColumnInfo(name = "images")
-    val images: String,
+    val images: String?,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "car_model")
@@ -24,7 +27,9 @@ data class UserPostEntity(
     @ColumnInfo(name = "email")
     val email: String,
     @ColumnInfo(name = "phone_number")
-    val phoneNumber: String
+    val phoneNumber: String,
+    @ColumnInfo(name = "current_date")
+    var date: String = CurrentDate.currentDate
 ) {
     companion object {
         const val TABLE_NAME = "user_posts"

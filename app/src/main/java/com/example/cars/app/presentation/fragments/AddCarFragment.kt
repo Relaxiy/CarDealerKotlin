@@ -3,22 +3,19 @@ package com.example.cars.app.presentation.fragments
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
-import com.example.cars.app.data.network.models.AddPostItem
+import com.example.cars.app.data.network.models.PostResponse
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.AddCarFragmentViewModel
-import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.isEmail
 import com.example.cars.utils.ext.openFragment
 import kotlinx.android.synthetic.main.fragment_add_car.*
-import javax.inject.Inject
 
 class AddCarFragment : Fragment(R.layout.fragment_add_car) {
 
@@ -91,8 +88,8 @@ class AddCarFragment : Fragment(R.layout.fragment_add_car) {
         }
     }
 
-    private fun createPost(): AddPostItem {
-        return AddPostItem(
+    private fun createPost(): PostResponse {
+        return PostResponse(
             images = listOf(),
             title = addTitle.text.toString(),
             carModel = addCarModel.text.toString(),

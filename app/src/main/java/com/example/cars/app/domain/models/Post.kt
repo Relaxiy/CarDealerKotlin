@@ -1,7 +1,6 @@
 package com.example.cars.app.domain.models
 
-data class UserPost(
-    var uid: Long = 0,
+data class Post(
     val images: String?,
     val title: String,
     val carModel: String,
