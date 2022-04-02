@@ -7,7 +7,7 @@ import com.example.cars.app.data.room.models.FavouritePostEntity
 import retrofit2.http.DELETE
 
 @Dao
-interface PostsDao {
+interface FavouritePostsDao {
     @Query("SELECT * FROM favourite_posts")
     suspend fun getFavouritePosts(): List<FavouritePostEntity>
 

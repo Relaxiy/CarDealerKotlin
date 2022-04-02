@@ -1,21 +1,30 @@
 package com.example.cars.app.data.room.repository
 
-import com.example.cars.app.data.room.dao.PostsDao
+import com.example.cars.app.data.room.dao.FavouritePostsDao
 import com.example.cars.app.data.room.models.FavouritePostEntity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class PostsRepositoryImpl @Inject constructor(
-    private val postsDao: PostsDao
+    private val postsDao: FavouritePostsDao
 ) : PostsRepository {
+
     override suspend fun getFavouritePosts(): List<FavouritePostEntity> {
-        TODO("Not yet implemented")
+        return withContext(Dispatchers.IO){
+            return@withContext postsDao.getFavouritePosts()
+        }
     }
 
     override suspend fun saveFavouritePost(favouritePostEntity: FavouritePostEntity) {
-        TODO("Not yet implemented")
+       withContext(Dispatchers.IO){
+           postsDao.saveFavouritePost(favouritePostEntity)
+       }
     }
 
     override suspend fun deleteFavouritePost(favouritePostEntity: FavouritePostEntity) {
-        TODO("Not yet implemented")
+        withContext(Dispatchers.IO){
+            postsDao.deleteFavouritePost(favouritePostEntity)
+        }
     }
 }

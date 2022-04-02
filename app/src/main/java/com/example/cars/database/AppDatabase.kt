@@ -2,7 +2,7 @@ package com.example.cars.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.cars.app.data.room.dao.PostsDao
+import com.example.cars.app.data.room.dao.FavouritePostsDao
 import com.example.cars.app.data.room.models.FavouritePostEntity
 import com.example.cars.database.AppDatabase.Companion.DATABASE_VERSION
 import com.example.cars.registration.data.room.dao.AccountsDao
@@ -23,5 +23,5 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getAccountsDao(): AccountsDao
 
-    abstract fun getPostsDao(): PostsDao
+    abstract fun getFavouritePostsDao(): FavouritePostsDao
 }

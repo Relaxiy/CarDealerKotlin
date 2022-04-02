@@ -2,7 +2,7 @@ package com.example.cars.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.cars.app.data.room.dao.PostsDao
+import com.example.cars.app.data.room.dao.FavouritePostsDao
 import com.example.cars.database.AppDatabase
 import com.example.cars.registration.data.room.dao.AccountsDao
 import dagger.Module
@@ -21,8 +21,8 @@ class RoomModule {
 
     @Provides
     @Singleton
-    fun providePostsDao(database: AppDatabase): PostsDao {
-        return database.getPostsDao()
+    fun provideFavouritePostsDao(database: AppDatabase): FavouritePostsDao {
+        return database.getFavouritePostsDao()
     }
 
     @Provides
