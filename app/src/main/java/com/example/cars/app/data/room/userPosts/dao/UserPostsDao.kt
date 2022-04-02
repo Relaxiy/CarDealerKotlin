@@ -1,10 +1,10 @@
-package com.example.cars.app.data.room.roomUserPosts.dao
+package com.example.cars.app.data.room.userPosts.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.cars.app.data.room.roomUserPosts.models.UserPostEntity
+import com.example.cars.app.data.room.userPosts.models.UserPostEntity
 
 @Dao
 interface UserPostsDao {

@@ -1,9 +1,9 @@
-package com.example.cars.app.data.room.roomUserPosts.models
+package com.example.cars.app.data.room.userPosts.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.cars.app.data.room.roomUserPosts.models.UserPostEntity.Companion.TABLE_NAME
+import com.example.cars.app.data.room.userPosts.models.UserPostEntity.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)
 data class UserPostEntity(

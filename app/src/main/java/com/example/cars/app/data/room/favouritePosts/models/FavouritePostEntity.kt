@@ -1,9 +1,9 @@
-package com.example.cars.app.data.room.roomFavouritePosts.models
+package com.example.cars.app.data.room.favouritePosts.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity.Companion.TABLE_NAME
+import com.example.cars.app.data.room.favouritePosts.models.FavouritePostEntity.Companion.TABLE_NAME
 
 @Entity(tableName = TABLE_NAME)
 data class FavouritePostEntity(

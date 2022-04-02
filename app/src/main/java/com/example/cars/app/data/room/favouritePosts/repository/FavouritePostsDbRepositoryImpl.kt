@@ -1,7 +1,7 @@
-package com.example.cars.app.data.room.roomFavouritePosts.repository
+package com.example.cars.app.data.room.favouritePosts.repository
 
-import com.example.cars.app.data.room.roomFavouritePosts.dao.FavouritePostsDao
-import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity
+import com.example.cars.app.data.room.favouritePosts.dao.FavouritePostsDao
+import com.example.cars.app.data.room.favouritePosts.models.FavouritePostEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

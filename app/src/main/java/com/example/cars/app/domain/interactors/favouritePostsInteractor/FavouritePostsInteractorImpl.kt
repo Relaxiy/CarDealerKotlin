@@ -1,9 +1,9 @@
 package com.example.cars.app.domain.interactors.favouritePostsInteractor
 
-import com.example.cars.app.data.room.roomFavouritePosts.repository.FavouritePostsDbRepository
-import com.example.cars.app.domain.mapper.toDeletedFavouritePostEntity
-import com.example.cars.app.domain.mapper.toFavouritePost
-import com.example.cars.app.domain.mapper.toSavedFavouritePostEntity
+import com.example.cars.app.data.room.favouritePosts.repository.FavouritePostsDbRepository
+import com.example.cars.app.domain.mappers.toDeletedFavouritePostEntity
+import com.example.cars.app.domain.mappers.toFavouritePost
+import com.example.cars.app.domain.mappers.toSavedFavouritePostEntity
 import com.example.cars.app.domain.models.FavouritePost
 import javax.inject.Inject
 
@@ -17,10 +17,14 @@ class FavouritePostsInteractorImpl @Inject constructor(
     }
 
     override suspend fun saveFavouritePost(favouritePost: FavouritePost) {
-        favouritePostsDbRepository.saveFavouritePost(favouritePostEntity = favouritePost.toSavedFavouritePostEntity())
+        favouritePostsDbRepository.saveFavouritePost(
+            favouritePostEntity = favouritePost.toSavedFavouritePostEntity()
+        )
     }
 
     override suspend fun deleteFavouritePost(favouritePost: FavouritePost) {
-        favouritePostsDbRepository.deleteFavouritePost(favouritePostEntity = favouritePost.toDeletedFavouritePostEntity())
+        favouritePostsDbRepository.deleteFavouritePost(
+            favouritePostEntity = favouritePost.toDeletedFavouritePostEntity()
+        )
     }
 }

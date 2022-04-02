@@ -1,9 +1,9 @@
-package com.example.cars.app.domain.mapper
+package com.example.cars.app.domain.mappers
 
-import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity
-import com.example.cars.app.domain.models.FavouritePost
+import com.example.cars.app.data.room.userPosts.models.UserPostEntity
+import com.example.cars.app.domain.models.UserPost
 
-fun FavouritePost.toSavedFavouritePostEntity() = FavouritePostEntity(
+fun UserPost.toSavedUserPostEntity() = UserPostEntity(
     images = images,
     title = title,
     carModel = carModel,
@@ -14,7 +14,7 @@ fun FavouritePost.toSavedFavouritePostEntity() = FavouritePostEntity(
     phoneNumber = phoneNumber
 )
 
-fun FavouritePost.toDeletedFavouritePostEntity() = FavouritePostEntity(
+fun UserPost.toDeletedUserPostEntity() = UserPostEntity(
     uid = uid,
     images = images,
     title = title,
@@ -26,7 +26,7 @@ fun FavouritePost.toDeletedFavouritePostEntity() = FavouritePostEntity(
     phoneNumber = phoneNumber
 )
 
-fun FavouritePostEntity.toFavouritePost() = FavouritePost(
+fun UserPostEntity.toUserPost() = UserPost(
     uid = uid,
     images = images,
     title = title,

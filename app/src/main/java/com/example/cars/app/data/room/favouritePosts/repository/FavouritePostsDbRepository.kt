@@ -1,6 +1,6 @@
-package com.example.cars.app.data.room.roomFavouritePosts.repository
+package com.example.cars.app.data.room.favouritePosts.repository
 
-import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity
+import com.example.cars.app.data.room.favouritePosts.models.FavouritePostEntity
 
 interface FavouritePostsDbRepository {
 

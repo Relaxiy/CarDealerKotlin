@@ -1,6 +1,6 @@
-package com.example.cars.app.data.room.roomUserPosts.repository
+package com.example.cars.app.data.room.userPosts.repository
 
-import com.example.cars.app.data.room.roomUserPosts.models.UserPostEntity
+import com.example.cars.app.data.room.userPosts.models.UserPostEntity
 
 interface UserPostsDbRepository {
 
