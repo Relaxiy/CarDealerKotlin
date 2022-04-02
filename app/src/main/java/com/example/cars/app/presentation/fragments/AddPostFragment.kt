@@ -7,20 +7,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cars.R
-import com.example.cars.app.domain.models.UserPost
 import com.example.cars.app.presentation.recyclers.horizontalRecyclerInAddCar.HorizontalImageAdapter
 import com.example.cars.app.presentation.recyclers.recyclerInModelsBottom.clickListener.ReturnAddModelButton
 import com.example.cars.app.presentation.viewModels.AddPostFragmentViewModel
-import com.example.cars.utils.actionSelectors.CreateUserPostResult
 import com.example.cars.utils.actionSelectors.CreateUserPostResult.*
-import com.example.cars.utils.actionSelectors.CreateUserPostResult.PostCreationFailed.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
-import com.example.cars.utils.ext.isEmail
 import com.example.cars.utils.ext.openFragment
-import kotlinx.android.synthetic.main.fragment_add_car.*
+import kotlinx.android.synthetic.main.fragment_add_post.*
 
-class AddPostFragment : Fragment(R.layout.fragment_add_car) {
+class AddPostFragment : Fragment(R.layout.fragment_add_post) {
 
     companion object {
         const val TAG = "AddCarFragment"
