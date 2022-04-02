@@ -1,14 +1,14 @@
-package com.example.cars.app.data.room.repository
+package com.example.cars.app.data.room.roomFavouritePosts.repository
 
-import com.example.cars.app.data.room.dao.FavouritePostsDao
-import com.example.cars.app.data.room.models.FavouritePostEntity
+import com.example.cars.app.data.room.roomFavouritePosts.dao.FavouritePostsDao
+import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class PostsDbRepositoryImpl @Inject constructor(
+class FavouritePostsDbRepositoryImpl @Inject constructor(
     private val postsDao: FavouritePostsDao
-) : PostsDbRepository {
+) : FavouritePostsDbRepository {
 
     override suspend fun getFavouritePosts(): List<FavouritePostEntity> {
         return withContext(Dispatchers.IO){

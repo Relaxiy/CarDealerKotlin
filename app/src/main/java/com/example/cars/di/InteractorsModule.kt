@@ -2,8 +2,10 @@ package com.example.cars.di
 
 import com.example.cars.app.domain.interactors.carInteractor.CarInteractor
 import com.example.cars.app.domain.interactors.carInteractor.CarInteractorImpl
-import com.example.cars.app.domain.interactors.postsInteractor.PostsDbInteractor
-import com.example.cars.app.domain.interactors.postsInteractor.PostsDbInteractorImpl
+import com.example.cars.app.domain.interactors.favouritePostsInteractor.FavouritePostsInteractor
+import com.example.cars.app.domain.interactors.favouritePostsInteractor.FavouritePostsInteractorImpl
+import com.example.cars.app.domain.interactors.userPostsInteractor.UserPostsInteractor
+import com.example.cars.app.domain.interactors.userPostsInteractor.UserPostsInteractorImpl
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.interactor.AccountsInteractorImpl
 import dagger.Binds
@@ -19,5 +21,8 @@ interface InteractorsModule {
     fun bindCarInteractor(carInteractorImpl: CarInteractorImpl): CarInteractor
 
     @Binds
-    fun bindPostsInteractor(postsInteractorImpl: PostsDbInteractorImpl): PostsDbInteractor
+    fun bindFavouritePostsInteractor(favouritePostsDbInteractorImpl: FavouritePostsInteractorImpl): FavouritePostsInteractor
+
+    @Binds
+    fun bindUserPostsInteractor(userPostsInteractorImpl: UserPostsInteractorImpl): UserPostsInteractor
 }

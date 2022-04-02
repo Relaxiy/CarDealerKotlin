@@ -1,10 +1,10 @@
-package com.example.cars.app.data.room.dao
+package com.example.cars.app.data.room.roomFavouritePosts.dao
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.cars.app.data.room.models.FavouritePostEntity
+import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity
 
 @Dao
 interface FavouritePostsDao {

@@ -1,6 +1,6 @@
 package com.example.cars.app.domain.mapper
 
-import com.example.cars.app.data.room.models.FavouritePostEntity
+import com.example.cars.app.data.room.roomFavouritePosts.models.FavouritePostEntity
 import com.example.cars.app.domain.models.FavouritePost
 
 fun FavouritePost.toSavedFavouritePostEntity() = FavouritePostEntity(

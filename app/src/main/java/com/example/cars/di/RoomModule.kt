@@ -2,7 +2,8 @@ package com.example.cars.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.cars.app.data.room.dao.FavouritePostsDao
+import com.example.cars.app.data.room.roomFavouritePosts.dao.FavouritePostsDao
+import com.example.cars.app.data.room.roomUserPosts.dao.UserPostsDao
 import com.example.cars.database.AppDatabase
 import com.example.cars.registration.data.room.dao.AccountsDao
 import dagger.Module
@@ -23,6 +24,12 @@ class RoomModule {
     @Singleton
     fun provideFavouritePostsDao(database: AppDatabase): FavouritePostsDao {
         return database.getFavouritePostsDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserPostsDao(database: AppDatabase): UserPostsDao{
+        return database.getUserPostsDao()
     }
 
     @Provides

@@ -1,8 +1,8 @@
-package com.example.cars.app.domain.interactors.postsInteractor
+package com.example.cars.app.domain.interactors.favouritePostsInteractor
 
 import com.example.cars.app.domain.models.FavouritePost
 
-interface PostsDbInteractor {
+interface FavouritePostsInteractor {
 
     suspend fun getFavouritePosts(): List<FavouritePost>
 
