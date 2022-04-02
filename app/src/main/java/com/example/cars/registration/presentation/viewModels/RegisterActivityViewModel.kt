@@ -30,8 +30,8 @@ import javax.inject.Inject
 class RegisterActivityViewModel @Inject constructor(private val accountsInteractor: AccountsInteractor) :
     ViewModel() {
 
-    val submit: LiveData<RegistrationActionSelector> get() = _submit
-    private val _submit = MutableLiveData<RegistrationActionSelector>()
+    val result: LiveData<RegistrationActionSelector> get() = _result
+    private val _result = MutableLiveData<RegistrationActionSelector>()
 
     fun saveAccount(
         username: String,
@@ -43,7 +43,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
         val account = createAccount(username, email, birthday, password, repeatPassword)
         if (!validate(account)) {
             viewModelScope.launch {
-                _submit.value = viewModelScope.async {
+                _result.value = viewModelScope.async {
                     try {
                         accountsInteractor.createAccount(account)
                         return@async OpenMainActivity
@@ -53,7 +53,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
                 }.await()
             }
         } else {
-            _submit.value = ShowInvalidInputDialog()
+            _result.value = ShowInvalidInputDialog()
         }
     }
 

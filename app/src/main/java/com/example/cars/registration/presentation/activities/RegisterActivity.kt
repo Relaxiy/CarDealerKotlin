@@ -75,7 +75,7 @@ class RegisterActivity : AppCompatActivity() {
                 inputPasswordSecond.text.toString()
             )
         }
-        registerActivityViewModel.submit.observe(this) { registrationActionSelector ->
+        registerActivityViewModel.result.observe(this) { registrationActionSelector ->
             when (registrationActionSelector) {
                 is OpenMainActivity -> {
                     val intent = Intent(this, MainActivity::class.java)
