@@ -64,7 +64,6 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
 
     private fun sendPost() {
         sendPost.setOnClickListener {
-            requireActivity().dialog("Fields not valid!")
             addPostFragmentViewModel.savePost(
                 images = null,
                 title = addTitle.text.toString(),
