@@ -1,10 +1,13 @@
 package com.example.cars.app.presentation
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import com.example.cars.R
 import com.example.cars.utils.ext.openFragment
 import com.example.cars.app.presentation.fragments.*
+import com.example.cars.app.presentation.viewModels.CarModelsBottomFragmentViewModel
 import com.example.cars.app.presentation.viewModels.MainActivityViewModel
 import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.appComponent
@@ -16,16 +19,16 @@ class MainActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottom_navigation)
     }
 
-    lateinit var binding: ActivityMainBinding
+    private val mainActivityViewModel: MainActivityViewModel by viewModels {
+        appComponent.viewModelsFactory()
+    }
 
-    @Inject
-    lateinit var mainActivityViewModel: MainActivityViewModel
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        appComponent.inject(this)
         initHomeFragment()
     }
 
