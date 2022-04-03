@@ -1,10 +1,11 @@
 package com.example.cars.app.domain.mappers
 
 import com.example.cars.app.data.network.models.PostResponse
+import com.example.cars.app.data.room.favouritePosts.models.FavouritePostEntity
 import com.example.cars.app.domain.models.FavouritePost
 import com.example.cars.app.domain.models.Post
 
-fun Post.toFavouritePost() = FavouritePost(
+fun Post.toSavedFavouritePostEntity() = FavouritePostEntity(
     images = images,
     title = title,
     carModel = carModel,

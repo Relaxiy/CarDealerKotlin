@@ -5,6 +5,7 @@ import com.example.cars.app.domain.mappers.toDeletedFavouritePostEntity
 import com.example.cars.app.domain.mappers.toFavouritePost
 import com.example.cars.app.domain.mappers.toSavedFavouritePostEntity
 import com.example.cars.app.domain.models.FavouritePost
+import com.example.cars.app.domain.models.Post
 import javax.inject.Inject
 
 class FavouritePostsInteractorImpl @Inject constructor(
@@ -16,9 +17,9 @@ class FavouritePostsInteractorImpl @Inject constructor(
         }
     }
 
-    override suspend fun saveFavouritePost(favouritePost: FavouritePost) {
+    override suspend fun saveFavouritePost(post: Post) {
         favouritePostsDbRepository.saveFavouritePost(
-            favouritePostEntity = favouritePost.toSavedFavouritePostEntity()
+            favouritePostEntity = post.toSavedFavouritePostEntity()
         )
     }
 
