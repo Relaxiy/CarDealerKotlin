@@ -40,13 +40,7 @@ class CarModelsFragment : Fragment(R.layout.fragment_car_models) {
     private val openFragmentByItemClick by lazy {
         object : ItemClickListener {
             override fun itemClick() {
-                requireActivity().apply {
-                    openFragment(
-                        FavouritePostsFragment.newInstance(),
-                        FavouritePostsFragment.TAG,
-                        R.id.container
-                    )
-                }
+
             }
         }
     }

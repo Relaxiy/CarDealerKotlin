@@ -5,7 +5,7 @@ import com.example.cars.app.data.room.userPosts.models.UserPostEntity
 
 @Dao
 interface UserPostsDao {
-    @Query("SELECT * FROM favourite_posts")
+    @Query("SELECT * FROM user_posts")
     suspend fun getUserPosts(): List<UserPostEntity>
 
     @Insert

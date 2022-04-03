@@ -55,4 +55,9 @@ interface ViewModelsModule {
     @ViewModelKey(PersonalPageFragmentViewModel::class)
     fun providePersonalPageFragmentViewModel(personalPageFragmentViewModel: PersonalPageFragmentViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserPostsFragmentViewModel::class)
+    fun providePUserPostsFragmentViewModel(userPostsFragmentViewModel: UserPostsFragmentViewModel): ViewModel
+
 }

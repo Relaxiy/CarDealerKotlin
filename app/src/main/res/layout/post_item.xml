@@ -38,20 +38,23 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/post_title"
                 android:layout_width="124dp"
                 android:layout_height="32dp"
-                android:hint="name"
+                tools:text="name"
                 app:layout_constraintStart_toEndOf="@id/image_main_recycler" />
 
             <TextView
+                android:id="@+id/post_price"
                 android:layout_width="124dp"
                 android:layout_height="32dp"
-                android:hint="price" />
+                tools:text="price" />
 
             <TextView
+                android:id="@+id/post_date"
                 android:layout_width="124dp"
                 android:layout_height="32dp"
-                android:hint="date" />
+                tools:text="date" />
         </LinearLayout>
 
     </LinearLayout>
