@@ -1,6 +1,7 @@
 package com.example.cars.di
 
 import com.example.cars.app.data.network.api.CarApi
+import com.example.cars.registration.data.network.api.AccountApi
 import com.example.cars.utils.networkURLs.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -41,4 +42,8 @@ class NetworkModule {
     @Provides
     @Singleton
     fun provideCarApi(retrofit: Retrofit): CarApi = retrofit.create(CarApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAccountApi(retrofit: Retrofit): AccountApi = retrofit.create(AccountApi::class.java)
 }

@@ -2,6 +2,7 @@ package com.example.cars.registration.domain.interactor
 
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.AccountsRepository
+import com.example.cars.registration.domain.mapper.toAccountResponse
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult
@@ -30,6 +31,10 @@ class AccountsInteractorImpl @Inject constructor(
 
     override suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String) {
         accountsRepository.updateUsernameForAccountId(accountId, newUsername)
+    }
+
+    override suspend fun sendAccountToServer(account: Account) {
+        accountsRepository.sendAccountToServer(account.toAccountResponse())
     }
 
 

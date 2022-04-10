@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.example.cars.registration.data.room.models.AccountDbEntity.Companion.TABLE_NAME
+import com.example.cars.utils.date.CurrentDate
 
 
 @Entity(
@@ -15,7 +16,7 @@ import com.example.cars.registration.data.room.models.AccountDbEntity.Companion.
 )
 data class AccountDbEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    var id: Long = 0,
     @ColumnInfo(name = "username")
     val username: String,
     @ColumnInfo(name = "email", collate = ColumnInfo.NOCASE)
@@ -25,7 +26,7 @@ data class AccountDbEntity(
     @ColumnInfo(name = "password")
     val password: String,
     @ColumnInfo(name = "created_at")
-    val createdAt: Long
+    val createdAt: String = CurrentDate.currentDate
 ) {
     companion object {
         const val TABLE_NAME = "accounts"

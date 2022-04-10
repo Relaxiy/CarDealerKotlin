@@ -1,5 +1,6 @@
 package com.example.cars.registration.domain
 
+import com.example.cars.registration.data.network.models.AccountResponse
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.domain.models.SignUpData
@@ -15,4 +16,6 @@ interface AccountsRepository {
     suspend fun getAccountById(accountId: Long): Flow<Account?>
 
     suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String)
+
+    suspend fun sendAccountToServer(accountResponse: AccountResponse)
 }
