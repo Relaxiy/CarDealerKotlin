@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.cars.R
 import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFragment
@@ -33,7 +32,7 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
     }
 
     private val recycler by lazy {
-        view?.findViewById<RecyclerView>(R.id.addCarRecycler)
+        binding.addCarRecycler
     }
 
     private val adapter by lazy {
@@ -64,7 +63,7 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
     }
 
     private fun initRecycler() {
-        recycler?.adapter = adapter
+        recycler.adapter = adapter
     }
 
     private fun sendPost() {

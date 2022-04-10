@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.example.cars.app.presentation.MainActivityViewModel
 import com.example.cars.app.presentation.addPost.AddPostFragmentViewModel
 import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFragmentViewModel
-import com.example.cars.app.presentation.carModelsPage.CarModelsFragmentViewModel
 import com.example.cars.app.presentation.favouritePosts.FavouritePostsFragmentViewModel
 import com.example.cars.app.presentation.mainPage.MainPageFragmentViewModel
+import com.example.cars.app.presentation.messagesPage.MessagesFragmentViewModel
 import com.example.cars.app.presentation.personalPage.PersonalPageFragmentViewModel
 import com.example.cars.app.presentation.userPosts.UserPostsFragmentViewModel
 import com.example.cars.registration.presentation.login.LoginActivityViewModel
@@ -39,8 +39,8 @@ interface ViewModelsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CarModelsFragmentViewModel::class)
-    fun provideCarModelsFragmentViewModel(carModelsFragmentViewModel: CarModelsFragmentViewModel): ViewModel
+    @ViewModelKey(MessagesFragmentViewModel::class)
+    fun provideCarModelsFragmentViewModel(messagesFragmentViewModel: MessagesFragmentViewModel): ViewModel
 
     @Binds
     @IntoMap

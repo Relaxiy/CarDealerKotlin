@@ -4,9 +4,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import com.example.cars.R
 import com.example.cars.app.presentation.addPost.AddPostFragment
-import com.example.cars.app.presentation.carModelsPage.CarModelsFragment
 import com.example.cars.app.presentation.favouritePosts.FavouritePostsFragment
 import com.example.cars.app.presentation.mainPage.MainPageFragment
+import com.example.cars.app.presentation.messagesPage.MessagesFragment
 import com.example.cars.app.presentation.personalPage.PersonalPageFragment
 import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.openFragment
@@ -24,17 +24,17 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
 
             bottomNav.setOnItemSelectedListener {
                 when (it.itemId) {
-                    R.id.home -> {
+                    R.id.posts -> {
                         mainActivity.openFragment(
                             MainPageFragment.newInstance(),
                             MainPageFragment.TAG,
                             R.id.container
                         )
                     }
-                    R.id.to_cars -> {
+                    R.id.messages -> {
                         mainActivity.openFragment(
-                            CarModelsFragment.newInstance(),
-                            CarModelsFragment.TAG,
+                            MessagesFragment.newInstance(),
+                            MessagesFragment.TAG,
                             R.id.container
                         )
                     }
@@ -52,7 +52,7 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
                             R.id.container
                         )
                     }
-                    R.id.login_button -> {
+                    R.id.home -> {
                         mainActivity.openFragment(
                             PersonalPageFragment.newInstance(),
                             PersonalPageFragment.TAG,
