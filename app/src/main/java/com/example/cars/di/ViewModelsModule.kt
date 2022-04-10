@@ -1,9 +1,16 @@
 package com.example.cars.di
 
 import androidx.lifecycle.ViewModel
-import com.example.cars.app.presentation.viewModels.*
-import com.example.cars.registration.presentation.viewModels.LoginActivityViewModel
-import com.example.cars.registration.presentation.viewModels.RegisterActivityViewModel
+import com.example.cars.app.presentation.MainActivityViewModel
+import com.example.cars.app.presentation.addPost.AddPostFragmentViewModel
+import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFragmentViewModel
+import com.example.cars.app.presentation.carModelsPage.CarModelsFragmentViewModel
+import com.example.cars.app.presentation.favouritePosts.FavouritePostsFragmentViewModel
+import com.example.cars.app.presentation.mainPage.MainPageFragmentViewModel
+import com.example.cars.app.presentation.personalPage.PersonalPageFragmentViewModel
+import com.example.cars.app.presentation.userPosts.UserPostsFragmentViewModel
+import com.example.cars.registration.presentation.login.LoginActivityViewModel
+import com.example.cars.registration.presentation.register.RegisterActivityViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

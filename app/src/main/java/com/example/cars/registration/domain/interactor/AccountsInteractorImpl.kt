@@ -1,7 +1,7 @@
 package com.example.cars.registration.domain.interactor
 
 import com.example.cars.registration.domain.models.Account
-import com.example.cars.registration.data.room.repository.AccountsRepository
+import com.example.cars.registration.domain.AccountsRepository
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.utils.actionSelectors.AccountSearchResult

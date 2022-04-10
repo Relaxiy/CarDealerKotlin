@@ -1,0 +1,65 @@
+package com.example.cars.app.presentation.addPost.bottomSheet
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cars.R
+import com.example.cars.app.domain.models.CarModel
+import com.example.cars.app.presentation.addPost.bottomSheet.recycler.ModelAdapter
+import com.example.cars.app.presentation.addPost.bottomSheet.recycler.clickListeners.CarModelClickListener
+import com.example.cars.app.presentation.addPost.bottomSheet.recycler.clickListeners.ReturnAddModelButton
+import com.example.cars.utils.ext.appComponent
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
+class CarModelsBottomFragment(private val returnAddModelButton: ReturnAddModelButton) :
+    BottomSheetDialogFragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.car_model_bottom_sheet, container, false)
+
+    companion object {
+        const val TAG = "CarModelsBottomFragment"
+        fun newInstance(returnAddModelButton: ReturnAddModelButton) =
+            CarModelsBottomFragment(returnAddModelButton)
+    }
+
+    private val carModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel by viewModels {
+        requireActivity().appComponent.viewModelsFactory()
+    }
+
+    private val adapter by lazy {
+        ModelAdapter(carModelClickListener)
+    }
+
+    private val recycler by lazy {
+        view?.findViewById<RecyclerView>(R.id.recycle_bottom_sheet)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+    }
+
+    private val carModelClickListener by lazy {
+        object : CarModelClickListener {
+            override fun carModelClick(carModel: CarModel) {
+                val setModel = returnAddModelButton.returnButton()
+                setModel?.setText(carModel.model)
+                dismiss()
+            }
+        }
+    }
+
+    private fun initRecycler() {
+        recycler?.adapter = adapter
+        carModelsBottomFragmentViewModel.carModelsLiveData.observe(viewLifecycleOwner) { carModels ->
+            adapter.setItems(carModels)
+        }
+    }
+
+}

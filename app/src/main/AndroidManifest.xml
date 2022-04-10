@@ -18,11 +18,11 @@
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".registration.presentation.activities.RegisterActivity"
+            android:name=".registration.presentation.register.RegisterActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
-            android:name=".registration.presentation.activities.LoginActivity"
+            android:name=".registration.presentation.login.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>

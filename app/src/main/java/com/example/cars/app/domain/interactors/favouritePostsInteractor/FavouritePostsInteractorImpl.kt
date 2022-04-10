@@ -1,6 +1,6 @@
 package com.example.cars.app.domain.interactors.favouritePostsInteractor
 
-import com.example.cars.app.data.room.favouritePosts.repository.FavouritePostsDbRepository
+import com.example.cars.app.domain.FavouritePostsDbRepository
 import com.example.cars.app.domain.mappers.toDeletedFavouritePostEntity
 import com.example.cars.app.domain.mappers.toFavouritePost
 import com.example.cars.app.domain.mappers.toSavedFavouritePostEntity

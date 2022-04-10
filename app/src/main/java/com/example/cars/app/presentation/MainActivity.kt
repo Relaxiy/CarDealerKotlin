@@ -3,16 +3,12 @@ package com.example.cars.app.presentation
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.example.cars.R
 import com.example.cars.utils.ext.openFragment
-import com.example.cars.app.presentation.fragments.*
-import com.example.cars.app.presentation.viewModels.CarModelsBottomFragmentViewModel
-import com.example.cars.app.presentation.viewModels.MainActivityViewModel
+import com.example.cars.app.presentation.mainPage.MainPageFragment
 import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.appComponent
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
     private val bottomNav by lazy {

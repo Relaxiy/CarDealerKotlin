@@ -1,6 +1,6 @@
 package com.example.cars.app.domain.interactors.userPostsInteractor
 
-import com.example.cars.app.data.room.userPosts.repository.UserPostsDbRepository
+import com.example.cars.app.domain.UserPostsDbRepository
 import com.example.cars.app.domain.mappers.toDeletedUserPostEntity
 import com.example.cars.app.domain.mappers.toSavedUserPostEntity
 import com.example.cars.app.domain.mappers.toUserPost

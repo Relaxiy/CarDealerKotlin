@@ -1,10 +1,6 @@
 package com.example.cars.di
 
 import android.content.Context
-import com.example.cars.app.presentation.MainActivity
-import com.example.cars.app.presentation.fragments.*
-import com.example.cars.registration.presentation.activities.LoginActivity
-import com.example.cars.registration.presentation.activities.RegisterActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
