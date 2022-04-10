@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.models.SignUpData
-import com.example.cars.utils.actionSelectors.RegistrationActionSelector
-import com.example.cars.utils.actionSelectors.RegistrationActionSelector.*
+import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector
+import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
 import com.example.cars.utils.ext.isEmail
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch

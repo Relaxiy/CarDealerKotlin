@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.R
 import com.example.cars.registration.presentation.login.LoginActivity
-import com.example.cars.utils.actionSelectors.RegistrationActionSelector.*
+import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import kotlinx.android.synthetic.main.activity_register.*

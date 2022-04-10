@@ -1,4 +1,4 @@
-package com.example.cars.utils.actionSelectors
+package com.example.cars.app.presentation.addPost.actionSelector
 
 sealed class CreateUserPostResult{
     class PostCreationSuccess : CreateUserPostResult()

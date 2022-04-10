@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cars.app.domain.interactors.userPostsInteractor.UserPostsInteractor
 import com.example.cars.app.domain.models.UserPost
-import com.example.cars.utils.actionSelectors.CreateUserPostResult
-import com.example.cars.utils.actionSelectors.CreateUserPostResult.PostCreationFailed
-import com.example.cars.utils.actionSelectors.CreateUserPostResult.PostCreationSuccess
+import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult
+import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.PostCreationFailed
+import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.PostCreationSuccess
 import com.example.cars.utils.ext.isEmail
 import kotlinx.coroutines.launch
 import javax.inject.Inject

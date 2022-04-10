@@ -11,7 +11,7 @@ import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFrag
 import com.example.cars.app.presentation.mainPage.MainPageFragment
 import com.example.cars.app.presentation.addPost.recycler.HorizontalImageAdapter
 import com.example.cars.app.presentation.addPost.bottomSheet.recycler.clickListeners.ReturnAddModelButton
-import com.example.cars.utils.actionSelectors.CreateUserPostResult.*
+import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openFragment

@@ -1,4 +1,4 @@
-package com.example.cars.utils.actionSelectors
+package com.example.cars.registration.presentation.login.actionSelector
 
 sealed class AccountSearchResult{
 

@@ -4,7 +4,7 @@ import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.AccountsRepository
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.domain.models.SignInData
-import com.example.cars.utils.actionSelectors.AccountSearchResult
+import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

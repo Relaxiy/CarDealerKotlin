@@ -1,4 +1,4 @@
-package com.example.cars.utils.actionSelectors
+package com.example.cars.registration.presentation.register.actionSelector
 
 sealed class RegistrationActionSelector{
     object OpenMainActivity : RegistrationActionSelector()

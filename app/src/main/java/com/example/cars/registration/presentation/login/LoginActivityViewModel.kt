@@ -8,8 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.cars.registration.domain.interactor.AccountsInteractor
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignInData
-import com.example.cars.utils.actionSelectors.AccountSearchResult
-import com.example.cars.utils.actionSelectors.AccountSearchResult.*
+import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult
+import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult.*
 import com.example.cars.utils.ext.isEmail
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
