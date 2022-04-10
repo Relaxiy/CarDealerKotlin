@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.app.presentation.MainActivity
 import com.example.cars.R
+import com.example.cars.databinding.ActivityRegisterBinding
 import com.example.cars.registration.presentation.login.LoginActivity
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
 import com.example.cars.utils.ext.appComponent
@@ -23,9 +24,12 @@ class RegisterActivity : AppCompatActivity() {
         appComponent.viewModelsFactory()
     }
 
+    private lateinit var binding: ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onStart() {
@@ -63,11 +67,11 @@ class RegisterActivity : AppCompatActivity() {
     private fun register() {
         registrationButton.setOnClickListener {
             registerActivityViewModel.saveAccount(
-                inputUsername.text.toString(),
-                inputEmail.text.toString(),
-                inputDate.text.toString(),
-                inputPasswordFirst.text.toString(),
-                inputPasswordSecond.text.toString()
+                binding.inputUsername.text.toString(),
+                binding.inputEmail.text.toString(),
+                binding.inputDate.text.toString(),
+                binding.inputPasswordFirst.text.toString(),
+                binding.inputPasswordSecond.text.toString()
             )
         }
         registerActivityViewModel.result.observe(this) { registrationActionSelector ->

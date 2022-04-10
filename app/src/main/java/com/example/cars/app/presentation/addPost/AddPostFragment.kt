@@ -6,12 +6,14 @@ import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.cars.R
 import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFragment
 import com.example.cars.app.presentation.mainPage.MainPageFragment
 import com.example.cars.app.presentation.addPost.recycler.HorizontalImageAdapter
 import com.example.cars.app.presentation.addPost.bottomSheet.recycler.clickListeners.ReturnAddModelButton
 import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.*
+import com.example.cars.databinding.FragmentAddPostBinding
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openFragment
@@ -23,6 +25,8 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
         const val TAG = "AddCarFragment"
         fun newInstance() = AddPostFragment()
     }
+
+    private val binding: FragmentAddPostBinding by viewBinding()
 
     private val addPostFragmentViewModel: AddPostFragmentViewModel by viewModels {
         requireActivity().appComponent.viewModelsFactory()
@@ -67,13 +71,13 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
         sendPost.setOnClickListener {
             addPostFragmentViewModel.savePost(
                 images = null,
-                title = addTitle.text.toString(),
-                carModel = addCarModel.text.toString(),
-                description = addDescription.text.toString(),
-                price = addPrice.text.toString(),
-                personName = addName.text.toString(),
-                email = addEmail.text.toString(),
-                phoneNumber = addPhoneNumber.text.toString()
+                title = binding.addTitle.text.toString(),
+                carModel = binding.addCarModel.text.toString(),
+                description = binding.addDescription.text.toString(),
+                price = binding.addPrice.text.toString(),
+                personName = binding.addName.text.toString(),
+                email = binding.addEmail.text.toString(),
+                phoneNumber = binding.addPhoneNumber.text.toString()
             )
         }
 

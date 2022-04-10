@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.cars.R
 import com.example.cars.app.presentation.MainActivity
+import com.example.cars.databinding.ActivityLoginBinding
 import com.example.cars.registration.presentation.register.RegisterActivity
 import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult.*
 import com.example.cars.utils.ext.appComponent
@@ -18,9 +18,12 @@ class LoginActivity : AppCompatActivity() {
         appComponent.viewModelsFactory()
     }
 
+    private lateinit var binding: ActivityLoginBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 
     override fun onStart() {
@@ -32,8 +35,8 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         loginButton.setOnClickListener {
             loginActivityViewModel.signIn(
-                inputLoginEmail.text.toString(),
-                inputLoginPassword.text.toString()
+                binding.inputLoginEmail.text.toString(),
+                binding.inputLoginPassword.text.toString()
             )
         }
 

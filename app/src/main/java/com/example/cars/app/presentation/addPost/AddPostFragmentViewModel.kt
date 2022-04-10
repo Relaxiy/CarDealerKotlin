@@ -43,7 +43,7 @@ class AddPostFragmentViewModel @Inject constructor(
             email,
             phoneNumber
         )
-        _validateUserPostResponse.value = if (!validate(post)) {
+        _validateUserPostResponse.value = if (validate(post)) {
             viewModelScope.launch {
                 userPostsInteractor.saveUserPost(post)
             }
@@ -77,14 +77,16 @@ class AddPostFragmentViewModel @Inject constructor(
 
     private fun validate(userPost: UserPost): Boolean {
         userPost.apply {
-            return title.isEmpty() ||
-                    carModel.isEmpty() ||
-                    description.isEmpty() ||
-                    price.isEmpty() ||
-                    personName.isEmpty() ||
-                    email.isEmpty() ||
-                    phoneNumber.isEmpty() ||
-                    !email.isEmail()
+            return title.isNotEmpty() &&
+                    carModel.isNotEmpty() &&
+                    description.isNotEmpty() &&
+                    price.isNotEmpty() &&
+                    personName.isNotEmpty() &&
+                    email.isNotEmpty() &&
+                    phoneNumber.isNotEmpty() &&
+                    email.isEmail() &&
+                    phoneNumber.length == 9
+
         }
     }
 }
