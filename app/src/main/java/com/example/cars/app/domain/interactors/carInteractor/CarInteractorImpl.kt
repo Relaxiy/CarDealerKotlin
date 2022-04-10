@@ -2,7 +2,6 @@ package com.example.cars.app.domain.interactors.carInteractor
 
 import com.example.cars.app.data.network.api.CarApi
 import com.example.cars.app.data.network.models.PostResponse
-import com.example.cars.app.domain.models.CarItem
 import com.example.cars.app.domain.models.CarModel
 import com.example.cars.app.domain.models.PostItem
 import kotlinx.coroutines.Dispatchers
@@ -10,16 +9,6 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CarInteractorImpl @Inject constructor(private val carApi: CarApi) : CarInteractor {
-    override suspend fun getCars(): List<CarItem> {
-        return withContext(Dispatchers.IO) {
-            return@withContext carApi.getCarModels().map { carResponse ->
-                CarItem(
-                    carModel = carResponse.carModel,
-                    brandImage = carResponse.brandImage
-                )
-            }
-        }
-    }
 
     override suspend fun getCarModels(): List<CarModel> {
         return withContext(Dispatchers.IO) {
