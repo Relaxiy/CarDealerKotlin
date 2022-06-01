@@ -6,6 +6,8 @@ import com.example.cars.app.domain.UserPostsDbRepository
 import com.example.cars.app.data.room.userPosts.UserPostsDbRepositoryImpl
 import com.example.cars.registration.domain.AccountsRepository
 import com.example.cars.registration.data.AccountsRepositoryImpl
+import com.example.cars.registration.data.firebase.FirebaseDatabaseManager
+import com.example.cars.registration.data.firebase.FirebaseDatabaseManagerImpl
 import dagger.Binds
 import dagger.Module
 
@@ -19,6 +21,9 @@ interface RepositoriesModule {
 
     @Binds
     fun bindUserPostsRepository(userPostsRepositoryImpl: UserPostsDbRepositoryImpl): UserPostsDbRepository
+
+    @Binds
+    fun bindFirebaseDatabaseManager(firebaseDatabaseManagerImpl: FirebaseDatabaseManagerImpl): FirebaseDatabaseManager
 
 
 }

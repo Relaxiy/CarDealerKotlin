@@ -28,7 +28,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
         repeatPassword: String
     ) {
         val account = createAccount(username, email, birthday, password, repeatPassword)
-        if (!validate(account)) {
+        if (validate(account)) {
             viewModelScope.launch {
                 _result.value = viewModelScope.async {
                     try {
@@ -62,14 +62,14 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
 
     private fun validate(signUpData: SignUpData): Boolean {
         signUpData.apply {
-            return username.isEmpty() ||
-                    email.isEmpty() ||
-                    !email.isEmail() ||
-                    birthday.isEmpty() ||
-                    password.isEmpty() ||
-                    repeatPassword.isEmpty() ||
-                    password != signUpData.repeatPassword ||
-                    password.length < 8
+            return username.isNotEmpty() ||
+                    email.isNotEmpty() ||
+                    email.isEmail() ||
+                    birthday.isNotEmpty() ||
+                    password.isNotEmpty() ||
+                    repeatPassword.isNotEmpty() ||
+                    password == signUpData.repeatPassword ||
+                    password.length >= 8
         }
     }
 

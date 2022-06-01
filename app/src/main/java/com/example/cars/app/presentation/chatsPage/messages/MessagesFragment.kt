@@ -1,4 +1,4 @@
-package com.example.cars.app.presentation.messagesPage
+package com.example.cars.app.presentation.chatsPage.messages
 
 import androidx.fragment.app.Fragment
 import com.example.cars.R

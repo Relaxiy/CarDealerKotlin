@@ -28,4 +28,5 @@ class FavouritePostsDbRepositoryImpl @Inject constructor(
             postsDao.deleteFavouritePost(favouritePostEntity)
         }
     }
+
 }

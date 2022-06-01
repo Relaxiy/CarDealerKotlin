@@ -39,10 +39,7 @@ class LoginActivityViewModel @Inject constructor(
                 )
                 when (searchResult.value) {
                     is SuccessResult -> {
-                        accountsInteractor.getAccountById((searchResult.value as SuccessResult).id)
-                            .collect { account ->
-                                _account.postValue(account)
-                            }
+                        _account.postValue((searchResult.value as SuccessResult).account)
                     }
                 }
             }

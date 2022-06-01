@@ -1,16 +1,19 @@
 package com.example.cars.registration.data
 
+import com.example.cars.registration.data.firebase.FirebaseDatabaseManager
 import com.example.cars.registration.data.network.api.AccountApi
 import com.example.cars.registration.data.network.models.AccountResponse
 import com.example.cars.registration.data.room.dao.AccountsDao
 import com.example.cars.registration.data.room.tuples.AccountUpdateUsernameTuple
+import com.example.cars.registration.data.utils.toAccountEntity
 import com.example.cars.registration.domain.AccountsRepository
 import com.example.cars.registration.domain.mapper.toAccount
-import com.example.cars.registration.domain.mapper.toAccountDbEntity
 import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignInData
 import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -21,23 +24,16 @@ import javax.inject.Inject
 
 class AccountsRepositoryImpl @Inject constructor(
     private val accountsDao: AccountsDao,
-    private val accontApi: AccountApi
+    private val firebaseDatabaseManager: FirebaseDatabaseManager
 ) : AccountsRepository {
 
-    override suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): AccountSearchResult {
-        return withContext(Dispatchers.IO) {
-            val tuple = accountsDao.findByEmail(signInData.email)
-            return@withContext when {
-                tuple == null -> AccountSearchResult.WrongEmailResult()
-                tuple.password != signInData.password -> AccountSearchResult.WrongPasswordResult()
-                else -> AccountSearchResult.SuccessResult(tuple.id)
-            }
-        }
+    override suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): QuerySnapshot? {
+        return firebaseDatabaseManager.findAccountIdByEmailAndPassword(signInData)
     }
 
     override suspend fun createAccount(signUpData: SignUpData) {
         withContext(Dispatchers.IO) {
-            accountsDao.createAccount(signUpData.toAccountDbEntity())
+            firebaseDatabaseManager.createAccount(signUpData.toAccountEntity())
         }
     }
 
@@ -55,12 +51,6 @@ class AccountsRepositoryImpl @Inject constructor(
                     newUsername
                 )
             )
-        }
-    }
-
-    override suspend fun sendAccountToServer(accountResponse: AccountResponse) {
-        withContext(Dispatchers.IO){
-            accontApi.sendAccountToServer(accountResponse)
         }
     }
 }

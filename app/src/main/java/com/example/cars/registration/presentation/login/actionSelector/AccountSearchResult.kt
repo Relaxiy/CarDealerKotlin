@@ -1,13 +1,12 @@
 package com.example.cars.registration.presentation.login.actionSelector
 
+import com.example.cars.registration.data.firebase.models.AccountEntity
+import com.example.cars.registration.domain.models.Account
+
 sealed class AccountSearchResult{
 
-    data class WrongEmailResult(
-        val wrongEmail: String = "This email does not exist!"
-    ) : AccountSearchResult()
-
-    data class WrongPasswordResult(
-        val wrongPassword: String = "Wrong password!"
+    data class WrongResult(
+        val error: String = "Email or password was incorrect!"
     ) : AccountSearchResult()
 
     data class InvalidInput(
@@ -15,7 +14,7 @@ sealed class AccountSearchResult{
     ) : AccountSearchResult()
 
     data class SuccessResult(
-        val id: Long
+        val account: Account
     ) : AccountSearchResult()
 
 }

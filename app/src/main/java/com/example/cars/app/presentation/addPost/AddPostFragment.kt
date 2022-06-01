@@ -7,10 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.cars.R
-import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFragment
 import com.example.cars.app.presentation.mainPage.MainPageFragment
 import com.example.cars.app.presentation.addPost.recycler.HorizontalImageAdapter
-import com.example.cars.app.presentation.addPost.bottomSheet.recycler.clickListeners.ReturnAddModelButton
 import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.*
 import com.example.cars.databinding.FragmentAddPostBinding
 import com.example.cars.utils.ext.appComponent
@@ -39,28 +37,12 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
         HorizontalImageAdapter(requireActivity().activityResultRegistry)
     }
 
-    private val returnButton by lazy {
-        object : ReturnAddModelButton {
-            override fun returnButton(): EditText? = addCarModel
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
-        carModelsBottomFragmentInit()
         sendPost()
     }
 
-    private fun carModelsBottomFragmentInit() {
-        addCarModel?.setOnClickListener {
-            val bottomFragment = CarModelsBottomFragment.newInstance(returnButton)
-            bottomFragment.show(
-                requireActivity().supportFragmentManager,
-                CarModelsBottomFragment.TAG
-            )
-        }
-    }
 
     private fun initRecycler() {
         recycler.adapter = adapter
@@ -71,7 +53,7 @@ class AddPostFragment : Fragment(R.layout.fragment_add_post) {
             addPostFragmentViewModel.savePost(
                 images = null,
                 title = binding.addTitle.text.toString(),
-                carModel = binding.addCarModel.text.toString(),
+                carModel = "binding.addCarModel.text.toString()",
                 description = binding.addDescription.text.toString(),
                 price = binding.addPrice.text.toString(),
                 personName = binding.addName.text.toString(),

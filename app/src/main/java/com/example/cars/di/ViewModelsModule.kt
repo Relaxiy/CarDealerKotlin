@@ -3,10 +3,10 @@ package com.example.cars.di
 import androidx.lifecycle.ViewModel
 import com.example.cars.app.presentation.MainActivityViewModel
 import com.example.cars.app.presentation.addPost.AddPostFragmentViewModel
-import com.example.cars.app.presentation.addPost.bottomSheet.CarModelsBottomFragmentViewModel
+import com.example.cars.app.presentation.chatsPage.ChatsFragmentViewModel
 import com.example.cars.app.presentation.favouritePosts.FavouritePostsFragmentViewModel
 import com.example.cars.app.presentation.mainPage.MainPageFragmentViewModel
-import com.example.cars.app.presentation.messagesPage.MessagesFragmentViewModel
+import com.example.cars.app.presentation.chatsPage.messages.MessagesFragmentViewModel
 import com.example.cars.app.presentation.personalPage.PersonalPageFragmentViewModel
 import com.example.cars.app.presentation.userPosts.UserPostsFragmentViewModel
 import com.example.cars.registration.presentation.login.LoginActivityViewModel
@@ -34,16 +34,6 @@ interface ViewModelsModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CarModelsBottomFragmentViewModel::class)
-    fun provideCarModelsBottomFragmentViewModel(carModelsBottomFragmentViewModel: CarModelsBottomFragmentViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MessagesFragmentViewModel::class)
-    fun provideCarModelsFragmentViewModel(messagesFragmentViewModel: MessagesFragmentViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(FavouritePostsFragmentViewModel::class)
     fun provideFavouritePostsFragmentViewModel(favouritePostsFragmentViewModel: FavouritePostsFragmentViewModel): ViewModel
 
@@ -65,6 +55,16 @@ interface ViewModelsModule {
     @Binds
     @IntoMap
     @ViewModelKey(UserPostsFragmentViewModel::class)
-    fun providePUserPostsFragmentViewModel(userPostsFragmentViewModel: UserPostsFragmentViewModel): ViewModel
+    fun provideUserPostsFragmentViewModel(userPostsFragmentViewModel: UserPostsFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChatsFragmentViewModel::class)
+    fun provideChatsFragmentViewModel(chatsFragmentViewModel: ChatsFragmentViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MessagesFragmentViewModel::class)
+    fun provideMessagesFragmentViewModel(messagesFragmentViewModel: MessagesFragmentViewModel): ViewModel
 
 }

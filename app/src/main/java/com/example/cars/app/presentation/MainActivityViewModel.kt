@@ -4,9 +4,10 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel
 import com.example.cars.R
 import com.example.cars.app.presentation.addPost.AddPostFragment
+import com.example.cars.app.presentation.chatsPage.ChatsFragment
 import com.example.cars.app.presentation.favouritePosts.FavouritePostsFragment
 import com.example.cars.app.presentation.mainPage.MainPageFragment
-import com.example.cars.app.presentation.messagesPage.MessagesFragment
+import com.example.cars.app.presentation.chatsPage.messages.MessagesFragment
 import com.example.cars.app.presentation.personalPage.PersonalPageFragment
 import com.example.cars.databinding.ActivityMainBinding
 import com.example.cars.utils.ext.openFragment
@@ -33,12 +34,12 @@ class MainActivityViewModel @Inject constructor() : ViewModel() {
                     }
                     R.id.messages -> {
                         mainActivity.openFragment(
-                            MessagesFragment.newInstance(),
-                            MessagesFragment.TAG,
+                            ChatsFragment.newInstance(),
+                            ChatsFragment.TAG,
                             R.id.container
                         )
                     }
-                    R.id.add_car_button -> {
+                    R.id.add_post_button -> {
                         mainActivity.openFragment(
                             AddPostFragment.newInstance(),
                             AddPostFragment.TAG,

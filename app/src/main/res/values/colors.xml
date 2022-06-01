@@ -11,4 +11,10 @@
     <color name="silver2">#DCDCDC</color>
     <color name="lavender">#E6E6FA</color>
     <color name="aqua">#00FFFF</color>
+    <color name="lightSeaGreen">#20b2aa</color>
+    <color name="custom1">#34816F</color>
+    <color name="custom2">#3DA089</color>
+    <color name="custom3">#1A5A19</color>
+    <color name="custom4">#82C065</color>
+    <color name="background_lite_color">#FCFFFF</color>
 </resources>

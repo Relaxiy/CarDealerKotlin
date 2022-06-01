@@ -13,6 +13,7 @@ import com.example.cars.registration.presentation.login.LoginActivity
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
+import com.example.cars.utils.ext.openActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -77,8 +78,7 @@ class RegisterActivity : AppCompatActivity() {
         registerActivityViewModel.result.observe(this) { registrationActionSelector ->
             when (registrationActionSelector) {
                 is OpenMainActivity -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    openActivity(MainActivity::class.java)
                 }
                 is ShowInvalidInputDialog -> dialog(ShowInvalidInputDialog.MESSAGE)
                 is ShowExistingEmailDialog -> dialog(ShowExistingEmailDialog.MESSAGE)
@@ -88,9 +88,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun toLogin() {
         toLogin.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            openActivity(LoginActivity::class.java)
         }
     }
-
 }

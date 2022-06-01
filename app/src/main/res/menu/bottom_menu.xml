@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/posts"
-        android:icon="@drawable/ic_lmain_posts_list"
+        android:icon="@drawable/ic_main_posts_list"
         android:title=""
         android:orderInCategory="1"/>
 
@@ -10,7 +10,7 @@
         android:title=""
         android:orderInCategory="1"/>
 
-    <item android:id="@+id/add_car_button"
+    <item android:id="@+id/add_post_button"
         android:icon="@drawable/ic_add_post"
         android:title=""
         android:orderInCategory="1"/>

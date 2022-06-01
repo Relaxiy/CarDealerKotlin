@@ -22,7 +22,7 @@
             android:layout_marginBottom="20dp"
             android:gravity="center"
             android:text="@string/login"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/custom3"
             android:textSize="24sp" />
 
         <EditText
@@ -59,16 +59,17 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/forgot_password"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/custom3"
             android:textSize="12sp" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/loginButton"
             android:layout_width="196dp"
             android:layout_height="42dp"
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/login_button_background"
+            android:textColor="@color/white"
             android:text="login" />
 
         <TextView
@@ -78,15 +79,9 @@
             android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/don_t_have_account_sign_up"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/custom3"
             android:textSize="12sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/ic_google" />
     </LinearLayout>
 
 
