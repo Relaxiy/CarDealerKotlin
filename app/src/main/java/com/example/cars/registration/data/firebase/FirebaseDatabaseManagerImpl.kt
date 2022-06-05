@@ -25,6 +25,8 @@ class FirebaseDatabaseManagerImpl @Inject constructor() : FirebaseDatabaseManage
         const val KEY_BIRTHDAY = "birthday"
         const val KEY_USERNAME = "username"
         const val KEY_ID = "id"
+        const val KEY_CREATED_AT = "createdAt"
+        const val KEY_PHONE_NUMBER = "phoneNumber"
     }
 
     override suspend fun createAccount(accountEntity: AccountEntity) {

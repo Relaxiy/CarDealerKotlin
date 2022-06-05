@@ -1,6 +1,8 @@
 package com.example.cars.di
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.cars.app.presentation.MainActivityViewModel
 import com.example.cars.app.presentation.addPost.AddPostFragmentViewModel
 import com.example.cars.app.presentation.chatsPage.ChatsFragmentViewModel
@@ -8,11 +10,13 @@ import com.example.cars.app.presentation.favouritePosts.FavouritePostsFragmentVi
 import com.example.cars.app.presentation.mainPage.MainPageFragmentViewModel
 import com.example.cars.app.presentation.chatsPage.messages.MessagesFragmentViewModel
 import com.example.cars.app.presentation.personalPage.PersonalPageFragmentViewModel
+import com.example.cars.app.presentation.personalPage.UserSharedViewModel
 import com.example.cars.app.presentation.userPosts.UserPostsFragmentViewModel
 import com.example.cars.registration.presentation.login.LoginActivityViewModel
 import com.example.cars.registration.presentation.register.RegisterActivityViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
@@ -66,5 +70,4 @@ interface ViewModelsModule {
     @IntoMap
     @ViewModelKey(MessagesFragmentViewModel::class)
     fun provideMessagesFragmentViewModel(messagesFragmentViewModel: MessagesFragmentViewModel): ViewModel
-
 }

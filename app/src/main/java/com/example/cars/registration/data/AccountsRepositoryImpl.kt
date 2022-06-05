@@ -37,12 +37,6 @@ class AccountsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getAccountById(accountId: Long): Flow<Account?> = flow {
-        accountsDao.getAccountById(accountId).map { accountDbEntity ->
-            accountDbEntity?.toAccount()
-        }.flowOn(Dispatchers.IO)
-    }
-
     override suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String) {
         withContext(Dispatchers.IO) {
             accountsDao.updateUsername(

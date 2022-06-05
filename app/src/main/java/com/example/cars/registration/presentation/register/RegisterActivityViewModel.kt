@@ -34,7 +34,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
                     try {
                         accountsInteractor.createAccount(account)
                         return@async OpenMainActivity
-                    } catch (e: SQLiteException) {
+                    } catch (e: Exception) {
                         return@async ShowExistingEmailDialog()
                     }
                 }.await()

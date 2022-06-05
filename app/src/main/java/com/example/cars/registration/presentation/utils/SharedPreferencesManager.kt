@@ -2,7 +2,12 @@ package com.example.cars.registration.presentation.utils
 
 interface SharedPreferencesManager {
 
-    fun save(key: String, value: Boolean)
+    fun saveSign(value: Boolean)
 
-    fun get(key: String) : Boolean
+    fun getSign() : Boolean
+
+    fun saveEmail(email: String)
+    fun savePassword(password: String)
+    fun getEmail() : String
+    fun getPassword() : String
 }

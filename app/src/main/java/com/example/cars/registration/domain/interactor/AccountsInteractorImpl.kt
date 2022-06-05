@@ -26,11 +26,13 @@ class AccountsInteractorImpl @Inject constructor(
                     Account(
                         username = documentSnapshot.get(FirebaseDatabaseManagerImpl.KEY_USERNAME)
                             .toString(),
-                        email = documentSnapshot.get(FirebaseDatabaseManagerImpl.KEY_BIRTHDAY)
+                        email = documentSnapshot.get(FirebaseDatabaseManagerImpl.KEY_EMAIL)
                             .toString(),
                         password = documentSnapshot.get(FirebaseDatabaseManagerImpl.KEY_PASSWORD)
                             .toString(),
                         birthday = documentSnapshot.get(FirebaseDatabaseManagerImpl.KEY_BIRTHDAY)
+                            .toString(),
+                        createdAt = documentSnapshot.get(FirebaseDatabaseManagerImpl.KEY_CREATED_AT)
                             .toString()
                     )
                 )
@@ -44,10 +46,6 @@ class AccountsInteractorImpl @Inject constructor(
 
     override suspend fun createAccount(signUpData: SignUpData) {
         accountsRepository.createAccount(signUpData)
-    }
-
-    override suspend fun getAccountById(accountId: Long): Flow<Account?> {
-        return accountsRepository.getAccountById(accountId)
     }
 
     override suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String) {

@@ -12,7 +12,5 @@ interface AccountsInteractor {
 
     suspend fun createAccount(signUpData: SignUpData)
 
-    suspend fun getAccountById(accountId: Long): Flow<Account?>
-
     suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String)
 }

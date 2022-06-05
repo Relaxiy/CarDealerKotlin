@@ -1,8 +1,7 @@
 package com.example.cars.di
 
 import android.content.Context
-import com.example.cars.registration.presentation.login.LoginActivity
-import com.example.cars.registration.presentation.register.RegisterActivity
+import com.example.cars.registration.di.SharedPrefsModule
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -14,8 +13,7 @@ import javax.inject.Singleton
         InteractorsModule::class,
         RepositoriesModule::class,
         ViewModelsModule::class,
-        RoomModule::class,
-        SharedPrefsModule::class
+        RoomModule::class
     ]
 )
 interface AppComponent {
@@ -29,8 +27,5 @@ interface AppComponent {
     }
 
     fun viewModelsFactory(): ViewModelFactory
-
-    fun inject(loginActivity: LoginActivity)
-    fun inject(registerActivity: RegisterActivity)
 
 }

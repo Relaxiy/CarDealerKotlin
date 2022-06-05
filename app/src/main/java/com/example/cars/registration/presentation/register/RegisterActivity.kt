@@ -1,22 +1,24 @@
 package com.example.cars.registration.presentation.register
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cars.CarApplication
 import com.example.cars.app.presentation.MainActivity
-import com.example.cars.R
+import com.example.cars.app.presentation.personalPage.UserSharedViewModel
 import com.example.cars.databinding.ActivityRegisterBinding
 import com.example.cars.registration.presentation.login.LoginActivity
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
+import com.example.cars.registration.presentation.utils.SharedPreferencesManager
 import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openActivity
 import kotlinx.android.synthetic.main.activity_register.*
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -25,12 +27,19 @@ class RegisterActivity : AppCompatActivity() {
         appComponent.viewModelsFactory()
     }
 
+    @Inject
+    lateinit var sharedPreferences: SharedPreferencesManager
+
+    @Inject
+    lateinit var userSharedViewModel: UserSharedViewModel
+
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        CarApplication.appComponentWithSharedViewModel.inject(this)
     }
 
     override fun onStart() {
@@ -78,7 +87,10 @@ class RegisterActivity : AppCompatActivity() {
         registerActivityViewModel.result.observe(this) { registrationActionSelector ->
             when (registrationActionSelector) {
                 is OpenMainActivity -> {
-                    openActivity(MainActivity::class.java)
+                    sharedPreferences.saveSign( true)
+                    sharedPreferences.saveEmail(binding.inputEmail.text.toString())
+                    sharedPreferences.savePassword(binding.inputPasswordFirst.text.toString())
+                    openActivity(LoginActivity::class.java)
                 }
                 is ShowInvalidInputDialog -> dialog(ShowInvalidInputDialog.MESSAGE)
                 is ShowExistingEmailDialog -> dialog(ShowExistingEmailDialog.MESSAGE)

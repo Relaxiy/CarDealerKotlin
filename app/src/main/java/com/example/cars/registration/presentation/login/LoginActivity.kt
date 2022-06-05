@@ -1,11 +1,12 @@
 package com.example.cars.registration.presentation.login
 
-import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
+import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.cars.CarApplication
 import com.example.cars.app.presentation.MainActivity
+import com.example.cars.app.presentation.personalPage.UserSharedViewModel
 import com.example.cars.databinding.ActivityLoginBinding
 import com.example.cars.registration.presentation.register.RegisterActivity
 import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult.*
@@ -27,26 +28,33 @@ class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var sharedPreferences: SharedPreferencesManager
 
+    @Inject
+    lateinit var userSharedViewModel: UserSharedViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        appComponent.inject(this)
+        CarApplication.initAppComponentWithSharedViewModel(this, this)
+        CarApplication.appComponentWithSharedViewModel.inject(this)
 
-        if (sharedPreferences.get("auth")){
-            openActivity(MainActivity::class.java)
+        if (sharedPreferences.getSign()){
+            binding.inputLoginEmail.setText(sharedPreferences.getEmail())
+            binding.inputLoginPassword.setText(sharedPreferences.getPassword())
         }
     }
 
     override fun onStart() {
         super.onStart()
+
         login()
         toRegister()
     }
 
     private fun login() {
         loginButton.setOnClickListener {
+            binding.progressLogin.visibility = ProgressBar.VISIBLE
             loginActivityViewModel.signIn(
                 binding.inputLoginEmail.text.toString(),
                 binding.inputLoginPassword.text.toString()
@@ -58,7 +66,16 @@ class LoginActivity : AppCompatActivity() {
                 is WrongResult -> dialog(WrongResult().error)
                 is InvalidInput -> dialog(InvalidInput().invalidInput)
                 is SuccessResult -> {
-                    sharedPreferences.save("auth", true)
+                    userSharedViewModel.shareAccountIntoPersonalPage(
+                        accountSearchResult.account.username,
+                        accountSearchResult.account.email,
+                        accountSearchResult.account.birthday,
+                        accountSearchResult.account.password,
+                        accountSearchResult.account.createdAt
+                    )
+                    sharedPreferences.saveSign( true)
+                    sharedPreferences.saveEmail(binding.inputLoginEmail.text.toString())
+                    sharedPreferences.savePassword(binding.inputLoginPassword.text.toString())
                     openActivity(MainActivity::class.java)
                 }
             }

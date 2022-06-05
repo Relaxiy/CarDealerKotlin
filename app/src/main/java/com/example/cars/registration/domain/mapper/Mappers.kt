@@ -7,5 +7,6 @@ fun AccountDbEntity.toAccount() = Account(
     username = username,
     email = email,
     birthday = birthday,
-    password = password
+    password = password,
+    createdAt = createdAt
 )

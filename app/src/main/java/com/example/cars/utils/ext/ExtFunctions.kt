@@ -1,13 +1,10 @@
 package com.example.cars.utils.ext
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.util.Patterns
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.example.cars.app.presentation.MainActivity
 import com.example.cars.registration.presentation.dialog.ErrorEntryDialog
 
 fun FragmentActivity.openFragment(fragment: Fragment, tag: String, id: Int) {
