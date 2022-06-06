@@ -15,9 +15,6 @@ import dagger.Module
 interface InteractorsModule {
 
     @Binds
-    fun bindAccountInteractor(accountsInteractorImpl: AccountsInteractorImpl): AccountsInteractor
-
-    @Binds
     fun bindCarInteractor(carInteractorImpl: CarInteractorImpl): CarInteractor
 
     @Binds

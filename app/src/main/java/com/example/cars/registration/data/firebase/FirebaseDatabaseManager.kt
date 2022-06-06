@@ -14,5 +14,9 @@ interface FirebaseDatabaseManager {
 
     suspend fun createAccount(accountEntity: AccountEntity)
 
-    suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): QuerySnapshot?
+    suspend fun findAccountByEmailAndPassword(signInData: SignInData): QuerySnapshot?
+
+    suspend fun findAccountByPhoneNumber(phoneNumber: String): QuerySnapshot?
+
+    suspend fun changePassword(password: String, documentPath: String)
 }

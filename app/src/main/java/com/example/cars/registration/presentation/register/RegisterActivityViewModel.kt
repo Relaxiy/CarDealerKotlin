@@ -1,6 +1,5 @@
 package com.example.cars.registration.presentation.register
 
-import android.database.sqlite.SQLiteException
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +9,7 @@ import com.example.cars.registration.domain.models.SignUpData
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
 import com.example.cars.utils.ext.isEmail
+import com.example.cars.utils.ext.toLiteVersionPhoneNumber
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,11 +23,12 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
     fun saveAccount(
         username: String,
         email: String,
+        phoneNumber: String,
         birthday: String,
         password: String,
         repeatPassword: String
     ) {
-        val account = createAccount(username, email, birthday, password, repeatPassword)
+        val account = createAccount(username, email, phoneNumber, birthday, password, repeatPassword)
         if (validate(account)) {
             viewModelScope.launch {
                 _result.value = viewModelScope.async {
@@ -47,6 +48,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
     private fun createAccount(
         username: String,
         email: String,
+        phoneNumber: String,
         birthday: String,
         password: String,
         repeatPassword: String
@@ -54,6 +56,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
         return SignUpData(
             username = username,
             email = email,
+            phoneNumber = phoneNumber,
             birthday = birthday,
             password = password,
             repeatPassword = repeatPassword
@@ -69,7 +72,7 @@ class RegisterActivityViewModel @Inject constructor(private val accountsInteract
                     password.isNotEmpty() ||
                     repeatPassword.isNotEmpty() ||
                     password == signUpData.repeatPassword ||
-                    password.length >= 8
+                    password.length == 8
         }
     }
 

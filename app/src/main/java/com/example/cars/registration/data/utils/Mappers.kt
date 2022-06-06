@@ -6,6 +6,7 @@ import com.example.cars.registration.domain.models.SignUpData
 fun SignUpData.toAccountEntity() = AccountEntity(
     username = username,
     email = email,
+    phoneNumber = phoneNumber,
     birthday = birthday,
     password = password
 )

@@ -28,7 +28,8 @@
         <EditText
             android:id="@+id/inputLoginEmail"
             android:layout_width="248dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edit_text_login_background"
             android:drawableStart="@drawable/ic_email"
@@ -44,7 +45,9 @@
         <EditText
             android:id="@+id/inputLoginPassword"
             android:layout_width="248dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:maxLength="8"
             android:layout_marginBottom="10dp"
             android:background="@drawable/edit_text_login_background"
             android:hint="@string/password"
@@ -54,6 +57,7 @@
             tools:ignore="RtlSymmetry" />
 
         <TextView
+            android:id="@+id/forgotPassword"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
@@ -93,7 +97,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

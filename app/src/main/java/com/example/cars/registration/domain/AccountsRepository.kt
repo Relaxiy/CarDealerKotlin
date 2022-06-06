@@ -6,10 +6,13 @@ import com.google.firebase.firestore.QuerySnapshot
 
 interface AccountsRepository {
 
-    suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): QuerySnapshot?
+    suspend fun findAccountByEmailAndPassword(signInData: SignInData): QuerySnapshot?
+
+    suspend fun findAccountByEmail(email: String): QuerySnapshot?
 
     suspend fun createAccount(signUpData: SignUpData)
 
     suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String)
 
+    suspend fun changePassword(password: String, documentPath: String)
 }

@@ -53,7 +53,7 @@ class LoginActivityViewModel @Inject constructor(
             return email.isEmpty() ||
                     password.isEmpty() ||
                     !email.isEmail() ||
-                    password.length < 8
+                    password.length != 8
         }
     }
 

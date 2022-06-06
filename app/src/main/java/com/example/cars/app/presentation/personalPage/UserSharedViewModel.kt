@@ -13,6 +13,7 @@ class UserSharedViewModel : ViewModel() {
     fun shareAccountIntoPersonalPage(
         username: String,
         email: String,
+        phoneNumber: String,
         birthday: String,
         password: String,
         createdAt: String
@@ -20,6 +21,7 @@ class UserSharedViewModel : ViewModel() {
         _account.value = Account(
             username = username,
             email = email,
+            phoneNumber = phoneNumber,
             birthday = birthday,
             password = password,
             createdAt = createdAt

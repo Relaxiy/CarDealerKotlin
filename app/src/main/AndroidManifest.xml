@@ -4,6 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:name=".CarApplication"
@@ -19,6 +21,10 @@
 
         <activity
             android:name=".registration.presentation.register.RegisterActivity"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".registration.presentation.login.resetPassword.ForgetPasswordActivity"
             android:windowSoftInputMode="adjustPan" />
 
         <activity

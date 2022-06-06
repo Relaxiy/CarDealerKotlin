@@ -23,16 +23,6 @@ import dagger.multibindings.IntoMap
 interface ViewModelsModule {
     @Binds
     @IntoMap
-    @ViewModelKey(RegisterActivityViewModel::class)
-    fun provideRegisterActivityViewModel(registerActivityViewModel: RegisterActivityViewModel): ViewModel
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(LoginActivityViewModel::class)
-    fun provideLoginActivityViewModel(loginActivityViewModel: LoginActivityViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(AddPostFragmentViewModel::class)
     fun provideAddCarFragmentViewModel(addPostFragmentViewModel: AddPostFragmentViewModel): ViewModel
 

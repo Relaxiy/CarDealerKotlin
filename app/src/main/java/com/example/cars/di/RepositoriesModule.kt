@@ -17,13 +17,6 @@ interface RepositoriesModule {
     fun bindFavouritePostsRepository(postsRepositoryImpl: FavouritePostsDbRepositoryImpl): FavouritePostsDbRepository
 
     @Binds
-    fun bindAccountsRepository(accountsRepositoryImpl: AccountsRepositoryImpl): AccountsRepository
-
-    @Binds
     fun bindUserPostsRepository(userPostsRepositoryImpl: UserPostsDbRepositoryImpl): UserPostsDbRepository
-
-    @Binds
-    fun bindFirebaseDatabaseManager(firebaseDatabaseManagerImpl: FirebaseDatabaseManagerImpl): FirebaseDatabaseManager
-
 
 }

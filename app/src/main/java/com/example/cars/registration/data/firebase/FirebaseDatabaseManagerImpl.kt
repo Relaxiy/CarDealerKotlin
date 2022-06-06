@@ -1,19 +1,12 @@
 package com.example.cars.registration.data.firebase
 
-import android.util.Log
 import com.example.cars.registration.data.firebase.models.AccountEntity
 import com.example.cars.registration.data.utils.await
-import com.example.cars.registration.domain.models.Account
 import com.example.cars.registration.domain.models.SignInData
-import com.example.cars.registration.domain.models.SignUpData
-import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult
-import com.google.firebase.firestore.DocumentSnapshot
+import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
@@ -33,7 +26,7 @@ class FirebaseDatabaseManagerImpl @Inject constructor() : FirebaseDatabaseManage
         FirebaseFirestore.getInstance().collection(KEY_COLLECTION_USERS).add(accountEntity)
     }
 
-    override suspend fun findAccountIdByEmailAndPassword(signInData: SignInData): QuerySnapshot? =
+    override suspend fun findAccountByEmailAndPassword(signInData: SignInData): QuerySnapshot? =
         withContext(Dispatchers.IO) {
             return@withContext FirebaseFirestore.getInstance().collection(KEY_COLLECTION_USERS)
                 .whereEqualTo(KEY_EMAIL, signInData.email)
@@ -41,4 +34,21 @@ class FirebaseDatabaseManagerImpl @Inject constructor() : FirebaseDatabaseManage
                 .get()
                 .await()
         }
+
+    override suspend fun findAccountByPhoneNumber(phoneNumber: String): QuerySnapshot? =
+        withContext(Dispatchers.IO) {
+            return@withContext FirebaseFirestore.getInstance().collection(KEY_COLLECTION_USERS)
+                .whereEqualTo(KEY_PHONE_NUMBER, phoneNumber)
+                .get()
+                .await()
+        }
+
+    override suspend fun changePassword(password: String, documentPath: String) {
+        withContext(Dispatchers.IO) {
+            return@withContext FirebaseFirestore.getInstance().collection(KEY_COLLECTION_USERS)
+                .document(documentPath)
+                .update(KEY_PASSWORD, password)
+                .await()
+        }
+    }
 }

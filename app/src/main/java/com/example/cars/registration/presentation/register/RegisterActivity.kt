@@ -6,16 +6,18 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.CarApplication
-import com.example.cars.app.presentation.MainActivity
 import com.example.cars.app.presentation.personalPage.UserSharedViewModel
 import com.example.cars.databinding.ActivityRegisterBinding
 import com.example.cars.registration.presentation.login.LoginActivity
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
 import com.example.cars.registration.presentation.utils.SharedPreferencesManager
-import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openActivity
+import com.example.cars.utils.ext.parsePhoneNumber
 import kotlinx.android.synthetic.main.activity_register.*
+import ru.tinkoff.decoro.Mask
+import ru.tinkoff.decoro.MaskImpl
+import ru.tinkoff.decoro.parser.PhoneNumberUnderscoreSlotsParser
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -24,7 +26,7 @@ class RegisterActivity : AppCompatActivity() {
 
 
     private val registerActivityViewModel: RegisterActivityViewModel by viewModels {
-        appComponent.viewModelsFactory()
+        CarApplication.appComponentWithSharedViewModel.viewModelsFactory()
     }
 
     @Inject
@@ -39,6 +41,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.inputPhoneNumber.parsePhoneNumber()
         CarApplication.appComponentWithSharedViewModel.inject(this)
     }
 
@@ -79,6 +82,7 @@ class RegisterActivity : AppCompatActivity() {
             registerActivityViewModel.saveAccount(
                 binding.inputUsername.text.toString(),
                 binding.inputEmail.text.toString(),
+                binding.inputPhoneNumber.text.toString(),
                 binding.inputDate.text.toString(),
                 binding.inputPasswordFirst.text.toString(),
                 binding.inputPasswordSecond.text.toString()

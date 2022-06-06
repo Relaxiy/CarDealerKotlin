@@ -1,6 +1,7 @@
 package com.example.cars.registration.presentation.login
 
 import android.os.Bundle
+import android.telephony.SmsManager
 import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +11,8 @@ import com.example.cars.app.presentation.personalPage.UserSharedViewModel
 import com.example.cars.databinding.ActivityLoginBinding
 import com.example.cars.registration.presentation.register.RegisterActivity
 import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult.*
+import com.example.cars.registration.presentation.login.resetPassword.ForgetPasswordActivity
 import com.example.cars.registration.presentation.utils.SharedPreferencesManager
-import com.example.cars.utils.ext.appComponent
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -20,7 +21,7 @@ import javax.inject.Inject
 class LoginActivity : AppCompatActivity() {
 
     private val loginActivityViewModel: LoginActivityViewModel by viewModels {
-        appComponent.viewModelsFactory()
+        CarApplication.appComponentWithSharedViewModel.viewModelsFactory()
     }
 
     private lateinit var binding: ActivityLoginBinding
@@ -47,9 +48,15 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-
+        forgotPassword()
         login()
         toRegister()
+    }
+
+    private fun forgotPassword(){
+        binding.forgotPassword.setOnClickListener {
+            openActivity(ForgetPasswordActivity::class.java)
+        }
     }
 
     private fun login() {
@@ -62,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginActivityViewModel.searchResult.observe(this) { accountSearchResult ->
+            binding.progressLogin.visibility = ProgressBar.INVISIBLE
             when (accountSearchResult) {
                 is WrongResult -> dialog(WrongResult().error)
                 is InvalidInput -> dialog(InvalidInput().invalidInput)
@@ -69,6 +77,7 @@ class LoginActivity : AppCompatActivity() {
                     userSharedViewModel.shareAccountIntoPersonalPage(
                         accountSearchResult.account.username,
                         accountSearchResult.account.email,
+                        accountSearchResult.account.phoneNumber,
                         accountSearchResult.account.birthday,
                         accountSearchResult.account.password,
                         accountSearchResult.account.createdAt

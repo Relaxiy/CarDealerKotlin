@@ -21,7 +21,6 @@ class MainPageFragment : Fragment(R.layout.fragment_main_page) {
         requireActivity().appComponent.viewModelsFactory()
     }
 
-
     private val recycler by lazy {
         view?.findViewById<RecyclerView>(R.id.main_recycler)
     }
