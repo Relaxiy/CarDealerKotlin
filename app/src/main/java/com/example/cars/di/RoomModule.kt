@@ -5,7 +5,6 @@ import androidx.room.Room
 import com.example.cars.app.data.room.favouritePosts.dao.FavouritePostsDao
 import com.example.cars.app.data.room.userPosts.dao.UserPostsDao
 import com.example.cars.roomDatabase.AppDatabase
-import com.example.cars.registration.data.room.dao.AccountsDao
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,12 +12,6 @@ import javax.inject.Singleton
 
 @Module
 class RoomModule {
-
-    @Provides
-    @Singleton
-    fun provideAccountsDao(database: AppDatabase): AccountsDao {
-        return database.getAccountsDao()
-    }
 
     @Provides
     @Singleton

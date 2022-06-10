@@ -10,14 +10,11 @@ import com.example.cars.app.presentation.personalPage.UserSharedViewModel
 import com.example.cars.databinding.ActivityRegisterBinding
 import com.example.cars.registration.presentation.login.LoginActivity
 import com.example.cars.registration.presentation.register.actionSelector.RegistrationActionSelector.*
-import com.example.cars.registration.presentation.utils.SharedPreferencesManager
+import com.example.cars.utils.sharedPrefs.SharedPreferencesManager
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openActivity
 import com.example.cars.utils.ext.parsePhoneNumber
 import kotlinx.android.synthetic.main.activity_register.*
-import ru.tinkoff.decoro.Mask
-import ru.tinkoff.decoro.MaskImpl
-import ru.tinkoff.decoro.parser.PhoneNumberUnderscoreSlotsParser
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

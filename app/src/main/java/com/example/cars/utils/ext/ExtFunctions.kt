@@ -42,7 +42,7 @@ fun EditText.parsePhoneNumber(){
 }
 
 fun String.toLiteVersionPhoneNumber(): String {
-    val countryCode = this.substring(1, 4)
+    val countryCode = this.substring(0, 4)
     val networkCode = this.substring(6, 8)
     val firstPartNumber = this.substring(10, 13)
     val secondPartNumber = this.substring(14)

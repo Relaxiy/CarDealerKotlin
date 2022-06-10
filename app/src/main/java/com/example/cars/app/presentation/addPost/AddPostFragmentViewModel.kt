@@ -10,6 +10,8 @@ import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostRe
 import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.PostCreationFailed
 import com.example.cars.app.presentation.addPost.actionSelector.CreateUserPostResult.PostCreationSuccess
 import com.example.cars.utils.ext.isEmail
+import com.example.cars.utils.ext.toLiteVersionPhoneNumber
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,9 +26,9 @@ class AddPostFragmentViewModel @Inject constructor(
     private val _validateUserPostResponse = MutableLiveData<CreateUserPostResult>()
 
     fun savePost(
+        userId: String,
         images: String?,
         title: String,
-        carModel: String,
         description: String,
         price: String,
         personName: String,
@@ -34,29 +36,34 @@ class AddPostFragmentViewModel @Inject constructor(
         phoneNumber: String
     ) {
         val post = createPost(
+            userId,
             images,
             title,
-            carModel,
             description,
             price,
             personName,
             email,
             phoneNumber
         )
-        _validateUserPostResponse.value = if (validate(post)) {
+        if (validate(post)) {
             viewModelScope.launch {
-                userPostsInteractor.saveUserPost(post)
+                val userPostResponse = viewModelScope.async {
+                    userPostsInteractor.saveUserPostInFirestore(post)
+                }.await()
+                viewModelScope.async {
+                    userPostsInteractor.saveUserPostInRoom(userPostResponse)
+                }.await()
+                _validateUserPostResponse.postValue(PostCreationSuccess())
             }
-            PostCreationSuccess()
         } else {
-            PostCreationFailed()
+            _validateUserPostResponse.value = PostCreationFailed()
         }
     }
 
     private fun createPost(
+        userId: String,
         images: String?,
         title: String,
-        carModel: String,
         description: String,
         price: String,
         personName: String,
@@ -64,9 +71,9 @@ class AddPostFragmentViewModel @Inject constructor(
         phoneNumber: String
     ): UserPost {
         return UserPost(
+            userId = userId,
             images = images,
             title = title,
-            carModel = carModel,
             description = description,
             price = price,
             personName = personName,
@@ -78,14 +85,12 @@ class AddPostFragmentViewModel @Inject constructor(
     private fun validate(userPost: UserPost): Boolean {
         userPost.apply {
             return title.isNotEmpty() &&
-                    carModel.isNotEmpty() &&
                     description.isNotEmpty() &&
                     price.isNotEmpty() &&
                     personName.isNotEmpty() &&
                     email.isNotEmpty() &&
                     phoneNumber.isNotEmpty() &&
-                    email.isEmail() &&
-                    phoneNumber.length == 9
+                    email.isEmail()
 
         }
     }

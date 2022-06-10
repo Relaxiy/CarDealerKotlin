@@ -4,13 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cars.registration.domain.models.Account
+import com.example.cars.registration.domain.models.AccountResponse
 
 class UserSharedViewModel : ViewModel() {
 
-    val account: LiveData<Account> get() = _account
-    private val _account = MutableLiveData<Account>()
+    val account: LiveData<AccountResponse> get() = _account
+    private val _account = MutableLiveData<AccountResponse>()
 
     fun shareAccountIntoPersonalPage(
+        id: String,
         username: String,
         email: String,
         phoneNumber: String,
@@ -18,7 +20,8 @@ class UserSharedViewModel : ViewModel() {
         password: String,
         createdAt: String
     ) {
-        _account.value = Account(
+        _account.value = AccountResponse(
+            id = id,
             username = username,
             email = email,
             phoneNumber = phoneNumber,

@@ -9,7 +9,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cars.CarApplication
 import com.example.cars.databinding.ActivityForgetPasswordBinding
@@ -18,10 +17,11 @@ import com.example.cars.registration.presentation.login.resetPassword.actionSele
 import com.example.cars.registration.presentation.login.resetPassword.actionSelectors.FindByPhoneNumberResult.*
 import com.example.cars.registration.presentation.login.resetPassword.actionSelectors.FindByPhoneNumberResult.ServerException
 import com.example.cars.registration.presentation.login.resetPassword.actionSelectors.SendingCodeResult.*
-import com.example.cars.registration.presentation.utils.SharedPreferencesManager
+import com.example.cars.utils.sharedPrefs.SharedPreferencesManager
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openActivity
 import com.example.cars.utils.ext.parsePhoneNumber
+import com.example.cars.utils.ext.toLiteVersionPhoneNumber
 import javax.inject.Inject
 
 class ForgetPasswordActivity : AppCompatActivity() {
@@ -61,7 +61,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onStart() {
         super.onStart()
         sendMessage()
@@ -79,34 +78,37 @@ class ForgetPasswordActivity : AppCompatActivity() {
             else if (binding.code.visibility == EditText.VISIBLE && binding.changePassword.visibility == EditText.INVISIBLE){
                 forgetPasswordActivityViewModel.validateCode(binding.code.text.toString(), sharedPreferences.getCode())
             }
-            else if (binding.code.visibility == EditText.VISIBLE && binding.changePassword.visibility == EditText.VISIBLE){
+            else if (binding.code.visibility == EditText.INVISIBLE && binding.changePassword.visibility == EditText.VISIBLE){
                 binding.progressForgetEntity.visibility = ProgressBar.VISIBLE
                 forgetPasswordActivityViewModel.changePassword(binding.changePassword.text.toString(), sharedPreferences.getDocumentPath())
             }
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun observeSendMessageResult() {
-        forgetPasswordActivityViewModel.searchResult.observe(this) { findAccountByEmailResult ->
+        forgetPasswordActivityViewModel.searchResult.observe(this) { findAccountByPhoneNumberResult ->
             binding.progressForgetEntity.visibility = ProgressBar.INVISIBLE
-            when (findAccountByEmailResult) {
+            when (findAccountByPhoneNumberResult) {
                 is InvalidInputPhoneNumber -> {
-                    showToast(findAccountByEmailResult.invalidInput)
+                    showToast(findAccountByPhoneNumberResult.invalidInput)
                 }
                 is WrongPhoneNumber -> {
-                    dialog(findAccountByEmailResult.wrongEmail)
+                    dialog(findAccountByPhoneNumberResult.wrongEmail)
                 }
                 is ServerException -> {
-                    showToast(findAccountByEmailResult.serverError)
+                    showToast(findAccountByPhoneNumberResult.serverError)
                 }
                 is SuccessPhoneNumberResult -> {
+                    val phoneNumber = binding.sendPhone.text.toString().toLiteVersionPhoneNumber()
+
                     if (permissionCheck && binding.code.visibility == EditText.INVISIBLE) {
-                        sendSMS()
+                        sendSMS(phoneNumber)
                         binding.code.visibility = EditText.VISIBLE
                         binding.sendPhone.isClickable = false
-                        binding.sendPhone.focusable = EditText.NOT_FOCUSABLE
-                        sharedPreferences.saveDocumentPath(findAccountByEmailResult.userId)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            binding.sendPhone.focusable = EditText.NOT_FOCUSABLE
+                        }
+                        sharedPreferences.saveDocumentPath(findAccountByPhoneNumberResult.userId)
                     } else if (!permissionCheck && binding.code.visibility == EditText.INVISIBLE){
                         dialog("Change SMS permission in settings and restart this app")
                     }
@@ -116,7 +118,6 @@ class ForgetPasswordActivity : AppCompatActivity() {
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun observeCodeResult() {
         forgetPasswordActivityViewModel.codeResult.observe(this) { sendingCodeResult ->
             when (sendingCodeResult) {
@@ -127,8 +128,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
                     showToast(sendingCodeResult.invalidInput)
                 }
                 is SuccessCodeResult -> {
-                    binding.code.isClickable = false
-                    binding.code.focusable = EditText.NOT_FOCUSABLE
+                    binding.code.visibility = EditText.INVISIBLE
                     binding.changePassword.visibility = EditText.VISIBLE
                 }
             }
@@ -144,6 +144,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
                 }
                 is SuccessPasswordResult -> {
                     showToast(changingPasswordResult.success)
+                    sharedPreferences.savePassword(binding.changePassword.text.toString())
                     openActivity(LoginActivity::class.java)
                 }
             }
@@ -154,9 +155,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
         Toast.makeText(this, text, Toast.LENGTH_LONG).show()
     }
 
-    private fun sendSMS(){
+    private fun sendSMS(phoneNumber: String){
         val rand = (100000..999999).random()
         sharedPreferences.saveSendingCode(rand.toString())
-        SmsManager.getDefault().sendTextMessage("+375299206063", null, rand.toString(), null, null)
+        SmsManager.getDefault().sendTextMessage(binding.sendPhone.text.toString().toLiteVersionPhoneNumber(), null, rand.toString(), null, null)
     }
 }

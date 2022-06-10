@@ -3,14 +3,13 @@ package com.example.cars.registration.data.firebase
 import com.example.cars.registration.data.firebase.models.AccountEntity
 import com.example.cars.registration.data.utils.await
 import com.example.cars.registration.domain.models.SignInData
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class FirebaseDatabaseManagerImpl @Inject constructor() : FirebaseDatabaseManager {
+class FirebaseUsersDatabaseManagerImpl @Inject constructor() : FirebaseUsersDatabaseManager {
     companion object {
         const val KEY_COLLECTION_USERS = "users"
         const val KEY_EMAIL = "email"

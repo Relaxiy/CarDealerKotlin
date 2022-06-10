@@ -10,5 +10,4 @@ interface AccountsInteractor {
 
     suspend fun createAccount(signUpData: SignUpData)
 
-    suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String)
 }

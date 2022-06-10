@@ -1,4 +1,4 @@
-package com.example.cars.registration.presentation.utils
+package com.example.cars.utils.sharedPrefs
 
 interface SharedPreferencesManager {
 

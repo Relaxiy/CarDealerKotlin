@@ -1,4 +1,4 @@
-package com.example.cars.registration.di
+package com.example.cars.di
 
 import com.example.cars.utils.sharedPrefs.SharedPreferencesManager
 import com.example.cars.utils.sharedPrefs.SharedPreferencesManagerImpl

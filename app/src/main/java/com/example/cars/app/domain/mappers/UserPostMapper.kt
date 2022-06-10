@@ -2,23 +2,13 @@ package com.example.cars.app.domain.mappers
 
 import com.example.cars.app.data.room.userPosts.models.UserPostEntity
 import com.example.cars.app.domain.models.UserPost
+import com.example.cars.app.domain.models.UserPostResponse
 
-fun UserPost.toSavedUserPostEntity() = UserPostEntity(
+fun UserPostResponse.toUserPostEntity() = UserPostEntity(
+    id = id,
+    userId = userId,
     images = images,
     title = title,
-    carModel = carModel,
-    description = description,
-    price = price,
-    personName = personName,
-    email = email,
-    phoneNumber = phoneNumber
-)
-
-fun UserPost.toDeletedUserPostEntity() = UserPostEntity(
-    uid = uid,
-    images = images,
-    title = title,
-    carModel = carModel,
     description = description,
     price = price,
     personName = personName,
@@ -27,11 +17,11 @@ fun UserPost.toDeletedUserPostEntity() = UserPostEntity(
     date = date
 )
 
-fun UserPostEntity.toUserPost() = UserPost(
-    uid = uid,
+fun UserPostEntity.toUserPostResponse() = UserPostResponse(
+    id = id,
+    userId = userId,
     images = images,
     title = title,
-    carModel = carModel,
     description = description,
     price = price,
     personName = personName,

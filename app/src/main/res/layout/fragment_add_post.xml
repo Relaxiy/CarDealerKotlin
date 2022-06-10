@@ -191,10 +191,9 @@
             android:id="@+id/addPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:hint="(01) 222-33-44"
+            android:hint="phone"
             android:gravity="center"
             android:inputType="phone"
-            android:maxLength="9"
             android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton

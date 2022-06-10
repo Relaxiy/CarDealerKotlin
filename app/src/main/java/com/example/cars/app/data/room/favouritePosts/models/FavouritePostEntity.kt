@@ -13,8 +13,6 @@ data class FavouritePostEntity(
     val images: String?,
     @ColumnInfo(name = "title")
     val title: String,
-    @ColumnInfo(name = "car_model")
-    val carModel: String,
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "price")

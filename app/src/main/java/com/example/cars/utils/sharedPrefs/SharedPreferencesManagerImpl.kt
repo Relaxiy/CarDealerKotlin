@@ -1,9 +1,10 @@
-package com.example.cars.registration.presentation.utils
+package com.example.cars.utils.sharedPrefs
 
 import android.content.Context
 import javax.inject.Inject
 
-class SharedPreferencesManagerImpl @Inject constructor(context: Context) : SharedPreferencesManager {
+class SharedPreferencesManagerImpl @Inject constructor(context: Context) :
+    SharedPreferencesManager {
     companion object {
         private const val PREFS_NAME_IS_SIGN = "login_prefs"
         private const val PREFS_NAME_EMAIL = "login_prefs_email"

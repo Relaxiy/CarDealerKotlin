@@ -32,7 +32,7 @@ class ForgetPasswordActivityViewModel @Inject constructor(
 
     fun sendEmail(phoneNumber: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (validateEmail(phoneNumber)) {
+            if (validatePhoneNumber(phoneNumber)) {
                 _searchResult.postValue(findAccountByEmailUseCase.findAccountByPhoneNumber(phoneNumber))
             } else {
                 _searchResult.postValue(InvalidInputPhoneNumber())
@@ -40,9 +40,8 @@ class ForgetPasswordActivityViewModel @Inject constructor(
         }
     }
 
-    private fun validateEmail(email: String): Boolean {
-        return email.isNotEmpty() ||
-                email.isEmail()
+    private fun validatePhoneNumber(phoneNumber: String): Boolean {
+        return phoneNumber.isNotEmpty()
     }
 
     fun validateCode(sendingCode: String, userCode: String){

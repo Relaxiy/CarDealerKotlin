@@ -2,6 +2,7 @@ package com.example.cars.registration.presentation.login.actionSelector
 
 import com.example.cars.registration.data.firebase.models.AccountEntity
 import com.example.cars.registration.domain.models.Account
+import com.example.cars.registration.domain.models.AccountResponse
 
 sealed class AccountSearchResult{
 
@@ -14,7 +15,7 @@ sealed class AccountSearchResult{
     ) : AccountSearchResult()
 
     data class SuccessResult(
-        val account: Account
+        val accountResponse: AccountResponse
     ) : AccountSearchResult()
 
 }

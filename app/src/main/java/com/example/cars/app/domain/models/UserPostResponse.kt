@@ -1,8 +1,7 @@
 package com.example.cars.app.domain.models
 
-import com.example.cars.utils.date.CurrentDate
-
-data class UserPost(
+data class UserPostResponse(
+    val id: String,
     val userId: String,
     val images: String?,
     val title: String,
@@ -11,5 +10,5 @@ data class UserPost(
     val personName: String,
     val email: String,
     val phoneNumber: String,
-    var date: String = CurrentDate.currentDate
+    var date: String
 )

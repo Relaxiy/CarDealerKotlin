@@ -12,7 +12,5 @@ interface AccountsRepository {
 
     suspend fun createAccount(signUpData: SignUpData)
 
-    suspend fun updateUsernameForAccountId(accountId: Long, newUsername: String)
-
     suspend fun changePassword(password: String, documentPath: String)
 }

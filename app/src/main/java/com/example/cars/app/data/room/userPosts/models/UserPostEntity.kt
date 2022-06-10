@@ -10,14 +10,14 @@ import java.util.*
 
 @Entity(tableName = TABLE_NAME)
 data class UserPostEntity(
-    @PrimaryKey(autoGenerate = true)
-    var uid: Long = 0,
+    @PrimaryKey
+    var id: String,
+    @ColumnInfo(name = "user_id")
+    val userId: String,
     @ColumnInfo(name = "images")
     val images: String?,
     @ColumnInfo(name = "title")
     val title: String,
-    @ColumnInfo(name = "car_model")
-    val carModel: String,
     @ColumnInfo(name = "description")
     val description: String,
     @ColumnInfo(name = "price")
@@ -29,7 +29,7 @@ data class UserPostEntity(
     @ColumnInfo(name = "phone_number")
     val phoneNumber: String,
     @ColumnInfo(name = "current_date")
-    var date: String = CurrentDate.currentDate
+    var date: String
 ) {
     companion object {
         const val TABLE_NAME = "user_posts"

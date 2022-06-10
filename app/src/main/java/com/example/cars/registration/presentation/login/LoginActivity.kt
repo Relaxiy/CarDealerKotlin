@@ -1,7 +1,6 @@
 package com.example.cars.registration.presentation.login
 
 import android.os.Bundle
-import android.telephony.SmsManager
 import android.widget.ProgressBar
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +11,7 @@ import com.example.cars.databinding.ActivityLoginBinding
 import com.example.cars.registration.presentation.register.RegisterActivity
 import com.example.cars.registration.presentation.login.actionSelector.AccountSearchResult.*
 import com.example.cars.registration.presentation.login.resetPassword.ForgetPasswordActivity
-import com.example.cars.registration.presentation.utils.SharedPreferencesManager
+import com.example.cars.utils.sharedPrefs.SharedPreferencesManager
 import com.example.cars.utils.ext.dialog
 import com.example.cars.utils.ext.openActivity
 import kotlinx.android.synthetic.main.activity_login.*
@@ -75,13 +74,15 @@ class LoginActivity : AppCompatActivity() {
                 is InvalidInput -> dialog(InvalidInput().invalidInput)
                 is SuccessResult -> {
                     userSharedViewModel.shareAccountIntoPersonalPage(
-                        accountSearchResult.account.username,
-                        accountSearchResult.account.email,
-                        accountSearchResult.account.phoneNumber,
-                        accountSearchResult.account.birthday,
-                        accountSearchResult.account.password,
-                        accountSearchResult.account.createdAt
+                        accountSearchResult.accountResponse.id,
+                        accountSearchResult.accountResponse.username,
+                        accountSearchResult.accountResponse.email,
+                        accountSearchResult.accountResponse.phoneNumber,
+                        accountSearchResult.accountResponse.birthday,
+                        accountSearchResult.accountResponse.password,
+                        accountSearchResult.accountResponse.createdAt
                     )
+                    sharedPreferences.saveDocumentPath(accountSearchResult.accountResponse.id)
                     sharedPreferences.saveSign( true)
                     sharedPreferences.saveEmail(binding.inputLoginEmail.text.toString())
                     sharedPreferences.savePassword(binding.inputLoginPassword.text.toString())
